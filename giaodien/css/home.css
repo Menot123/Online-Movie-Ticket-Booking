@@ -1,0 +1,144 @@
+body {
+    min-height: 2000px;
+}
+
+#carouselExampleControls{
+    position: relative;
+    top: 0;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 80px;
+}
+
+#img__play {
+    position: absolute;
+    top: 32%;
+    left: 46%;
+    color: #fff;
+    width: 88px;
+    height: 88px;
+}
+
+.buyticket__fast {
+    position: absolute;
+    top: 36px;
+    right: 70px;
+    height: 388px;
+    width: 357px;
+    background-color: rgba(0.5, 0.5, 0.5, 0.4);
+}
+
+.title {
+    background-color: #f26b38;
+    width: fit-content;
+    padding: 8px 0;
+
+}
+
+#text__buyfast {
+    padding: 0px 24px;
+    font-size: 1.3rem;
+    font-weight: 388px;
+    color: #fff;
+}
+
+#line__hor {
+    opacity: 1;
+    color: #f26b38;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.select__info__ticket {
+    margin: 12px 8px;
+}
+
+.form-select option {
+    background-color: #ccc;
+}
+
+#btn__buy__ticket {
+    float: right;
+    background-color: #f26b38;
+    border: none;
+    padding: 6px 16px;
+}
+
+/* CSS content */
+.header_content {
+    margin-top: 32px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(112, 112, 112);
+}
+
+.pr-15{
+    padding-right: 15px;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+.img__moview {
+    width: 100%;
+}
+
+.btn__view__more {
+    width: 100%;
+}
+
+#btn__viewMore {
+    margin-top: 24px;
+    background-color: #fff;
+    color: #f26b38;
+    border-color: #f26b38;
+    width: fit-content;
+    float: right !important;
+}
+
+#btn__viewMore:hover {
+    background-color: #f26b38;
+    color: #fff;
+}
+
+.about__movie {
+    margin-left: 12px;
+}
+
+.img__reviews {
+    width: 220px;
+    height: auto;
+}
+
+#icon__view {
+    height: 14px;
+    width: 20px;
+    padding-left: 4px;
+}
+
+.view {
+    width: fit-content;
+    border-radius: 3px;
+    background-color: rgb(184, 179, 179);
+}
+
+#numView {
+    padding-right: 4px;
+}
+
+#icon__star {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 6px;
+}
+
+#numRate {
+    text-align: center;
+    height: 100%;
+    color: rgb(172, 169, 169);
+}
+  
+  

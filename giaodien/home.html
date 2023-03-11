@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/home.css">
+    <title>L2DBT | Rạp phim hay nhất mọi thời đại</title>
+</head>
+
+<body>
+    <div class="banner">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./img/sieulaygapsieulua.jpg" class="d-block w-100" alt="...">
+                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/AdamDriver.jpg" class="d-block w-100" alt="...">
+                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/tomandjerry.jpg" class="d-block w-100" alt="...">
+                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="buyticket__fast d-flex flex-column">
+            <div class="title">
+                <span id="text__buyfast">MUA VÉ NHANH</span>
+            </div>
+            <hr id="line__hor">
+            <div class="select__info__ticket">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option id="select__movie" selected>Chọn phim</option>
+                    <option value="1">Siêu lừa gặp siêu lầy</option>
+                    <option value="2">Tom and Jerry</option>
+                    <option value="3">Adam River</option>
+                </select>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option id="select__movie" selected>Chọn rạp</option>
+                    <option value="vivoQ7">L2DBT Vivo City Quận 7</option>
+                </select>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option id="select__movie" selected>Chọn ngày</option>
+                    <option value="113">11/3</option>
+                    <option value="123">12/3</option>
+                    <option value="133">13/4</option>
+                </select>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option id="select__movie" selected>Chọn suất</option>
+                    <option value="8">8:00</option>
+                    <option value="10">10:00</option>
+                    <option value="12">12:00</option>
+                    <option value="14">14:00</option>
+                    <option value="16">16:00</option>
+                    <option value="18">18:00</option>
+                    <option value="20">20:00</option>
+                    <option value="22">22:00</option>
+                </select>
+
+                <button id="btn__buy__ticket" class="btn btn-primary">Mua vé</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header_content">PHIM ĐANG CHIẾU</div>
+
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/phimSLGSL.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>Siêu Lừa gặp siêu lầy</h5>
+            </div>
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/phimAD.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>Adam Driver - CUỘC CHIẾN THỜI TIỀN SỬ</h5>
+            </div>
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/phimTomJeryy.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>TOM & JERRY: QUẬY TUNG NEW YORK</h5>
+            </div>
+
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/phimKhoachatcua.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>SUZUME NO TOJIMARI</h5>
+            </div>
+
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/13nghithuc.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>13 NGHI THỨC TRỪ TÀ</h5>
+            </div>
+
+            <div class="col-lg-4 pr-15 pl-15">
+                <img class="img__moview" src="./img/chuot.jpg" alt="Siêu lừa gặp siêu lầy">
+                <h5>CHUỘT NHÍ VÀ SỨ MỆNH THẦN BIỂN</h5>
+            </div>
+            <div class="btn__view__more">
+                <button id="btn__viewMore" class="btn btn-primary">Xem thêm</button>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <h5>BÌNH LUẬN PHIM</h5>
+                <div class="comment__items my-4">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/rv1.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>[Review] Siêu Lừa Gặp Siêu Lầy: Phi Vụ Hoàn Hảo Của Điện Ảnh Việt</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 3107</span></div>
+                                <div class="star mx-2">
+                                    <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b style="color: #000;">8.0</b>/10</span>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Siêu Lừa Gặp Siêu Lầy là một cuốn phim tốt về mọi mặt, nếu mong muốn có những giây phút
+                                giải trí thư giãn
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment__items my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/rv2.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>[Review] Ant-Man And The Wasp Quantumania: Cú Lừa Xuất Sắc Của Marvel!</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 8113</span></div>
+                                <div class="star mx-2">
+                                    <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b style="color: #000;">9.2</b>/10</span>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Ai nghĩ rằng trailer Ant-Man And The Wasp: Quantumania đã tóm tắt bộ phim thì lầm to rồi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment__items my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/rv3.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>[Review] M3GAN: Khi "Cúp Bế" Trỗi Dậy Làm Chủ Con Người</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 3752</span></div>
+                                <div class="star mx-2">
+                                    <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b style="color: #000;">8.5</b>/10</span>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Vừa hấp dẫn, vừa giải trí, M3GAN hoàn toàn xứng đáng với những lời khen từ đại chúng và các nhà phê bình. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment__items my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/rv4.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>[Review] Chị Chị Em Em 2: Ngọc Trinh Hoàn Hảo, Minh Hằng Xuất Sắc!</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 10023</span></div>
+                                <div class="star mx-2">
+                                    <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b style="color: #000;">8.7</b>/10</span>
+                                </div>
+                            </div>
+                            <div class="description">
+                                Đạo diễn Vũ Ngọc Đãng thành công vừa làm nổi bật Ngọc Trinh bốc lửa vừa tôn được nét đẹp đằm thắm của Minh Hằng.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h5>BLOG ĐIỆN ẢNH</h5>
+
+                <div class="blog__items my-4">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/blog1.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>Oscar 2023: Những Chuyện Hậu Trường Đầy Bất Ngờ</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 3255</span></div>
+                            </div>
+                            <div class="description">
+                                Những điều thú vị đằng sau sự kiện điện ảnh lớn nhất năm! Hãy cùng xem ai sẽ là người chiến thắng!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog__items my-4 my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/blog2.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>Bóc Trứng Phục Sinh Ant-Man And The Wasp: Quantumania</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 967</span></div>
+                            </div>
+                            <div class="description">
+                                Những bộ phim thuộc vũ trụ điện ảnh Marvel luôn “chôn” rất nhiều Trứng Phục Sinh để các fan trung thành khám phá.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog__items my-4 my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/blog3.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>Fast X: Vin Diesel Rủ Dàn Siêu Anh Hùng Đua Xe?</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 158</span></div>
+                            </div>
+                            <div class="description">
+                                Fast X – phần mở đầu cho “cuộc đua cuối” của đại gia đình Toretto vừa tung ra trailer siêu hấp dẫn vào 10.02 vừa qua.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog__items my-4 my-5">
+                    <div class="comment__item d-flex justify-content-between">
+                        <img class="img__reviews" src="./img/blog4.jpg" alt="review">
+                        <div class="about__movie d-flex flex-column">
+                            <h6>Luật Điện Ảnh Mới Có Gì Mới?</h6>
+                            <div class="rate d-flex">
+                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                        id="numView"> 488</span></div>
+                            </div>
+                            <div class="description">
+                                So với Luật Điện ảnh 2006 trước đây, Luật Điện ảnh 2022 (có hiệu lực từ ngày 01.01.2023) thay đổi một số điểm
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
