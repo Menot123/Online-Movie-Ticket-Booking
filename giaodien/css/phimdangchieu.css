@@ -1,0 +1,38 @@
+.nav-tabs{
+    margin-top: 30px;
+}
+.nav-link {
+    font-weight: bold;
+    color: #a8a4a6;
+}
+.nav-link:hover{
+    color:#f36b39;
+}
+.movie {
+    margin-top: 30px;
+}
+
+.movie-item {
+    margin-bottom: 30px;
+}
+
+.movie-image img {
+    width: 100%;
+}
+
+.movie-image img:hover {
+    filter: brightness(40%);
+    transition: 0.4s;
+    
+}
+
+.movie-name {
+    margin-top: 10px;
+    font-size: 18px;
+}    
+.cinema-name-des h4{
+    margin-bottom: 30px;
+}
+.movie-des{
+    margin-bottom: 50px;
+}
