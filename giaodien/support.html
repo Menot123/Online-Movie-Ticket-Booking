@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/support.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>Hỗ Trợ</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 contact">
+                <!--Section: Contact v.2-->
+                <section class="mb-4">
+                <!--Section heading-->
+                <h2 class="h1-responsive font-weight-bold text-center my-4">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+            <!--Section description-->
+            <p class="text-center w-responsive mx-auto mb-5">Bạn có câu hỏi nào không? Xin đừng ngần ngại liên hệ trực tiếp với LDBT Cinema nhé.</p>
+
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-9 mb-md-0 mb-5">
+                    <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <label for="name" class="">Tên của bạn</label>
+                                    <input type="text" id="name" name="name" class="form-control">
+                                    
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form mb-0">
+                                    <label for="email" class="">Email của bạn</label>
+                                    <input type="text" id="email" name="email" class="form-control">
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                    <label for="subject" class="">Chủ đề</label>
+                                    <input type="text" id="subject" name="subject" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+
+                                <div class="md-form">
+                                    <label for="message">Nội dung</label>
+                                    <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--Grid row-->
+
+                    </form>
+
+                    <div class="text-center text-md-left">
+                        <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                    </div>
+                    <div class="status"></div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-3 text-center">
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fa fa-map-marker "></i>
+                            <p>90 Nguyễn Thị Thập, Q7, HCMC</p>
+                        </li>
+
+                        <li><i class="fa fa-phone "></i>
+                            <p>19001222</p>
+                        </li>
+
+                        <li><i class="fa fa-envelope "></i>
+                            <p>support@ldbt.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+            </div>
+
+        </section>
+        <!--Section: Contact v.2-->
+            </div>
+            <div class="col-lg-5 book-ticket">
+                <div class="label-tab-buyticket">MUA VÉ NHANH</div>
+                <div style="margin-top:100px">
+                    <h3>Phim đang chiếu</h3>
+                    <div style="margin-top: 20px;">
+                        <img src="/assets/images/sieulua.jpeg" alt="">
+                        <label for="">Siêu lừa gặp siêu lầy</label>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <img src="/assets/images/khoachatcua.jpg" alt="">
+                        <label for="">Khóa chặt cửa nào</label>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <img src="/assets/images/cuocchien.jpg" alt="">
+                        <label for="">Cuộc chiến thời tiền sử</label>
+                    </div>
+                    <a href="/phim-dang-chieu" class="btn secondary fl-right">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
