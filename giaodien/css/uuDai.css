@@ -1,0 +1,87 @@
+body {
+    margin: 10px;
+}
+
+.khuyen-mai:hover {
+    text-decoration: none;
+    color: orange;
+}
+
+.img-khuyen-mai {
+    width: 100%;
+    height: auto;
+    display: table-cell;
+    margin: 10px;
+}
+
+.img-khuyen-mai:hover {
+    filter: brightness(50%);
+}
+
+.mua-ve-nhanh {
+    margin-bottom: 20px;
+}
+
+.mua-ve {
+    width: 100px;
+    padding: 10px;
+    color: white;
+    background-color: #f46c3c;
+    border: 0;
+    
+}
+
+.mua-ve:hover {
+    background-color: #e46434;
+}
+
+.mua-ve-btn{
+    text-align: right;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+.sl {
+    width: 300px;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.img-phim {
+    width: 100%;
+    height: auto;
+    display: table-cell;
+}
+
+.img-phim:hover {
+    filter: brightness(50%);
+}
+
+.movie-item {
+    margin-bottom: 15px;
+}
+
+.sl-all {
+    background-color: #f7f8f9;
+    margin: 10px;
+}
+
+.xem-them {
+    width: 150px;
+    padding: 10px;
+    color: #f46c3c;
+    background-color: white;
+    border: #e46434;
+    border: 1px solid #e46434;
+    
+}
+
+.xem-them:hover {
+    color: white;
+    background-color: #e46434;
+}
+
+.xem-them-btn {
+    text-align: right;
+    margin-bottom: 30px;
+}
