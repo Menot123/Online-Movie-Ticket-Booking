@@ -1,0 +1,47 @@
+
+/* .book-ticket{
+    background-color: rgb(230, 230, 139);
+} */
+.label-tab-buyticket {
+    background-color: #f26b38;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 12px 26px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    margin-left: 17px;
+}
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+img{
+    width: 320px;
+    height: 200px;
+}
+.btn.secondary:hover {
+    color: #ffffff;
+    background-color: #f26b38;
+    border-color: #f26b38;
+}
+
+.btn.secondary {
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #f26b38;
+    border: 1px solid #f26b38;
+    padding: 15px 20px;
+    text-decoration: none;
+    line-height: 1;
+}
+
+label{
+    text-transform: uppercase;
+    color: grey;
+}
