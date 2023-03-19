@@ -1,0 +1,43 @@
+.location__page {
+    margin-bottom: 20px;
+}
+#span__locationPage {
+    color: #ccc;
+}
+
+#span__locationPage a{
+    text-decoration: none;
+    color: #ccc;
+}
+
+#span__policy{
+    color: #000;
+}
+
+.category__choice {
+    font-weight: 500;
+    color: rgb(151, 148, 148);
+    font-size: 1.2rem;
+    margin: 0 32px;
+}
+
+.first__cate {
+    color: #000;
+    margin-left: 0;
+}
+
+#img__event {
+    margin: 24px 0px 24px 32px;
+    height: 190px;
+    width: 600px;
+}
+
+.content__text {
+    font-size: 0.9rem;
+}
+
+#img__point {
+    margin: 12px 0px 24px 32px;
+    height: 200px;
+    width: 600px;
+}

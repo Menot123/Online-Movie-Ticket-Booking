@@ -13,6 +13,9 @@ class HomeController {
     deal(req, res, next) {
         res.render('uuDai');
     }
+    policy (req, res, next) {
+        res.render('policy');
+    }
 }
 
 
