@@ -1,28 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header - Footer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <style>
-        .navbar {
-            padding: 0px !important;
-        }
-        .menu {
-            font-size: 20px;
-        }
-    </style>
-</head>
+<style>
+    .navbar {
+        padding: 0px !important;
+    }
 
-<html>
+    .menu {
+        font-size: 18px !important;
+    }
+
+    .nav-link:hover {
+        color: aqua !important;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-item {
+        background-color: black;
+        color: blue;
+    }
+
+    .dropdown-menu .menu:hover {
+        color: aqua !important;
+        background-color: black !important
+    }
+</style>
+
 <!-- Header -->
 <nav class="navbar bg-body-tertiary">
     <div class="container">
@@ -49,36 +53,36 @@
                     <a class="nav-link active text-white" aria-current="page" href="#">MUA VÉ</a>
                 </li>
                 <li class="nav-item dropdown menu">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle=""
                         aria-expanded="false">
                         PHIM
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu" style="background-color: black;">
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">PHIM ĐANG CHIẾU</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">PHIM SẮP CHIẾU</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown menu">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle=""
                         aria-expanded="false">
                         GÓC ĐIỆN ẢNH
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu" style="background-color: black;">
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">THỂ LOẠI PHIM</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">DIỄN VIÊN</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">ĐẠO DIỄN</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">BÌNH LUẬN PHIM</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">BLOG ĐIỆN ẢNH</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown menu">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle=""
                         aria-expanded="false">
                         SỰ KIỆN
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu" style="background-color: black;">
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">ƯU ĐÃI</a></li>
+                        <li><a class="dropdown-item menu" style="color: white;" href="#">PHIM HAY THÁNG</a></li>
                     </ul>
                 </li>
                 <li class="nav-item menu">
@@ -95,6 +99,3 @@
     </div>
 </nav>
 <!-- End Header -->
-</body>
-
-</html>
