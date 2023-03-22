@@ -45,3 +45,40 @@ label{
     text-transform: uppercase;
     color: grey;
 }
+
+.title {
+    background-color: #f26b38;
+    width: fit-content;
+    padding: 8px 0;
+
+}
+
+#text__buyfast {
+    padding: 0px 24px;
+    font-size: 1.3rem;
+    font-weight: 388px;
+    color: #fff;
+}
+
+#line__hor {
+    opacity: 1;
+    color: #f26b38;
+    height: 2px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.select__info__ticket {
+    margin: 12px 8px;
+}
+
+.form-select option {
+    background-color: #ccc;
+}
+
+#btn__buy__ticket {
+    float: right;
+    background-color: #f26b38;
+    border: none;
+    padding: 6px 16px;
+}

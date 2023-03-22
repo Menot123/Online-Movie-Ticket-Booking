@@ -19,6 +19,9 @@ class HomeController {
     ticket(req, res, next) {
         res.render('buy_ticket');
     }
+    ticketprice(req, res, next){
+        res.render('ticketprice')
+    }
 }
 
 
