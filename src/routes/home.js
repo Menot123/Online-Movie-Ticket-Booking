@@ -10,6 +10,7 @@ router.get('/phim-dang-chieu', homeController.movies);
 router.get('/ho-tro', homeController.support);
 router.get('/uu-dai', homeController.deal);
 router.get('/chinh-sach', homeController.policy);
+router.get('/mua-ve', homeController.ticket);
 router.get('/', homeController.index);
 
 

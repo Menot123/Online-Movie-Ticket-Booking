@@ -4,7 +4,7 @@ class HomeController {
     index(req, res, next) {
         res.render('home');
     }
-    movies (req, res, next) {
+    movies(req, res, next) {
         res.render('phimdangchieu');
     }
     support(req, res, next) {
@@ -13,8 +13,11 @@ class HomeController {
     deal(req, res, next) {
         res.render('uuDai');
     }
-    policy (req, res, next) {
+    policy(req, res, next) {
         res.render('policy');
+    }
+    ticket(req, res, next) {
+        res.render('buy_ticket');
     }
 }
 
