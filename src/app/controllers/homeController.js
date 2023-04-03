@@ -22,6 +22,12 @@ class HomeController {
     ticketprice(req, res, next){
         res.render('ticketprice')
     }
+    handleLogin(req,res, next) {
+        res.render('login');
+    }
+    handleRegister(req,res, next) {
+        res.render('register');
+    }
 }
 
 

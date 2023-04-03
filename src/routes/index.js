@@ -1,7 +1,12 @@
-const homeRouter = require('./home');
+const express = require('express');
+const router = express.Router();
 
-function route(app) {
-    app.use('/', homeRouter);
-}
+const homeRouter = require('./homePage');
+const accountRouter = require('./account')
 
-module.exports = route;
+
+router.use('/', homeRouter);
+router.use('/account', accountRouter)
+
+
+module.exports = router;

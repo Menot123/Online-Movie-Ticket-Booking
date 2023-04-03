@@ -7,14 +7,10 @@ const app = express();
 const hostname = process.env.HOST;
 const port = process.env.PORT;
 
+const router = require('./src/routes');
 
-const route = require('./routes');
-// const db = require('./config/db');
 
-// Connect to DB
-// db.connect();
-
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,'src','public')));
 
 app.use(express.json());
 
@@ -42,10 +38,9 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resource', 'views'));
+app.set('views', path.join(__dirname,'src', 'resource', 'views'));
 
-// Route init
-route(app);
+app.use('/', router);
 
 
 app.listen(port,hostname, () => {

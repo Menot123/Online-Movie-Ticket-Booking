@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css    ">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    p.item {
+      padding: 16px;
+      text-align: center;
+      border-radius: 8px;
+      color: white;
+      background-color: green;
+    }
+
+    .bg-blur {
+            background-color: rgb(247, 243, 243);
+        }
+
+    .bg-form {
+            background-color: rgb(240, 192, 235) !important;
+        }
+  </style>
+</head>
+
+<body class="bg-blur">
+
+  <h3 class="text-center">Đăng ký tài khoản</h3>
+
+  <!-- buộc toàn bộ dòng và cột phải bỏ trong class container -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-5">
+        <div class="border p-3 rounded bg-form">
+          <form method="POST" action="/account/register">
+            <div class="form-group">
+              <label for="user">Tên của bạn</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input name="username" id="name" type="text" class="form-control" placeholder="Nhập vào tên của bạn">
+              </div>
+
+            <div class="form-group">
+              <label for="user">Số điện thoại</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại">
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="pass">Mật khẩu</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input id="pass" name="password" type="password" class="form-control" placeholder="Nhập vào mật khẩu">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pass">Xác nhận mật khẩu</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input id="rePass" name="rePassWord" type="password" class="form-control" placeholder="Nhập lại mật khẩu">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="alert alert-danger alert-dismissible fade show" hidden>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Mật khẩu bắt buộc ít nhất là 6 ký tự!
+              </div>
+              <div id="msg__passEq" class="alert alert-danger alert-dismissible fade show" hidden>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                Mật khẩu bạn nhập không khớp, vui lòng kiểm tra lại!
+              </div>
+            </div>
+            <div class="form-group">
+              <button id="btnSubmit" class="btn btn-success px-5" type="submit">Đăng ký</button>
+            </div>
+            <div class="form-group">
+              <p>Dã có tài khoản? <a href="/login">Đăng nhập ngay!</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<script>
+  const pass = document.getElementById("pass")
+  const rePass = document.getElementById("rePass")
+  const btnSubmit = document.getElementById("btnSubmit")
+  const msg__passEq = document.getElementById("msg__passEq")
+  
+  btnSubmit.addEventListener("click", function(e) {
+    if(pass.value != rePass.value) {
+      msg__passEq.hidden = false
+      e.preventDefault();
+    }
+  })
+</script>
+</html>
