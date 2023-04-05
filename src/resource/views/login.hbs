@@ -30,6 +30,8 @@
         .bg-form {
             background-color: rgb(240, 192, 235) !important;
         }
+
+        
     </style>
 </head>
 
@@ -42,7 +44,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-5">
                 <div class="border p-3 rounded bg-form">
-                    <form method="POST" action="/account/login">
+                    <form id="form-login" method="POST" action="/account/login">
                         <div class="form-group">
                             <label for="user">Số điện thoại</label>
                             <div class="input-group mb-3">
@@ -51,7 +53,7 @@
                                         <i class="fas fa-user"></i>
                                     </span>
                                 </div>
-                                <input name="phone" id="phone" type="text" class="form-control"
+                                <input name="phone" id="phone" type="number" class="form-control"
                                     placeholder="Vui lòng nhập số điện thoại">
                             </div>
 
@@ -64,20 +66,21 @@
                                         <i class="fas fa-lock"></i>
                                     </span>
                                 </div>
-                                <input name="password" type="password" class="form-control"
+                                <input id="password" name="password" type="password" class="form-control"
                                     placeholder="Vui lòng nhập mật khẩu">
                             </div>
                         </div>
 
 
-                        <div class="form-group" hidden>
-                            <div class="alert alert-danger alert-dismissible fade show">
+                        <div id="alert-login" class="form-group" hidden>
+                            <div class="alert alert-danger alert-dismissible fade show" >
+                                <span id="msg__login"></span>
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                Sai tài khoản hoặc mật khẩu!
+                                
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success px-5" type="submit">Đăng nhập</button>
+                            <button id="btn_signIn" class="btn btn-success px-5" type="submit">Đăng nhập</button>
                         </div>
                         <div class="form-group">
                             <p>Bạn chưa có tài khoản? <a href="/register">Đăng ký ngay!</a></p>
@@ -90,5 +93,46 @@
 
 
 </body>
+
+<script>
+    const phone = document.getElementById("phone");
+    const password = document.getElementById("password");
+    const btn_signIn = document.getElementById("btn_signIn");
+    const msg__login = document.getElementById("msg__login");
+    const alertLogin = document.getElementById("alert-login");
+    const formLogin = document.getElementById("form-login");
+
+    console.log(password)
+
+    btn_signIn.addEventListener('click', (e) => {
+        if (phone.value.length < 10) {
+            formLogin.addEventListener('submit', function (event) {
+                event.preventDefault();
+            });
+            alertLogin.removeAttribute('hidden')
+            msg__login.innerText = "Vui lòng nhập vào số điện thoại"
+            phone.focus()
+        }
+        else if (password.value.length < 6) {
+            formLogin.addEventListener('submit', function (event) {
+                event.preventDefault();
+            });
+            alertLogin.removeAttribute('hidden')
+            msg__login.innerText = "Mật khẩu tối thiểu phải 6 kí tự"
+            password.focus()
+        }
+
+    })
+
+    phone.addEventListener('keypress', () => {
+        alertLogin.setAttribute('hidden',true)
+    })
+
+    password.addEventListener('keypress', () => {
+        alertLogin.setAttribute('hidden',true)
+    })
+
+
+</script>
 
 </html>

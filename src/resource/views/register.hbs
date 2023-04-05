@@ -20,12 +20,12 @@
     }
 
     .bg-blur {
-            background-color: rgb(247, 243, 243);
-        }
+      background-color: rgb(247, 243, 243);
+    }
 
     .bg-form {
-            background-color: rgb(240, 192, 235) !important;
-        }
+      background-color: rgb(240, 192, 235) !important;
+    }
   </style>
 </head>
 
@@ -38,7 +38,7 @@
     <div class="row justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-5">
         <div class="border p-3 rounded bg-form">
-          <form method="POST" action="/account/register">
+          <form id="form-register" method="POST" action="/account/register">
             <div class="form-group">
               <label for="user">Tên của bạn</label>
               <div class="input-group mb-3">
@@ -50,56 +50,58 @@
                 <input name="username" id="name" type="text" class="form-control" placeholder="Nhập vào tên của bạn">
               </div>
 
-            <div class="form-group">
-              <label for="user">Số điện thoại</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-user"></i>
-                  </span>
+              <div class="form-group">
+                <label for="user">Số điện thoại</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </span>
+                  </div>
+                  <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại">
                 </div>
-                <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại">
-              </div>
 
-            </div>
-            <div class="form-group">
-              <label for="pass">Mật khẩu</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-lock"></i>
-                  </span>
+              </div>
+              <div class="form-group">
+                <label for="pass">Mật khẩu</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </div>
+                  <input id="pass" name="password" type="password" class="form-control" placeholder="Nhập vào mật khẩu">
                 </div>
-                <input id="pass" name="password" type="password" class="form-control" placeholder="Nhập vào mật khẩu">
               </div>
-            </div>
-            <div class="form-group">
-              <label for="pass">Xác nhận mật khẩu</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-lock"></i>
-                  </span>
+              <div class="form-group">
+                <label for="pass">Xác nhận mật khẩu</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </div>
+                  <input id="rePass" name="rePassWord" type="password" class="form-control"
+                    placeholder="Nhập lại mật khẩu">
                 </div>
-                <input id="rePass" name="rePassWord" type="password" class="form-control" placeholder="Nhập lại mật khẩu">
               </div>
-            </div>
-            <div class="form-group">
-              <div class="alert alert-danger alert-dismissible fade show" hidden>
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                Mật khẩu bắt buộc ít nhất là 6 ký tự!
+              <div class="form-group">
+                <div class="alert alert-danger alert-dismissible fade show" hidden>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  Mật khẩu bắt buộc ít nhất là 6 ký tự!
+                </div>
+                <div id="msg__passEq" class="alert alert-danger alert-dismissible fade show" hidden>
+                  <span id="msg__text"></span>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                </div>
               </div>
-              <div id="msg__passEq" class="alert alert-danger alert-dismissible fade show" hidden>
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                Mật khẩu bạn nhập không khớp, vui lòng kiểm tra lại!
+              <div class="form-group">
+                <button id="btnSubmit" class="btn btn-success px-5" type="submit">Đăng ký</button>
               </div>
-            </div>
-            <div class="form-group">
-              <button id="btnSubmit" class="btn btn-success px-5" type="submit">Đăng ký</button>
-            </div>
-            <div class="form-group">
-              <p>Dã có tài khoản? <a href="/login">Đăng nhập ngay!</a></p>
-            </div>
+              <div class="form-group">
+                <p>Dã có tài khoản? <a href="/login">Đăng nhập ngay!</a></p>
+              </div>
           </form>
         </div>
       </div>
@@ -113,12 +115,51 @@
   const rePass = document.getElementById("rePass")
   const btnSubmit = document.getElementById("btnSubmit")
   const msg__passEq = document.getElementById("msg__passEq")
-  
-  btnSubmit.addEventListener("click", function(e) {
-    if(pass.value != rePass.value) {
-      msg__passEq.hidden = false
+  const phone = document.getElementById("phone")
+  const name = document.getElementById("name")
+  const msg__text = document.getElementById("msg__text")
+  const formRegister = document.getElementById("form-register")
+
+
+  function check(msg, element) {
+    formRegister.addEventListener('submit', function (event) {
+      event.preventDefault();
+    });
+    msg__text.innerText = msg
+    msg__passEq.hidden = false
+    element.focus()
+  }
+
+  btnSubmit.addEventListener("click", function (e) {
+    if (name.value.length == 0) {
       e.preventDefault();
+      check("Vui lòng nhập tên của bạn", name)
+    } else if (phone.value.length < 10){
+      e.preventDefault();
+      check("Vui lòng nhập số điện thoại", phone)
+    } else if(pass.value.length < 6) {
+      e.preventDefault();
+      check("Mật khẩu tối thiểu phải có 6 kí tự", pass)
+    }else if(rePass.value != pass.value) {
+      e.preventDefault();
+      check("Mật khẩu bạn nhập không khớp", rePass)
+    } else {
+      formRegister.submit()
     }
+    
   })
+
+  name.addEventListener('keypress', () => {
+    msg__passEq.hidden = true
+  })
+
+  pass.addEventListener('keypress', () => {
+    msg__passEq.hidden = true
+  })
+
+
+
+
 </script>
+
 </html>
