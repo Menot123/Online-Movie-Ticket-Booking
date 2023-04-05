@@ -74,8 +74,19 @@
 }
 
 .cinema-name-des h4 {
+    color: #42464a;
     margin-bottom: 40px;
     margin-top: 40px;
+}
+
+.cinema-name-des h4:after {
+    display: block;
+    width: 55px;
+    height: 3px;
+    margin-top: 10px;
+    content: "";
+    background-color: #f36a38;
+    margin-bottom: 25px;
 }
 
 .movie-des {
