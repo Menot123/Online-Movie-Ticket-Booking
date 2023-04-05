@@ -13,17 +13,21 @@
 .movie-item{
     margin-bottom: 30px;
 }
+
 .movie-info{
     margin-left: 20px;
 }
+
 .movie-image img{
     width: 275px;
     height: 180px;
 }
+
 .movie-image img:hover{
     transition: 0.3s;
     filter: brightness(60%);
 }
+
 .movie-name a{
     color: #42464a;
     display: block;
@@ -35,13 +39,16 @@
     text-decoration: none;
     color: #f36a38;
 }
+
 .movie-detail{
     margin-top: 10px;
 }
+
 .movie-button{
     height: 40px;
     width: 100px;
 }
+
 .movie-views-lbl{
     background-color: #e8ecf1;
     height: 30px;
@@ -50,8 +57,8 @@
     border-radius: 5px;
     padding-top: 2px;
     margin-left: 20px;
-
 }
+
 .movie-description{
     margin-top: 20px;
     width: 540px;
@@ -108,8 +115,6 @@
     display: table-cell;
 }
 
-
-  
 .hidden-buy-ticket {
     position: absolute;
     bottom: 0;
@@ -158,6 +163,7 @@
     background-color: #f46c3c;
     border: 0;
 }
+
 .right-movie-name{
     color: #42464a;
     margin-top: 10px ;
@@ -189,25 +195,25 @@
 .pagi{
     text-align: center;
 }
+
 .pagination {
     display: inline-block;
-  }
+}
   
 .pagination a {
     color: #a7a5a9;
     float: left;
     padding: 4px 16px;
-
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
-  }
+}
   
 .pagination a.active {
     background-color: #f46c3c;
     color: #fff7d7;
     border: 1px solid #f46c3c;
-  }
+}
   
 .pagination a:hover:not(.active) {
     background-color: #efefee;
