@@ -1,5 +1,6 @@
 const homeServices = require('../../services/home.service')
 const buyticketServices = require('../../services/buy_ticket.service')
+const commingSoonServices = require('../../services/comming_soon.service')
 
 async function index(req, res, next) {
     try {
@@ -19,9 +20,19 @@ async function index(req, res, next) {
 
 async function movies(req, res, next) {
     try {
-        res.render('now_showing');
+        const films = await homeServices.getShortFilms()
+        res.render('now_showing', { films: films });
     } catch (err) {
         console.error('An error when render now_showing', err.message);
+        next(err);
+    }
+}
+async function smovies(req, res, next) {
+    try {
+        const films = await commingSoonServices.getCommingSoonFilm()
+        res.render('comming_soon', { films: films });
+    } catch (err) {
+        console.error('An error when render comming_soon', err.message);
         next(err);
     }
 }
@@ -80,6 +91,7 @@ function handleRegister(req, res, next) {
 module.exports = {
     index,
     movies,
+    smovies,
     support,
     deal,
     policy,

@@ -64,6 +64,10 @@
     opacity: 1;
 }
 
+.movie-image {
+    width: 100%;
+}
+
 .image-container:hover .movie-image {
     filter: brightness(35%);
     transition: 0.2s;

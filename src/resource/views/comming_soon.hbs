@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/comming_soon.css">
+    <link rel="stylesheet" href="/css/comming_soon.css">
     <title>Phim sắp chiếu</title>
 </head>
 
@@ -21,7 +21,7 @@
             <div class="col-md-10">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link " href="#">
+                        <a class="nav-link " href="phim-dang-chieu">
                             <h5>PHIM ĐANG CHIẾU</h5>
                         </a>
                     </li>
@@ -33,126 +33,22 @@
                 </ul>
                 <div class="movie">
                     <div class="row">
+                        {{#each films}}
                         <div class="col-md-3 movie-item">
                             <a class="movie-link" href="#">
                                 <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
+                                    <img src="./img/{{poster}}" class="movie-image" />
                                     <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
+                                        <p><label class="movie-c">C{{dotuoi}}</label></p>
                                         <button class="hidden-button">Mua vé</button>
                                     </div>
                                 </div>
                             </a>
                             <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
+                                <h6>{{tenphim}}</h6>
                             </div>
                         </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/3/3/300x450_1677813440300.jpg"
-                                        class="movie-image">
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C13</label></p>
-                                        <button class="hidden-button">Mua vé</button>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="movie-name">
-                                <h6>SIÊU LỪA GẶP SIÊU LẦY</h6>
-                            </div>
-                        </div>
+                        {{/each}}
                     </div>
                 </div>
                 <div class="movie-des">
@@ -160,40 +56,28 @@
                         <div class="cinema-name-des">
                             <h4>LDBT CINEMA</h4>
                         </div>
-                        <p>Khi mùa tết đã qua và mọi người bắt đầu đi vào luồng quay của công việc và học tập thì các
-                            siêu anh hùng cũng bắt đầu khởi động trong cuộc đua phòng vé. Bên cạnh sự trở lại của
-                            Ant-man và Shazam! Chúng ta còn được la hét hết mình cùng phim mới Scream 6 và tác phẩm ly
-                            kì giật gân Missing.</p>
+                        <p>Galaxy Cinema luôn cập nhật nhanh nhất những bộ phim chiếu rạp mới nhất, hấp dẫn nhất sắp ra
+                            mắt trong thời gian tới. Các bộ phim sắp chiếu tại Galaxy Cinema luôn đủ mọi thể loại được
+                            ưa chuộng nhất bao gồm hành động, kinh dị, phiêu lưu, hoạt hình…phù hợp cho mọi lứa tuổi,
+                            đến từ Hollywood và nhiều quốc gia khác, thật dễ dàng để lựa chọn phim hay theo sở thích của
+                            bạn tại website Galaxy Cinema.
+
+                            Mỗi bộ phim mới cập nhật lên website sẽ hiển thị đầy đủ thông tin từ tựa phim, nội dung
+                            phim, ngày công chiếu giúp bạn thuận tiện trong việc theo dõi. Ngoài ra, Galaxy Cinema sẽ
+                            luôn cập nhật và tạo thuận tiện giúp bạn nhanh tay đặt lấy suất phim mới nhất, phù hợp nhất
+                            để thưởng thức.
+
+
+                            Xem thêm tại: https://www.galaxycine.vn/phim-sap-chieu</p>
                     </div><br>
+                    {{#each films}}
                     <div class="des">
                         <div class="movie-des">
-                            <h6>Ant-Man and The Wasp: Quantumania</h6>
-                            <p>Là người hùng của thế giới trong Avengers: Engame, Ant-man lại không nhận được sự chú ý
-                                đặc biệt mà còn bị nhầm lẫn với Spider-man. Dẫu vậy anh vẫn rất tận hưởng cuộc sống,
-                                bỗng một ngày, Cassie (Kathryn Newton) sử dụng một cỗ máy để liên lạc và vô tình khiến
-                                cả gia đình bị lôi vào thế giới lượng tử. Tại đây, Scott Lang (Paul Rudd) cùng Hope van
-                                Dyne (Evangeline Lilly) sẽ phải đối đầu với tên phản diện khét tiếng Kang the Conqueror
-                                (Jonathan Majors), phản diện lớn nhất The Multiverse Saga của Vũ trụ Marvel.</p>
-                        </div>
-                        <div class="movie-des">
-                            <h6>Ant-Man and The Wasp: Quantumania</h6>
-                            <p>Là người hùng của thế giới trong Avengers: Engame, Ant-man lại không nhận được sự chú ý
-                                đặc biệt mà còn bị nhầm lẫn với Spider-man. Dẫu vậy anh vẫn rất tận hưởng cuộc sống,
-                                bỗng một ngày, Cassie (Kathryn Newton) sử dụng một cỗ máy để liên lạc và vô tình khiến
-                                cả gia đình bị lôi vào thế giới lượng tử. Tại đây, Scott Lang (Paul Rudd) cùng Hope van
-                                Dyne (Evangeline Lilly) sẽ phải đối đầu với tên phản diện khét tiếng Kang the Conqueror
-                                (Jonathan Majors), phản diện lớn nhất The Multiverse Saga của Vũ trụ Marvel.</p>
-                        </div>
-                        <div class="movie-des">
-                            <h6>Ant-Man and The Wasp: Quantumania</h6>
-                            <p>Là người hùng của thế giới trong Avengers: Engame, Ant-man lại không nhận được sự chú ý
-                                đặc biệt mà còn bị nhầm lẫn với Spider-man. Dẫu vậy anh vẫn rất tận hưởng cuộc sống,
-                                bỗng một ngày, Cassie (Kathryn Newton) sử dụng một cỗ máy để liên lạc và vô tình khiến
-                                cả gia đình bị lôi vào thế giới lượng tử. Tại đây, Scott Lang (Paul Rudd) cùng Hope van
-                                Dyne (Evangeline Lilly) sẽ phải đối đầu với tên phản diện khét tiếng Kang the Conqueror
-                                (Jonathan Majors), phản diện lớn nhất The Multiverse Saga của Vũ trụ Marvel.</p>
+                            <h6>{{tenphim}}</h6>
+                            <p>{{mota}}</p>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
