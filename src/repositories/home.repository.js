@@ -21,8 +21,15 @@ async function getShortFilms() {
     return record;
 };
 
+async function getFilms() {
+    const record = await dbClient.query(
+        `SELECT * FROM  phim WHERE category = "films`
+    )
+}
+
 module.exports = {
     getListNotifications,
     getBlogs,
     getShortFilms,
+    getFilms,
 }

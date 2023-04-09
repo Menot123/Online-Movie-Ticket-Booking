@@ -59,8 +59,15 @@ async function blog(req, res, next) {
     }
 }
 
-function support(req, res, next) {
-    res.render('support');
+async function support(req, res, next) {
+    try {
+        const films = await homeServices.getShortFilms()
+        res.render('support', {films: films})
+    } catch (err) {
+        console.error('An error when register account', err.message);
+        next(err);
+    }
+ 
 }
 
 
