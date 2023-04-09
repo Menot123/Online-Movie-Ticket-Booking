@@ -37,6 +37,28 @@ async function smovies(req, res, next) {
     }
 }
 
+async function review(req, res, next) {
+    try {
+        const list = await homeServices.getListNotifications()
+        const films = await homeServices.getShortFilms()
+        res.render('movie_review', {data: list, films: films});
+    } catch (err) {
+        console.error('An error when register account', err.message);
+        next(err);
+    }
+}
+
+async function blog(req, res, next) {
+    try {
+        const blogs = await homeServices.getBlogs()
+        const films = await homeServices.getShortFilms()
+        res.render('movie_blog', {blogs: blogs, films: films});
+    } catch (err) {
+        console.error('An error when register account', err.message);
+        next(err);
+    }
+}
+
 function support(req, res, next) {
     res.render('support');
 }
@@ -98,5 +120,7 @@ module.exports = {
     ticket,
     ticketprice,
     handleLogin,
-    handleRegister
+    handleRegister,
+    review,
+    blog
 };

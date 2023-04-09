@@ -12,6 +12,9 @@ router.get('/chinh-sach', homeController.policy);
 
 router.get('/mua-ve/:maphim?', homeController.ticket);
 
+router.get('/binh-luan-phim', homeController.review);
+router.get('/blog-dien-anh', homeController.blog);
+
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);
 router.get('/register', homeController.handleRegister);

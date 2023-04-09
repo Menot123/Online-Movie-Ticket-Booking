@@ -16,7 +16,7 @@
 }
 
 .movie-info{
-    margin-left: 20px;
+    margin-left: 70px;
 }
 
 .movie-image img{
@@ -53,7 +53,7 @@
 .movie-views-lbl{
     background-color: #e8ecf1;
     height: 30px;
-    width: 90px;
+    width: 150px;
     text-align: center;
     border-radius: 5px;
     padding-top: 2px;
@@ -137,8 +137,7 @@
 
 .movie-img {
     width: 100%;
-    height: auto;
-    display: table-cell;
+    height: 230px;
 }
 
 .hidden-buy-ticket {

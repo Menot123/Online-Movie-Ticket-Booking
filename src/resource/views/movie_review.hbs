@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="movie_review.css">
+    <link rel="stylesheet" href="/css/movie_review.css">
     <title>Bình luận phim</title>
 </head>
 
@@ -24,95 +24,42 @@
                         <h4>BÌNH LUẬN PHIM</h4>
                     </a>
                 </div>
+
+                {{#each data}}
+                <div class="movie-item">
+                    <div class="row">
+                        
+                        <div class="movie-image  col-md-3">
+                            <a href="#">
+                                <img src="{{this.hinhanh}}">
+                            </a>
+                        </div>
+                        <div class="movie-info col-md-8">
+                            <div class="movie-name">
+                                <a href="#"><h5>[Review] {{this.tieude}}</h5></a>
+                            </div>
+                            <div class="movie-detail">
+                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích <label id="count-like">{{this.luotdanhgia}}</label></button>
+                                <label class="movie-views-lbl">Lượt xem: <label id = "count-view">{{this.luotxem}}</label></label>
+                                <label class="rating-movie">★</label>
+                                <label class="rating-count">{{this.luotdanhgia}}</label>
+                                <label class="rating-count-all">/10 (220)</label>
+                                <button class="rating-btn">ĐÁNH GIÁ</button>
+                                
+                            </div>
+                            <div class = "movie-description">
+                                <p>
+                                    {{this.noidung}}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                {{/each}}
                 
-                <div class="movie-item">
-                    <div class="row">
-                        <div class="movie-image">
-                            <a href="#">
-                                <img src="https://cdn.galaxycine.vn/media/2023/3/21/shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon-7_1679369048192.jpg">
-                            </a>
-                        </div>
-                        <div class="movie-info">
-                            <div class="movie-name">
-                                <a href="#"><h5>[Review] Shazam! Fury Of The Gods: Lộn Xộn Nhưng Rất “Nhộn”!</h5></a>
-                            </div>
-                            <div class="movie-detail">
-                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích <label id="count-like">0</label></button>
-                                <label class="movie-views-lbl">Lượt xem: <label id = "count-view">0</label></label>
-                                <label class="rating-movie">★</label>
-                                <label class="rating-count">8.5</label>
-                                <label class="rating-count-all">/10 (220)</label>
-                                <button class="rating-btn">ĐÁNH GIÁ</button>
-                                
-                            </div>
-                            <div class = "movie-description">
-                                <p>
-                                    Nếu nghĩ Nhện nhí nhà Marvel hay gã phản anh hùng Deadpool là những tên siêu năng lực nói nhiều nhất vũ trụ phim siêu anh hùng thì bạn nhầm to rồi!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="movie-item">
-                    <div class="row">
-                        <div class="movie-image">
-                            <a href="#">
-                                <img src="https://cdn.galaxycine.vn/media/2023/3/21/shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon-7_1679369048192.jpg">
-                            </a>
-                        </div>
-                        <div class="movie-info">
-                            <div class="movie-name">
-                                <a href="#"><h5>[Review] Shazam! Fury Of The Gods: Lộn Xộn Nhưng Rất “Nhộn”!</h5></a>
-                            </div>
-                            <div class="movie-detail">
-                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích <label id="count-like">0</label></button>
-                                <label class="movie-views-lbl">Lượt xem: <label id = "count-view">0</label></label>
-                                <label class="rating-movie">★</label>
-                                <label class="rating-count">8.5</label>
-                                <label class="rating-count-all">/10 (220)</label>
-                                <button class="rating-btn">ĐÁNH GIÁ</button>
-                                
-                            </div>
-                            <div class = "movie-description">
-                                <p>
-                                    Nếu nghĩ Nhện nhí nhà Marvel hay gã phản anh hùng Deadpool là những tên siêu năng lực nói nhiều nhất vũ trụ phim siêu anh hùng thì bạn nhầm to rồi!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="movie-item">
-                    <div class="row">
-                        <div class="movie-image">
-                            <a href="#">
-                                <img src="https://cdn.galaxycine.vn/media/2023/3/21/shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon-7_1679369048192.jpg">
-                            </a>
-                        </div>
-                        <div class="movie-info">
-                            <div class="movie-name">
-                                <a href="#"><h5>[Review] Shazam! Fury Of The Gods: Lộn Xộn Nhưng Rất “Nhộn”!</h5></a>
-                            </div>
-                            <div class="movie-detail">
-                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích <label id="count-like">0</label></button>
-                                <label class="movie-views-lbl">Lượt xem: <label id = "count-view">0</label></label>
-                                <label class="rating-movie">★</label>
-                                <label class="rating-count">8.5</label>
-                                <label class="rating-count-all">/10 (220)</label>
-                                <button class="rating-btn">ĐÁNH GIÁ</button>
-                                
-                            </div>
-                            <div class = "movie-description">
-                                <p>
-                                    Nếu nghĩ Nhện nhí nhà Marvel hay gã phản anh hùng Deadpool là những tên siêu năng lực nói nhiều nhất vũ trụ phim siêu anh hùng thì bạn nhầm to rồi!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
+            
             <div class="col-md-3 right">
                 <div class="quick-buy-ticket">
                     <h4>MUA VÉ NHANH</h4>
@@ -149,48 +96,24 @@
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
+
+                {{#each films}}
                 <div class="row">
                     <div class="col-md col-sm col-xs right-movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="movie-img" src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
+                        <a href="#">
+                            <img class="movie-img" src="/img/{{this.poster}}" alt="{{this.tenphim}}">
                             <div class="hidden-buy-ticket">
-                                <p><label class="age">C13</label></p>
+                                <p><label class="age">C{{dotuoi}}</label></p>
                                 <button class="hidden-buy-ticket-btn">MUA VÉ</button>
                             </div>
                         </a>
                         <div class="right-movie-name">
-                            <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
+                            <h5>{{this.tenphim}}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="movie-img" src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                            <div class="hidden-buy-ticket">
-                                <p><label class="age">C13</label></p>
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
-                            </div>
-                        </a>
-                        <div class="right-movie-name">
-                            <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="movie-img" src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                            <div class="hidden-buy-ticket">
-                                <p><label class="age">C13</label></p>
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
-                            </div>
-                        </a>
-                        <div class="right-movie-name">
-                            <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
-                        </div>
-                    </div>
-                </div>
+                {{/each}}
+
                 <div class="view-more">
                     <button class="view-more-btn">XEM THÊM <label id="right-arrow">→</label></button>
                 </div>
