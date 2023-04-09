@@ -26,12 +26,13 @@
     margin-right: 10px;
 }
 
-.icon-c13 {
-    width: 28px;
+.icon-c {
+    width: 32px;
     float: right;
-    height: 22px;
-    background: url('https://www.galaxycine.vn/website/images/ic-c13.png');
-    background-size: cover;
+    height: 100%;
+    background-color: orange;
+    text-align: center;
+    color: white;
 }
 
 .select {

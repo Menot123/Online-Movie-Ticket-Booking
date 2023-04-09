@@ -22,5 +22,7 @@ async function getShortFilms() {
 };
 
 module.exports = {
-    getListNotifications, getBlogs, getShortFilms,
+    getListNotifications,
+    getBlogs,
+    getShortFilms,
 }

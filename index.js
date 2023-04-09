@@ -10,7 +10,7 @@ const port = process.env.PORT;
 const router = require('./src/routes');
 
 
-app.use(express.static(path.join(__dirname,'src','public')));
+app.use(express.static(path.join(__dirname, 'src', 'public')));
 
 app.use(express.json());
 
@@ -35,14 +35,37 @@ app.engine(
     'hbs',
     handlebars.engine({
         extname: '.hbs',
+        helpers: {
+            checkChoosenBackground: function(maphim1, maphim2) {
+                if (maphim1 == maphim2) {
+                    return 'style="background-color: rgb(198, 196, 196);"';
+                } else {
+                    return '';
+                }
+            },
+            checkChoosenTextMain: function(maphim1, maphim2) {
+                if (maphim1 == maphim2) {
+                    return `style="color: red;"`;
+                } else {
+                    return '';
+                }
+            },
+            checkChoosenTextSub: function(maphim1, maphim2) {
+                if (maphim1 == maphim2) {
+                    return `style="color: orange;"`;
+                } else {
+                    return '';
+                }
+            }
+        }
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname,'src', 'resource', 'views'));
+app.set('views', path.join(__dirname, 'src', 'resource', 'views'));
 
 app.use('/', router);
 
 
-app.listen(port,hostname, () => {
+app.listen(port, hostname, () => {
     console.log(`App listening on port ${port}: ${hostname}`);
-}); 
+});

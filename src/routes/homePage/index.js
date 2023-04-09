@@ -7,7 +7,9 @@ router.get('/phim-dang-chieu', homeController.movies);
 router.get('/ho-tro', homeController.support);
 router.get('/uu-dai', homeController.deal);
 router.get('/chinh-sach', homeController.policy);
-router.get('/mua-ve', homeController.ticket);
+
+router.get('/mua-ve/:maphim?', homeController.ticket);
+
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);
 router.get('/register', homeController.handleRegister);
