@@ -72,7 +72,7 @@ async function support(req, res, next) {
 
 
 function deal(req, res, next) {
-    res.render('uuDai');
+    res.render('favorable');
 }
 
 function policy(req, res, next) {
