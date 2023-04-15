@@ -9,6 +9,9 @@ router.get('/phim-sap-chieu', homeController.smovies);
 router.get('/ho-tro', homeController.support);
 router.get('/uu-dai', homeController.deal);
 router.get('/chinh-sach', homeController.policy);
+router.get('/chi-tiet-phim/:maphim?', homeController.detail);
+router.get('/tim-kiem', homeController.search);
+
 
 router.get('/mua-ve/:maphim?', homeController.ticket);
 
