@@ -18,6 +18,10 @@ router.get('/blog-dien-anh', homeController.blog);
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);
 router.get('/register', homeController.handleRegister);
+router.get('/thanh-vien', homeController.member);
+router.post('/thanh-vien', homeController.handleUpdateInfo);
+router.post('/check-pass', homeController.checkPass);
+
 
 router.get('/', homeController.index);
 

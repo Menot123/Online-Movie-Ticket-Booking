@@ -36,6 +36,36 @@ async function getShortFilms() {
 }
 
 
+async function getInfomationUser(name) {
+    try {
+        const info = await repo.getInfomationUser(name)
+        if(info.length > 0) {
+            return info
+        }
+        return null;
+    } catch (err) {
+        throw new Error('Service: Cannot get infomation of user');
+    }
+}
+
+async function handleUpdateInfo(user) {
+    try {
+        const info = await repo.handleUpdateInfo(user)
+        return info;
+    } catch (err) {
+        throw new Error('Service: Cannot update info user');
+    }
+}
+
+async function checkPass(pass, phone) {
+    try {
+        const status = await repo.checkPass(pass, phone)
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
-    getListNotifications, getBlogs,getShortFilms,
+    getListNotifications, getBlogs,getShortFilms,getInfomationUser,handleUpdateInfo,checkPass,
 }

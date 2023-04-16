@@ -6,6 +6,7 @@ const sessions = require('express-session');
 const app = express();
 const hostname = process.env.HOST;
 const port = process.env.PORT;
+const flashMessage = require('./src/middlewares/flash-message/');
 
 const router = require('./src/routes');
 
@@ -29,6 +30,8 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(flashMessage);
 
 // Template engine
 app.engine(

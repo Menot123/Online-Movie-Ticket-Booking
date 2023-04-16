@@ -99,7 +99,6 @@ async function ticket(req, res, next) {
         }
         return acc;
     }, []);
-    // console.log(groupCalenders)
     res.render('buy_ticket', { films: films, calenders: groupCalenders, choose: req.params.maphim });
 }
 
@@ -113,6 +112,37 @@ function handleLogin(req, res, next) {
 
 function handleRegister(req, res, next) {
     res.render('register');
+}
+
+async function member(req, res, next) {
+    var info = {}
+    if(req.session.name) {
+        info = await homeServices.getInfomationUser(req.session.name)
+    }
+    res.render('member', {info: info[0]})
+
+}
+
+async function handleUpdateInfo(req, res, next) {
+    var info = 0
+    if(req.session.name) {
+        info = await homeServices.handleUpdateInfo(req.body)
+    }
+    if(info) {
+        req.session.flash = {
+            message: `Cập nhật thông tin thành công!`,
+        }
+        res.redirect('/thanh-vien')
+    } 
+}
+
+async function checkPass(req, res, next) {
+    const status = await homeServices.checkPass(req.body.password, req.body.phone)
+    var check = false
+    if(status == 1) {
+        check = true
+    }
+    res.json({check: check})
 }
 
 
@@ -129,5 +159,8 @@ module.exports = {
     handleLogin,
     handleRegister,
     review,
-    blog
+    blog,
+    member,
+    handleUpdateInfo,
+    checkPass,
 };

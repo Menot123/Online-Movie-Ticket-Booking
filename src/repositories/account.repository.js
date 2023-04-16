@@ -2,18 +2,19 @@ const dbClient = require('./db_client');
 
 async function registerAccount(username,phone,password) {
     const record = await dbClient.query(
-        `INSERT INTO account(phone, password, name) VALUES (?,?,?) `, [phone, password, username]
+        `INSERT INTO user(sodienthoai, matkhau, hoten) VALUES (?,?,?) `, [phone, password, username]
     );
-    return record;
+    return record.insertId;
 };
 
 async function handleLogin(phone, password) {
     const record = await dbClient.query(
-        `SELECT * FROM account WHERE phone = ? AND password = ?`,
+        `SELECT * FROM user WHERE sodienthoai = ? AND matkhau = ?`,
         [phone, password]
     );
+    
     if (record.length > 0) {
-        return record[0].name
+        return record[0].hoten
     } else {
         return false
     }

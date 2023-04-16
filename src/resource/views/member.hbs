@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Member</title>
+</head>
+
+<style>
+    #main__href {
+        text-decoration: none;
+        color: #ccc;
+    }
+
+    #main__href:hover {
+        color: orangered;
+    }
+
+    .tabs {
+        display: flex;
+        position: relative;
+    }
+
+    .tabs .line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 6px;
+        border-radius: 15px;
+        background-color: orangered;
+        transition: all 0.2s ease;
+    }
+
+    .tab-item {
+        min-width: 80px;
+        padding: 16px 20px 11px 20px;
+        font-size: 20px;
+        text-align: center;
+        color: orangered;
+        background-color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom: 5px solid transparent;
+        opacity: 0.6;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    .tab-icon {
+        font-size: 24px;
+        width: 32px;
+        position: relative;
+        top: 2px;
+    }
+
+    .tab-item:hover {
+        opacity: 1;
+        background-color: rgba(194, 53, 100, 0.05);
+        border-color: rgba(194, 53, 100, 0.1);
+    }
+
+    .tab-item.active {
+        opacity: 1;
+    }
+
+    .tab-content {
+        padding: 28px 0;
+    }
+
+    .tab-pane {
+        color: #333;
+        display: none;
+    }
+
+    .tab-pane.active {
+        display: block;
+    }
+
+    .tab-pane h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .blur {
+        background-color: #e9edf1;
+        border: 1px solid #ced0da;
+        padding: 8px;
+    }
+
+    .p8 {
+        padding: 8px;
+    }
+
+    .changePassForm {
+        display: none;
+    }
+
+    .btn-primary {
+        background-color: #f26b38;
+        border: 1px #f26b38;
+    }
+
+    .btn-primary:hover {
+        background-color: #f26b38;
+        opacity: 0.8;
+    }
+
+    .msg__err {
+        color: red;
+        font-size: 1.2rem;
+        font-weight: 400;
+        display: none;
+    }
+
+    .from__day,
+    .to__day {
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+
+    .pl0 {
+        padding-left: 0px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <p class="mt-3"><a id="main__href" href="/">Trang chủ</a> <span style="color: #ccc;">> Thành viên</span> > Cá
+            nhân</p>
+
+        <div class="category d-flex">
+            <div class="w-100">
+                <!-- Tab items -->
+                <div class="tabs">
+                    <div class="tab-item active">
+                        THÔNG TIN THÀNH VIÊN
+                    </div>
+                    <div class="tab-item ">
+                        GIAO DỊCH CỦA TÔI
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <hr>
+
+
+                <!-- Tab content -->
+                <div class="tab-content w-100">
+                    <div class="tab-pane active">
+                        {{#if info }}
+                        <form action="/thanh-vien" method="POST" id="form__info--update">
+                            <div class="row ">
+                                <div class="name col-md-6 col-sm-7 col-xs-7">
+                                    <label for="input__name">Họ Tên</label>
+                                    <input class="w-100 blur" type="text" name="input__name" id="input__name" disabled
+                                        value="{{info.hoten }}">
+                                </div>
+
+                                <div class="stars col-md-3 col-sm-5 col-xs-5">
+                                    <label for="numStar">Sao hiện tại</label>
+                                    <input class="w-100 blur" type="text" name="numStar" id="numStar" disabled
+                                        value="0">
+                                </div>
+
+                                <div class="spent col-md-3 col-sm-5 col-xs-5">
+                                    <label for="spentFor">Chi tiêu 2023</label>
+                                    <input class="w-100 blur" type="text" name="spentFor" id="spentFor" disabled
+                                        value="0">
+                                </div>
+                            </div>
+
+                            <div class="row my-4">
+                                <div class="birth col-md-4 col-sm-7 col-xs-7">
+                                    <label for="input__birth">Ngày sinh</label>
+                                    {{#if info.ngaysinh}}
+                                    <input class="w-100 p8" type="text" name="input__birth" id="input__birth"
+                                        value="{{info.ngaysinh}}" required>
+                                    {{else}}
+                                    <input class="w-100 p8" type="text" name="input__birth" id="input__birth"
+                                        placeholder="01/01/2000" required>
+                                    {{/if}}
+                                </div>
+
+                                <div class="gender col-md-2 col-sm-5 col-xs-5">
+                                    <label for="gender">Giới tính</label>
+                                    <select name="gender" class="form-select p8" aria-label="Giới tính" required>
+                                        {{#if info.gioitinh}}
+                                        <option value="{{info.gioitinh }}" selected>{{info.gioitinh }}</option>
+                                        {{else}}
+                                        <option value="" selected>Giới tính</option>
+                                        {{/if}}
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+
+                                <div class="phone col-md-3 col-sm-5 col-xs-5">
+                                    <label for="phoneContact">Số điện thoại</label>
+                                    <input class="w-100 blur" type="text" name="phoneContact" id="phoneContact" disabled
+                                        value="{{info.sodienthoai }}">
+                                </div>
+
+                                <div class="phone col-md-3 col-sm-5 col-xs-5" style="display: none;">
+                                    <label for="phoneContact">Số điện thoại</label>
+                                    <input class="w-100 blur" type="text" name="phoneContact" id="phoneContact"
+                                        value="{{info.sodienthoai }}">
+                                </div>
+                            </div>
+
+                            <div class="row my-4">
+                                <div class="address col-md-6 col-sm-7 col-xs-7">
+                                    <label for="input__address">Địa chỉ</label>
+                                    {{#if info.diachi}}
+                                    <input class="w-100 p8" type="text" name="input__address" id="input__address"
+                                        value="{{info.diachi}}" required>
+                                    {{else}}
+                                    <input class="w-100 p8" type="text" name="input__address" id="input__address"
+                                        placeholder="19 Nguyễn Hữu Thọ" required>
+                                    {{/if}}
+                                </div>
+
+                                <div class="province col-md-3 col-sm-5 col-xs-5">
+                                    <label for="province">Tỉnh/Thành phố</label>
+                                    <select name="province" class="form-select p8" aria-label="Tỉnh thành" required>
+                                        {{#if info.tinh}}
+                                        <option value="{{info.tinh }}" selected>{{info.tinh }}</option>
+                                        {{else}}
+                                        <option value="" selected>Chọn tỉnh thành</option>
+                                        {{/if}}
+                                        <option value="An Giang">An Giang</option>
+                                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                        <option value="Bắc Giang">Bắc Giang</option>
+                                        <option value="Bắc Kạn">Bắc Kạn</option>
+                                        <option value="Bạc Liêu">Bạc Liêu</option>
+                                        <option value="Bắc Ninh">Bắc Ninh</option>
+                                        <option value="Bến Tre">Bến Tre</option>
+                                        <option value="Bình Định">Bình Định</option>
+                                        <option value="Bình Dương">Bình Dương</option>
+                                        <option value="Bình Phước">Bình Phước</option>
+                                        <option value="Bình Thuận">Bình Thuận</option>
+                                        <option value="Cà Mau">Cà Mau</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Cao Bằng">Cao Bằng</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Đắk Lắk">Đắk Lắk</option>
+                                        <option value="Đắk Nông">Đắk Nông</option>
+                                        <option value="Điện Biên">Điện Biên</option>
+                                        <option value="Đồng Nai">Đồng Nai</option>
+                                        <option value="Đồng Tháp">Đồng Tháp</option>
+                                        <option value="Gia Lai">Gia Lai</option>
+                                        <option value="Hà Giang">Hà Giang</option>
+                                        <option value="Hà Nam">Hà Nam</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                        <option value="Hải Dương">Hải Dương</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                        <option value="Hậu Giang">Hậu Giang</option>
+                                        <option value="Hòa Bình">Hòa Bình</option>
+                                        <option value="Hưng Yên">Hưng Yên</option>
+                                        <option value="Khánh Hòa">Khánh Hòa</option>
+                                        <option value="Kiên Giang">Kiên Giang</option>
+                                        <option value="Kon Tum">Kon Tum</option>
+                                        <option value="Lai Châu">Lai Châu</option>
+                                        <option value="Lâm Đồng">Lâm Đồng</option>
+                                        <option value="Lạng Sơn">Lạng Sơn</option>
+                                        <option value="Lào Cai">Lào Cai</option>
+                                        <option value="Long An">Long An</option>
+                                        <option value="Nam Định">Nam Định</option>
+                                        <option value="Nghệ An">Nghệ An</option>
+                                        <option value="Ninh Bình">Ninh Bình</option>
+                                        <option value="Ninh Thuận">Ninh Thuận</option>
+                                        <option value="Phú Thọ">Phú Thọ</option>
+                                        <option value="Quảng Bình">Quảng Bình</option>
+                                        <option value="Quảng Nam">Quảng Nam</option>
+                                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                        <option value="Quảng Ninh">Quảng Ninh</option>
+                                        <option value="Quảng Trị">Quảng Trị</option>
+                                        <option value="Sóc Trăng">Sóc Trăng</option>
+                                        <option value="Sơn La">Sơn La</option>
+                                        <option value="Tây Ninh">Tây Ninh</option>
+                                        <option value="Thái Bình">Thái Bình</option>
+                                        <option value="Thái Nguyên">Thái Nguyên</option>
+                                        <option value="Thanh Hóa">Thanh Hóa</option>
+                                        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                        <option value="Tiền Giang">Tiền Giang</option>
+                                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                        <option value="Trà Vinh">Trà Vinh</option>
+                                        <option value="Tuyên Quang">Tuyên Quang</option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                        <option value="Yên Bái">Yên Bái</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="Email__address col-md-6 col-sm-7 col-xs-7">
+                                    <label for="input__Email">Email</label>
+                                    {{#if info.email}}
+                                    <input class="w-100 p8" type="text" name="input__Email" id="input__Email"
+                                        value="{{info.email}}" required>
+                                    {{else}}
+                                    <input class="w-100 p8" type="text" name="input__Email" id="input__Email"
+                                        placeholder="nguyenvana@gmail.com" required>
+                                    {{/if}}
+
+                                </div>
+
+                            </div>
+
+                            <div class="changePass mt-4">
+                                <input type="checkbox" name="pass-change" id="pass-change">
+                                <label for="pass-change">Đổi mật khẩu</label>
+                            </div>
+
+                            <div class="changePassForm">
+                                <div class="row my-4">
+                                    <div class="current__pass col-md-6 col-sm-7 col-xs-7">
+                                        <input class="w-100 p8" type="password" name="current__pass" id="current__pass"
+                                            placeholder="Mật khẩu hiện tại">
+                                    </div>
+                                    <span class="msg__err" id="msg__wrongPass">Mật khẩu bạn nhập không đúng vui lòng
+                                        nhập lại</span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="new__pass col-md-6 col-sm-7 col-xs-7">
+                                        <input class="w-100 p8" type="password" name="new__pass" id="new__pass"
+                                            placeholder="Mật khẩu mới">
+                                        <span class="msg__err" id="msg__checkLength">Mật khẩu phải tối thiểu là 6 kí
+                                            tự</span>
+                                    </div>
+                                </div>
+                                <div class="row my-4">
+                                    <div class="recheck__pass col-md-6 col-sm-7 col-xs-7">
+                                        <input class="w-100 p8" type="password" name="recheck__pass" id="recheck__pass"
+                                            placeholder="Nhập lại mật khẩu mới">
+                                        <span class="msg__err" id="msg__checkNewPass">Mật khẩu bạn nhập không khớp vui
+                                            lòng kiểm tra lại</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="btn-save" class="btn btn-primary mt-4">LƯU LẠI</button>
+                        </form>
+                        {{/if }}
+
+                    </div>
+                </div>
+                <div class="tab-pane">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6 pl0">
+                            <label class="from__day" for="input__from">Từ ngày</label> <br>
+                            <input class="p8 w-100" type="date" id="input__from" name="input__from">
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <label class="to__day" for="input__to">Đến ngày</label> <br>
+                            <input class="p8 w-100" type="date" id="input__to" name="input__to">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr style="background-color: #47251c; color: #fff;">
+                                    <th scope="col">Ngày</th>
+                                    <th scope="col">Số giao dịch</th>
+                                    <th scope="col">Mã vé</th>
+                                    <th scope="col">Rạp</th>
+                                    <th scope="col">Phim</th>
+                                    <th scope="col">Chú thích</th>
+                                    <th scope="col">Giá trị</th>
+                                    <th scope="col">Sao tích lũy</th>
+                                    <th scope="col">Điểm đã dùng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>19/03/2023</td>
+                                    <td>158</td>
+                                    <td>ds158</td>
+                                    <td>03</td>
+                                    <td>Demo Slayer</td>
+                                    <td> </td>
+                                    <td>129.000 VNĐ</td>
+                                    <td>12</td>
+                                    <td>0</td>
+                                </tr>
+
+                                <tr>
+                                    <td>19/03/2023</td>
+                                    <td>158</td>
+                                    <td>ds158</td>
+                                    <td>03</td>
+                                    <td>Demo Slayer</td>
+                                    <td> </td>
+                                    <td>129.000 VNĐ</td>
+                                    <td>12</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+</body>
+
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    const tabs = $$(".tab-item");
+    const panes = $$(".tab-pane");
+    const register__pane = $("#register__pane");
+
+    const tabActive = $(".tab-item.active");
+    const line = $(".tabs .line");
+    const checkboxChangePass = $("#pass-change");
+    const formChangePass = $(".changePassForm");
+    const form = $("#form__info--update");
+    const current__pass = $("#current__pass")
+    const btn__save = $("#btn-save")
+    const phoneContact = $("#phoneContact")
+    const msg__wrongPass = $("#msg__wrongPass")
+    const formTrigger = $("#form__info--update")
+    const new__pass = $("#new__pass")
+    const recheck__pass = $("#recheck__pass")
+    const msg__checkLength = $("#msg__checkLength")
+    const msg__checkNewPass = $("#msg__checkNewPass")
+
+
+    requestIdleCallback(function () {
+        line.style.left = tabActive.offsetLeft + "px";
+        line.style.width = tabActive.offsetWidth + "px";
+    });
+
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index];
+
+        tab.onclick = function () {
+            $(".tab-item.active").classList.remove("active");
+            $(".tab-pane.active").classList.remove("active");
+
+            line.style.left = this.offsetLeft + "px";
+            line.style.width = this.offsetWidth + "px";
+
+            this.classList.add("active");
+            pane.classList.add("active");
+        };
+    });
+
+    checkboxChangePass.addEventListener("click", function () {
+        if (this.checked) {
+            formChangePass.style.display = "block";
+        } else {
+            formChangePass.style.display = "none";
+        }
+    });
+
+    btn__save.addEventListener("click", function (e) {
+
+        if (checkboxChangePass.checked) {
+            e.preventDefault();
+            formTrigger.addEventListener('submit', function (e) {
+                e.preventDefault();
+            })
+            fetch('/check-pass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    password: current__pass.value,
+                    phone: phoneContact.value,
+                })
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.check == false) {
+                        msg__wrongPass.style.display = 'block'
+                        current__pass.focus()
+                    } else {
+                        if (new__pass.value.length < 6) {
+                            msg__checkLength.style.display = "block"
+                            new__pass.focus()
+                        } else if (recheck__pass.value != new__pass.value) {
+                            msg__checkNewPass.style.display = "block"
+                            recheck__pass.focus()
+                        } else {
+                            formTrigger.submit()
+                        }
+
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+    })
+    current__pass.addEventListener('keyup', () => {
+        msg__wrongPass.style.display = 'none'
+    })
+
+    new__pass.addEventListener('keyup', () => {
+        msg__checkLength.style.display = 'none'
+    })
+
+    recheck__pass.addEventListener('keyup', () => {
+        msg__checkNewPass.style.display = 'none'
+    })
+
+
+
+
+</script>
+
+</html>

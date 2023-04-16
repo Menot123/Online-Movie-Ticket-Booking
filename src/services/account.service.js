@@ -4,7 +4,7 @@ const repo = require('../repositories/account.repository')
 
 async function signUpAccount(username,phone,password) {
     try {
-        if(await repo.registerAccount(username,phone,password)) {
+        if(await repo.registerAccount(username,phone,password) > 0) {
             return true
         }
     } catch (err) {
