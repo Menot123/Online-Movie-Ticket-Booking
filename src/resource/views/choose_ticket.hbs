@@ -80,8 +80,8 @@
                                     <td class="text-center">
                                         <a href="" onclick="return false;"><i class="fa fa-minus-circle ticket-minus"
                                                 style="font-size:120%"></i></a>
-                                        <input class="number-form" type="number" min="0" max="10" name="number"
-                                            id="number" style="width: 20%;">
+                                        <input onkeyup="checkNumTicket(this)" class="number-form" type="number" min="0"
+                                            max="10" name="number" id="number" style="width: 40px;">
                                         <a href="" onclick="return false;"><i class="fa fa-plus-circle ticket-plus"
                                                 style="font-size:120%"></i></a>
                                     </td>
@@ -113,21 +113,21 @@
                                         <p class="m-0">{{chitiet}}</p>
                                     </td>
                                     <td class="text-center">
-                                        <a onclick="return false;" href=""><i class="fa fa-minus-circle"
-                                                style="font-size:120%"></i></a>
-                                        <input class="number-form" type="number" min="0" name="number" id="number"
-                                            style="width: 20%;">
-                                        <a onclick="return false;" href=""><i class="fa fa-plus-circle"
+                                        <a class="minus-btn" onclick="return false;" href=""><i
+                                                class="fa fa-minus-circle" style="font-size:120%"></i></a>
+                                        <input onkeyup="checkNumCombo(this)" class="number-form" type="number" min="0"
+                                            name="number" id="combo-number" style="width: 40px;">
+                                        <a class="plus-btn" onclick="return false;" href=""><i class="fa fa-plus-circle"
                                                 style="font-size:120%"></i></a>
                                     </td>
-                                    <td class="text-end">{{formatNumber giatien}}</td>
-                                    <td class="text-end">0</td>
+                                    <td class="text-end price">{{formatNumber giatien}}</td>
+                                    <td class="text-end combo-cal-price">0</td>
                                 </tr>
                                 {{/each}}
                                 {{!-- Sum Row --}}
                                 <tr>
                                     <th scope="row" colspan="3" class="text-danger">Tổng</th>
-                                    <td class="text-end text-danger">0</td>
+                                    <td class="text-end text-danger combo-all-price">0</td>
                                 </tr>
                         </table>
                         {{!-- End Combo Table --}}
@@ -152,13 +152,14 @@
                     <b>Suất chiếu: </b>{{suatchieu.giochieu}} | {{suatchieu.ngaychieu}}
                 </div>
                 <div class="dotted">
-                    <b>Combo: </b>iLy D&D Dice Tower Cup(1),iCombo D&D Dice Tower 1(1)
+                    <b>Combo: </b><span class="combo-list"></span>
                 </div>
                 <div class="dotted">
                     <b>Ghế: </b>E1,E3
                 </div>
 
-                <div><b>Tổng: </b><span class="fs-5 text-danger">0 VNĐ</span></div>
+                <div><b>Tổng: </b><span class="fs-5 text-danger total-price">0</span><span class="fs-5 text-danger">
+                        VNĐ</span></div>
                 <div class="select-group d-flex justify-content-around mt-2">
                     <button class="btn btn-danger text-light"><i class="fa fa-long-arrow-left"> QUAY LẠI</i></button>
                     <button class="btn btn-danger text-light">TIẾP TỤC <i class="fa fa-long-arrow-right"></i></button>
@@ -168,6 +169,88 @@
     </div>
 
     <script>
+        function getAllPrice() {
+            let sumTicketPrice = $('.sum-ticket-price').html()
+            let comboAllPrice = $('.combo-all-price').html()
+            let totalPrice = parseFloat(sumTicketPrice.replace(/,/g, '')) + parseFloat(comboAllPrice.replace(/,/g, ''))
+            $('.total-price').html(totalPrice.toLocaleString('en-US'));
+        }
+
+        function getAllComboText() {
+            let comboNumber = document.querySelectorAll('#combo-number');
+            let listComboName = ""
+            for (var i = 0; i < comboNumber.length; i++) {
+                let tr = comboNumber[i].parentNode.parentNode
+                let comboName = tr.children[0].children[0].children[0].textContent
+                if(comboNumber[i].value > 0)
+                {
+                    if (i == comboNumber.length - 1)
+                        listComboName += `${comboName}(${comboNumber[i].value})`
+                    else
+                        listComboName += `${comboName}(${comboNumber[i].value}),`
+                }
+            }
+            $('.combo-list').html(listComboName)
+        }
+
+        function checkNumTicket(input) {
+            if (input.value <= 0) {
+                input.value = null;
+            }
+            let tr = input.parentNode.parentNode;
+            let price = tr.children[2].innerHTML.replace(/,/g, '');
+            let calPriceNumber = (price * input.value).toLocaleString('en-US');;
+            tr.children[3].innerHTML = calPriceNumber
+            $('.sum-ticket-price').html(calPriceNumber)
+            getAllPrice()
+        }
+
+        var comboCalPrice = document.querySelectorAll('.combo-cal-price');
+        function checkNumCombo(input) {
+            if (input.value <= 0) {
+                input.value = null;
+            }
+            let tr = input.parentNode.parentNode;
+            let price = tr.children[2].innerHTML.replace(/,/g, '');
+            let calPriceNumber = (price * input.value).toLocaleString('en-US');
+            tr.children[3].innerHTML = calPriceNumber
+            let sum = 0;
+            for (var i = 0; i < comboCalPrice.length; i++) {
+                sum += parseFloat(comboCalPrice[i].innerHTML.replace(/,/g, ''))
+            }
+            $('.combo-all-price').html(sum.toLocaleString('en-US'))
+            getAllPrice()
+            getAllComboText()
+        }
+        //Bắt sự kiện click cho nút plus và minus của table combo
+        $(document).ready(function () {
+            $('.plus-btn, .minus-btn').click(function (e) {
+                e.preventDefault();
+                let input = $(this).parent().find('input');
+                let currentValue = parseInt(input.val());
+                if (isNaN(currentValue)) {
+                    currentValue = 0;
+                }
+                let newValue = currentValue + ($(this).hasClass('plus-btn') ? 1 : -1);
+                if (newValue >= 0) {
+                    input.val(newValue);
+                    let tr = $(this).parent().parent();
+                    let price = parseFloat(tr.find('.price').html().replace(/,/g, ''));
+                    let calPriceNumber = (price * newValue).toLocaleString('en-US');
+                    tr.find('.combo-cal-price').html(calPriceNumber);
+                    let sum = 0;
+                    for (var i = 0; i < comboCalPrice.length; i++) {
+                        sum += parseFloat(comboCalPrice[i].innerHTML.replace(/,/g, ''))
+                    }
+                    $('.combo-all-price').html(sum.toLocaleString('en-US'))
+                    getAllPrice()
+                    getAllComboText()
+                    if (input.val() == 0)
+                        input.val(null)
+                }
+            });
+        });
+
         // Lấy các phần tử cần thiết cho ticket table
         var minusBtnTicket = document.querySelector(".ticket-minus");
         var plusBtnTicket = document.querySelector(".ticket-plus");
@@ -196,6 +279,7 @@
                     calculatorTicketPrice.innerHTML = (price * quantity).toLocaleString('en-US');
                 }
                 sumTicketPrice.innerHTML = calculatorTicketPrice.innerHTML
+                getAllPrice()
             }
         });
         plusBtnTicket.addEventListener("click", function () {
@@ -212,5 +296,6 @@
             let price = ticketPrice.innerHTML.toLocaleString().replace(/,/g, '')
             calculatorTicketPrice.innerHTML = (price * quantity).toLocaleString('en-US');
             sumTicketPrice.innerHTML = calculatorTicketPrice.innerHTML
+            getAllPrice()
         });
     </script>
