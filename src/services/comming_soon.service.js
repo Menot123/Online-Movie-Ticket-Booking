@@ -1,4 +1,5 @@
 const repo = require('../repositories/comming_soon.repository')
+
 async function getCommingSoonFilm() {
     try {
         const list = await repo.getCommingSoonFilm()
