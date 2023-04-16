@@ -59,6 +59,12 @@ app.engine(
                 } else {
                     return '';
                 }
+            },
+            formatNumber: function(number) {
+                return Number(number).toLocaleString('en-US');
+            },
+            unformatNumber: function(number) {
+                return Number(number.replace(/,/g, ''));
             }
         }
     }),

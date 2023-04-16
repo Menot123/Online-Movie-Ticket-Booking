@@ -6,7 +6,22 @@ async function getCalender(maphim) {
     );
     return record;
 };
+async function getSuatChieu(masuatchieu) {
+    const record = await dbClient.query(
+        `SELECT * FROM suatchieu WHERE masuatchieu = '${masuatchieu}' `
+    );
+    return record;
+};
+
+async function getComboList() {
+    const record = await dbClient.query(
+        `SELECT * FROM combo`
+    );
+    return record;
+};
 
 module.exports = {
     getCalender,
+    getSuatChieu,
+    getComboList
 }

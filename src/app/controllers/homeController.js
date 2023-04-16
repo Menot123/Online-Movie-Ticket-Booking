@@ -89,22 +89,32 @@ async function ticket(req, res, next) {
     if (req.params.maphim) {
         calenders = await buyticketServices.getFilmCalender(req.params.maphim);
     }
-    console.log(films)
-    console.log(calenders)
+    // console.log(films)
+    // console.log(calenders)
     const groupCalenders = calenders.reduce((acc, cur) => {
         const existingDate = acc.find(item => item.ngaychieu === cur.ngaychieu);
         if (existingDate) {
-            existingDate.giochieu.push(cur.giochieu);
+            existingDate.suatchieu.push({ masuatchieu: cur.masuatchieu, giochieu: cur.giochieu });
         } else {
             acc.push({
                 ngaychieu: cur.ngaychieu,
-                giochieu: [cur.giochieu],
+                suatchieu: [{ masuatchieu: cur.masuatchieu, giochieu: cur.giochieu }]
             });
         }
         return acc;
     }, []);
     res.render('buy_ticket', { films: films, calenders: groupCalenders, choose: req.params.maphim });
 }
+
+async function chooseTicket(req, res, next) {
+    const suatchieu = await buyticketServices.getSuatChieu(req.params.masuatchieu);
+    // console.log(req.params.masuatchieu)
+    const film = await movieDetailServices.getPhim(req.params.maphim);
+    const combo = await buyticketServices.getComboList();
+    // console.log(combo);
+    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo });
+}
+
 
 async function detail(req, res, next) {
     try {
@@ -116,7 +126,7 @@ async function detail(req, res, next) {
         // const list = await homeServices.getListNotifications()
 
         // res.render('movie_detail');//data: list, films: films});
-        res.render('movie_detail', { films: films , allfilms:allfilms});
+        res.render('movie_detail', { films: films, allfilms: allfilms });
     } catch (err) {
         console.error('An error', err.message);
         next(err);
@@ -124,13 +134,13 @@ async function detail(req, res, next) {
 }
 async function search(req, res, next) {
     try {
-        let films = []; 
+        let films = [];
         if (req.query.keyword) {
             films = await searchServices.searchFilms(req.query.keyword);
         }
         const key = req.query.keyword;
         const count = films.length;
-        res.render('search', { films: films, count:count, key:key });
+        res.render('search', { films: films, count: count, key: key });
     } catch (err) {
         console.error('An error', err.message);
         next(err);
@@ -151,33 +161,33 @@ function handleRegister(req, res, next) {
 
 async function member(req, res, next) {
     var info = {}
-    if(req.session.name) {
+    if (req.session.name) {
         info = await homeServices.getInfomationUser(req.session.name)
     }
-    res.render('member', {info: info[0]})
+    res.render('member', { info: info[0] })
 
 }
 
 async function handleUpdateInfo(req, res, next) {
     var info = 0
-    if(req.session.name) {
+    if (req.session.name) {
         info = await homeServices.handleUpdateInfo(req.body)
     }
-    if(info) {
+    if (info) {
         req.session.flash = {
             message: `Cập nhật thông tin thành công!`,
         }
         res.redirect('/thanh-vien')
-    } 
+    }
 }
 
 async function checkPass(req, res, next) {
     const status = await homeServices.checkPass(req.body.password, req.body.phone)
     var check = false
-    if(status == 1) {
+    if (status == 1) {
         check = true
     }
-    res.json({check: check})
+    res.json({ check: check })
 }
 
 
@@ -200,4 +210,5 @@ module.exports = {
     member,
     handleUpdateInfo,
     checkPass,
+    chooseTicket
 };
