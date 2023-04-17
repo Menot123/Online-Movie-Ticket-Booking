@@ -15,59 +15,7 @@
 #arrow{
     margin-right: 10px;
 }
-
-.movie-image {
-    width: 100%;
-}
-
-.rating-symbol {
-    font-size: 30px;
-    color: #fac919;
-}
-
-.rating {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-#ten {
-    color: gray;
-
-}
-.movie-info{
-    margin-left: 10px;
-}
-.rating-count {
-    color: #b3acab;
-    margin-right: 10px;
-}
-
-.rating-btn {
-    font-size: 15px;
-    width: 95px;
-    padding: 5px;
-    color: white;
-    background-color: #f46c3c;
-    border: 0;
-}
-
-.movie-age {
-    background-color: #f36b39;
-    font-size: 14px;
-    padding: 2px;
-    font-weight: 400;
-    color: white;
-    margin-right: 10px;
-}
-
-.movie-genre {
-    margin-top: 40px;
-}
-
-#label {
-    color: gray;
-}
-.movie-content{
+.des p{
     font-size: 17px;
     text-align: justify;
 }

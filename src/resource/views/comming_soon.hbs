@@ -35,17 +35,15 @@
                     <div class="row">
                         {{#each films}}
                         <div class="col-md-3 movie-item">
-                            <a class="movie-link" href="#">
-                                <div class="image-container">
-                                    <img src="./img/{{poster}}" class="movie-image" />
-                                    <div class="hidden-content">
-                                        <p><label class="movie-c">C{{dotuoi}}</label></p>
-                                        <a href="/chi-tiet-phim/{{maphim}}">
-                                            <button class="hidden-button">Mua vé</button>
-                                        </a>
-                                    </div>
+                            <div class="image-container">
+                                <img src="./img/{{poster}}" class="movie-image" />
+                                <div class="hidden-content">
+                                    <p><label class="movie-c">C{{dotuoi}}</label></p>
+                                    <a href="/chi-tiet-phim/{{maphim}}">
+                                        <button class="hidden-button">CHI TIẾT</button>
+                                    </a>
                                 </div>
-                            </a>
+                            </div>
                             <div class="movie-name">
                                 <h6>{{tenphim}}</h6>
                             </div>
@@ -56,34 +54,20 @@
                 <div class="movie-des">
                     <div class="cinema-des">
                         <div class="cinema-name-des">
-                            <h4>LDBT CINEMA</h4>
+                            <h4>L2DBT CINEMA</h4>
                         </div>
-                        <p>Galaxy Cinema luôn cập nhật nhanh nhất những bộ phim chiếu rạp mới nhất, hấp dẫn nhất sắp ra
-                            mắt trong thời gian tới. Các bộ phim sắp chiếu tại Galaxy Cinema luôn đủ mọi thể loại được
-                            ưa chuộng nhất bao gồm hành động, kinh dị, phiêu lưu, hoạt hình…phù hợp cho mọi lứa tuổi,
-                            đến từ Hollywood và nhiều quốc gia khác, thật dễ dàng để lựa chọn phim hay theo sở thích của
-                            bạn tại website Galaxy Cinema.
-
-                            Mỗi bộ phim mới cập nhật lên website sẽ hiển thị đầy đủ thông tin từ tựa phim, nội dung
-                            phim, ngày công chiếu giúp bạn thuận tiện trong việc theo dõi. Ngoài ra, Galaxy Cinema sẽ
-                            luôn cập nhật và tạo thuận tiện giúp bạn nhanh tay đặt lấy suất phim mới nhất, phù hợp nhất
-                            để thưởng thức.
-
-
-                            Xem thêm tại: https://www.galaxycine.vn/phim-sap-chieu</p>
-                    </div><br>
-                    {{#each films}}
-                    <div class="des">
-                        <div class="movie-des">
-                            <h6>{{tenphim}}</h6>
-                            <p>{{mota}}</p>
+                        {{#each films}}
+                        <div class="des">
+                            <div class="movie-des">
+                                <h6>{{tenphim}}</h6>
+                                <p>{{mota}}</p>
+                            </div>
                         </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

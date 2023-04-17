@@ -10,7 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/css/movie_detail.css" />
-    <title>Chi tiết phim</title>
+    {{#each films}}
+    <title>Chi tiết phim {{tenphim}}</title>
+    {{/each}}
 </head>
 
 <body>
@@ -19,6 +21,14 @@
             <div class="col-md-1"></div>
             <div class="col-md-7">
                 {{#each films}}
+                <div class="link">
+                    <a href="/">Trang chủ</a> 
+                    <label>></label>
+                    <a href="/phim-dang-chieu">Phim</a> 
+                    <label id="arrow">></label>  
+                    Chi tiết phim {{tenphim}}
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-md-4">
                         <div>
@@ -34,15 +44,11 @@
                                 <label class="rating-symbol">★</label>
                                 <label class="rating">{{diemdanhgia}}<label id="ten">/10</label></label>
                                 {{!-- {{this.luotdanhgia}} --}}
-                                <label class="rating-count">/(220)</label>
-                                <button class="rating-btn">ĐÁNH GIÁ</button>
                             </div>
                             <div>
                                 <label class="movie-age">C{{dotuoi}}</label>
                                 <label>🕒 {{thoiluong}}</label>
-                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích
-                                    <label id="count-like">20</label>
-                                </button>
+
                                 {{!-- {{this.luotdanhgia}} --}}
                             </div>
                             <div class="movie-genre">
@@ -54,15 +60,15 @@
                                 <label id="actor">{{dienvien}}</label>
                             </div>
                             <div class="movie-country">
-                                <label id="label">Quốc gia </label>
+                                <label id="label">Quốc gia: </label>
                                 <label id="country">{{quocgia}}</label>
                             </div>
                             <div class="movie-director">
-                                <label id="label">Đạo diễn </label>
+                                <label id="label">Đạo diễn: </label>
                                 <label id="director">{{daodien}}</label>
                             </div>
                             <div class="movie-date">
-                                <label id="label">Ngày khởi chiếu</label>
+                                <label id="label">Ngày khởi chiếu: </label>
                                 <label id="date">{{ngaykhoichieu}}</label>
                             </div>
                             <div class="movie-button">
@@ -81,7 +87,7 @@
 
                 <div class="row">
                     <div class="col-md-11">
-                        <div class="movie-content-lbl">
+                         <div class="movie-content-lbl">
                             <h4>NỘI DUNG PHIM</h4>
                         </div>
                         <div class="movie-content">
@@ -89,55 +95,33 @@
                                 {{mota}}
                             </p>
                         </div>
+                        <div class="movie-content-lbl">
+                            <h4>TRAILER</h4>
+                            <div>
+                                <iframe width="784" height="441" src="{{trailer}}" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
                 {{/each}}
             </div>
 
             <div class="col-md-3 right">
-                <div class="quick-buy-ticket">
-                    <h4>MUA VÉ NHANH</h4>
-                </div>
-                <div class="select-all">
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn phim</option>
-                        <option value="">Tây du ký</option>
-                        <option value="">Đi tìm nemo</option>
-                        <option value="">Doraemon</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn rạp</option>
-                        <option value="">Rạp 1</option>
-                        <option value="">Rạp 2</option>
-                        <option value="">Rạp 3</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn ngày</option>
-                        <option value="">13/3/2023</option>
-                        <option value="">14/3/2023</option>
-                        <option value="">15/3/2023</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn suất</option>
-                        <option value="">Suất 1</option>
-                        <option value="">Suất 2</option>
-                        <option value="">Suất 3</option>
-                    </select>
-                    <div class="buy-ticket-btn">
-                        <button class="buy-ticket">MUA VÉ</button>
-                    </div>
-                </div>
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
-                {{#each allfilms}}
+                {{#each all4films}}
                 <div class="row">
                     <div class="col-md col-sm col-xs right-movie-item">
-                        <img class="movie-img" src="/img/{{poster}}" alt="" />
+                        <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
                         <div class="hidden-buy-ticket">
                             <p><label class="age">C{{dotuoi}}</label></p>
                             <a href="/chi-tiet-phim/{{maphim}}">
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
+                                <button class="hidden-buy-ticket-btn">CHI TIẾT</button>
                             </a>
                         </div>
                         <div class="right-movie-name">
@@ -147,8 +131,11 @@
                 </div>
                 {{/each}}
                 <div class="view-more">
-                    <button class="view-more-btn">XEM THÊM
-                        <label id="right-arrow">→</label></button>
+                    <a href="/phim-dang-chieu">
+                        <button class="view-more-btn">
+                            XEM THÊM<label id="right-arrow">→</label>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
