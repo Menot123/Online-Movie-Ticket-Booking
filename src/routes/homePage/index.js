@@ -29,6 +29,11 @@ router.get('/thanh-vien',loggedin, homeController.member);
 router.post('/thanh-vien', homeController.handleUpdateInfo);
 router.post('/check-pass', homeController.checkPass);
 
+router.get('/forgot-password',homeController.forgotPassword);
+router.post('/forgot-password',homeController.sendLinkReset);
+router.get('/reset-password/:email',homeController.resetPassword);
+router.post('/change-password',homeController.changePass);
+
 
 router.get('/', homeController.index);
 // router.post('/check', homeController.checkSession);

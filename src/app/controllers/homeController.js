@@ -5,6 +5,7 @@ const nowShowingServices = require('../../services/now_showing.service')
 const movieDetailServices = require('../../services/movie_detail.service')
 const searchServices = require('../../services/search.service')
 const { request } = require('express')
+const mailer = require('../../util/mailer')
 
 
 async function index(req, res, next) {
@@ -215,7 +216,41 @@ async function checkSession(req, res, next) {
     }
 }
 
+async function forgotPassword(req, res, next) {
+    res.render('forgot_pass')
+}
 
+async function sendLinkReset(req, res, next) {
+    if(!req.body.email) {
+        res.redirect('/forgot-password')
+    } else {
+        const user = await homeServices.findUserByEmail(req.body.email)
+        if(!user) {
+            res.redirect('/forgot-password')
+        } else  {
+            mailer.sendMail(user[0].email, "Khôi phục mật khẩu", `<a href="${process.env.APP_URL}/reset-password/${user[0].email}"> Nhấn vào đây để đặt lại mật khẩu mới</a>`)
+            req.session.flash = {message: 'Vui lòng kiểm tra email để khôi phục mật khẩu'}
+            res.redirect('/')
+        }
+    }
+}
+
+async function resetPassword(req, res, next) {
+    res.render('reset_password',{email: req.params.email})
+}
+
+async function changePass(req, res, next) {
+    var message = "Khôi phục mật khẩu thất bại!"
+    if(req.body.password && req.body.email) {
+        const result = await homeServices.changePass(req.body.password,req.body.email)
+        if(result > 0) {
+            message = "Khôi phục mật khẩu thành công!"
+        }
+    }
+    req.session.flash = {message: message}
+    res.redirect('/login')
+
+}
 
 module.exports = {
     index,
@@ -238,5 +273,9 @@ module.exports = {
     checkSession,
     errorPage,
     handleLogout,
-    chooseTicket
+    chooseTicket,
+    forgotPassword,
+    sendLinkReset,
+    resetPassword,
+    changePass,
 };

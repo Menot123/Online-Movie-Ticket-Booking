@@ -67,6 +67,24 @@ async function checkPass(pass, phone) {
     }
 }
 
+async function findUserByEmail(email) {
+    try {
+        const status = await repo.findUserByEmail(email)
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function changePass(password,email) {
+    try {
+        const status = await repo.changePass(password,email)
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
-    getListNotifications, getBlogs,getShortFilms,getInfomationUser,handleUpdateInfo,checkPass,
+    getListNotifications, getBlogs,getShortFilms,getInfomationUser,handleUpdateInfo,checkPass,findUserByEmail,changePass,
 }

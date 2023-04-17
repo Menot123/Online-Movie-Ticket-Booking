@@ -80,6 +80,21 @@ async function checkPass(pass, phone) {
     )
     return record.length
 }
+
+async function findUserByEmail(email) {
+    const record = await dbClient.query(
+        `select * from user where email = ? `, [email]
+    )
+    return record
+}
+
+async function changePass(password, email) {
+    const record = await dbClient.query(
+        `update user set matkhau = ?  where email = ?`,[password, email]
+    )
+    return record.changedRows
+}
+
 module.exports = {
     getListNotifications,
     getBlogs,
@@ -88,4 +103,6 @@ module.exports = {
     getInfomationUser,
     handleUpdateInfo,
     checkPass,
+    findUserByEmail,
+    changePass,
 }
