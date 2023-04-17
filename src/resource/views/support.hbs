@@ -30,7 +30,7 @@
 
                         <!--Grid column-->
                         <div class="col-md-12 mb-md-0 mb-5">
-                            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                            <form id="contact-form" name="contact-form" action="/support/ho-tro" method="POST">
 
                                 <!--Grid row-->
                                 <div class="row">
@@ -48,8 +48,8 @@
                                     <!--Grid column-->
                                     <div class="col-md-6">
                                         <div class="md-form mb-0">
-                                            <label for="email" class="">Email của bạn</label>
-                                            <input type="text" id="email" name="email" class="form-control">
+                                            <label for="phone" class="">Số điện thoại của bạn</label>
+                                            <input type="text" id="phone" name="phone" class="form-control">
                                         </div>
                                     </div>
                                     <!--Grid column-->
@@ -84,13 +84,24 @@
                                 </div>
                                 <!--Grid row-->
 
-                            </form>
+                                <div class="form-group mt-3">
+                                    <div class="alert alert-danger alert-dismissible fade show" hidden>
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    </div>
+                                    <div id="msg__passEq" class="alert alert-danger alert-dismissible fade show" hidden>
+                                        <span id="msg__text"></span>
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
 
-                            <div class="text-center text-md-left">
-                                <a class="btn btn-primary"
-                                    onclick="document.getElementById('contact-form').submit();">Send</a>
-                            </div>
-                            <div class="status"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <button id="btnSubmit" class="btn btn-primary px-3" type="submit">GỬI</button>
+                                </div>
+
+                                <div class="status"></div>
+
+                            </form>
                         </div>
                         <!--Grid column-->
 
@@ -179,5 +190,55 @@
         </div>
     </div>
 </body>
+
+<script>
+
+    const name = document.getElementById("name")
+    const phone = document.getElementById("phone")
+    const subject = document.getElementById("subject")
+    const message = document.getElementById("message")
+
+    const btnSubmit = document.getElementById("btnSubmit")
+    const msg__passEq = document.getElementById("msg__passEq")
+    const msg__text = document.getElementById("msg__text")
+    const formContact = document.getElementById("contact-form")
+
+    function check(msg, element) {
+        formContact.addEventListener('submit', function (event) {
+        event.preventDefault();
+        });
+        msg__text.innerText = msg
+        msg__passEq.hidden = false
+        element.focus()
+    }
+
+    btnSubmit.addEventListener("click", function (e) {
+        if (name.value.length == 0) {
+        e.preventDefault();
+        check("Vui lòng nhập tên của bạn", name)
+        } else if (phone.value.length < 10){
+        e.preventDefault();
+        check("Vui lòng nhập số điện thoại", phone)
+        } else if(subject.value.length == 0) {
+        e.preventDefault();
+        check("Vui lòng nhập chủ đề", subject)
+        }else if(message.value.length == 0) {
+        e.preventDefault();
+        check("Vui lòng nhập nội dung", message)
+        } else {
+        formContact.submit()
+        }
+        
+    })
+
+    name.addEventListener('keypress', () => {
+        msg__passEq.hidden = true
+    })
+
+    pass.addEventListener('keypress', () => {
+        msg__passEq.hidden = true
+    })
+
+</script>
 
 </html>

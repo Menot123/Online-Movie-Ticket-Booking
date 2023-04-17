@@ -1,38 +1,65 @@
 .cover {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+.link a {
+    text-decoration: none;
+    color: gray;
+}
+.link a:hover {
+    text-decoration: none;
+    color: orange;
+}
+.link label{
+    color: gray;
+}
+#arrow{
+    margin-right: 10px;
 }
 
-.filter1 {
-    height: 40px;
-    width: 115px;
-    padding-bottom: 1px;
-    padding-left: 5px;
-    margin-right: 15px;
-    border: 1px solid #ced0db;
-
+.actor-image {
+    width: 100%;
 }
 
-.filter2 {
-    height: 40px;
-    width: 200px;
-    padding-bottom: 1px;
-    padding-left: 5px;
-    margin-right: 15px;
+.actor-info{
     margin-left: 10px;
-    border: 1px solid #ced0db;
 }
 
-.actor {
+.view {
+    width: fit-content;
+    border-radius: 3px;
+    background-color: #e8ecf1;
+}
+
+#icon__view {
+    height: 14px;
+    width: 20px;
+    padding-left: 4px;
+}
+
+#numView {
+    padding-right: 4px;
+}
+
+.actor-describe {
+    margin-top: 40px;
+    font-style: italic;
+    text-align: justify;
+}
+
+#label {
+    color: gray;
+}
+
+.actor-content{
+    text-align: justify;
+}
+.actor-content-lbl h4 {
     color: #42464a;
+    margin-bottom: 40px;
     margin-top: 40px;
 }
 
-.actor:hover {
-    text-decoration: none;
-    color: #f36a38;
-}
-
-.actor h5:after {
+.actor-content-lbl h4:after {
     display: block;
     width: 55px;
     height: 3px;
@@ -42,51 +69,59 @@
     margin-bottom: 25px;
 }
 
-.actor-item {
-    margin-bottom: 30px;
+.img-review-container {
+    position: relative;
+    display: flex;
 }
 
-.actor-info {
-    margin-left: 70px;
+.img-review-container:hover .caption {
+    opacity: 1;
 }
 
-.actor-image img {
-    width: 275px;
-    height: 180px;
-}
-
-.actor-image img:hover {
+.img-review-container:hover .img-review {
     transition: 0.3s;
-    filter: brightness(60%);
+    filter: brightness(35%);
 }
 
-.actor-name a {
-    color: #42464a;
-    display: block;
-    word-wrap: break-word;
-    width: 590px;
+.img-review {
+    width: 100%;
+    height: auto;
+    display: table-cell;   
+}
+  
+.caption {
+    position: absolute;
+    color: white;
+    opacity: 0;
+    width: 100%;
+    padding: 20px;
 }
 
-.actor-name a:hover {
-    text-decoration: none;
-    color: #f36a38;
+.main-cap {
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+ 
+.detail-btn {
+    width: 120px;
+    padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
 }
 
-.actor-views-lbl {
-    background-color: #e8ecf1;
-    height: 30px;
-    width: 150px;
+.detail-btn:hover {
+    border: 1px solid #e46434;
+    background-color: #e46434;
+}
+
+.detail{
     text-align: center;
-    border-radius: 5px;
-    padding-top: 2px;
-}
-
-.actor-description {
-    margin-top: 10px;
-    width: 540px;
-    text-align: justify;
-    color: #a9a4aa;
-    font-size: 14px;
+    padding-top: 100px;
 }
 
 .quick-buy-ticket h4 {
@@ -138,8 +173,6 @@
 
 .now-showing {
     margin-bottom: 20px;
-    color: #007bff;
-    margin-top: 35px;
 }
 
 .now-showing:after {
@@ -152,14 +185,11 @@
     margin-bottom: 25px;
 }
 
-
-
 .movie-img {
     width: 100%;
-    height: 230px;
+    height: 250px;
+    display: table-cell;
 }
-
-
 
 .hidden-buy-ticket {
     position: absolute;
@@ -198,12 +228,11 @@
     background-color: #e46434;
 }
 
-.hidden-buy-ticket {
+.hidden-buy-ticket{
     text-align: center;
     padding-top: 80px;
     padding-left: 10px;
 }
-
 .age {
     color: white;
     background-color: #f46c3c;
@@ -237,48 +266,4 @@
 .view-more {
     text-align: right;
     margin-bottom: 30px;
-}
-
-.pagi {
-    text-align: center;
-}
-
-.pagination {
-    display: inline-block;
-}
-
-.pagination a {
-    color: #a7a5a9;
-    float: left;
-    padding: 4px 16px;
-
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #f46c3c;
-    color: #fff7d7;
-    border: 1px solid #f46c3c;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #efefee;
-    color: #f37b59;
-}
-
-.cinema-title {
-    color: #42464a;
-    margin-top: 40px;
-}
-
-.cinema-title h5:after {
-    display: block;
-    width: 55px;
-    height: 3px;
-    margin-top: 10px;
-    content: "";
-    background-color: #f36a38;
-    margin-bottom: 25px;
 }

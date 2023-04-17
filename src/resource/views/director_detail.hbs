@@ -1,0 +1,152 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/actor_detail.css" />
+    <title>Chi tiết diễn viên</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row cover">
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
+                {{#each directors}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div>
+                            <img src="/img/{{hinhanhdoc}}" class="actor-image" />
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="actor-info">
+                            <div class="actor-name">
+                                <h3>{{ten}}</h3>
+                            </div>
+                            
+                            <div class="rate d-flex mb-3">
+                                <div class="view"><img id="icon__view" src="/img/view.png" alt="iconView"><span id="numView">
+                                        {{luotxem}}</span></div>
+                            </div>
+
+                            <div class="actor-describe">
+                                <label id="describe">{{mota}}</label>
+                            </div>
+                            <div class="actor-birth">
+                                <label id="label">Ngày sinh: </label>
+                                <label id="actor">{{ngaysinh}}</label>
+                            </div>
+                            <div class="actor-Height">
+                                <label id="label">Chiều cao: </label>
+                                <label id="Height">{{chieucao}}</label>
+                            </div>
+                            <div class="actor-director">
+                                <label id="label">Quốc tịch: </label>
+                                <label id="director">{{quoctich}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actor-content-lbl">
+                    <h4>TIỂU SỬ</h4>
+                </div>
+                <div class="actor-content">
+                    <p>{{tieusu}}</p>
+                </div>
+
+                <div class="review-cover mb-3">
+                    <h4>BÀI VIẾT LIÊN QUAN</h4>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="img-review-container">
+                                <a href="#">
+                                    <img class="img-review" src="/img/{{hinhanhdoc}}">
+                                </a>
+
+                                <div class="caption">
+                                    <h6 class="main-cap">{{ten}}</h6>
+                                    <a href="#">
+                                        <div class="detail">
+                                            <button class="detail-btn">CHI TIẾT</button>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="col-md-3 right">
+                <div class="quick-buy-ticket">
+                    <h4>MUA VÉ NHANH</h4>
+                </div>
+                <div class="select-all">
+                    <select name="" id="" class="select">
+                        <option value="" disabled selected hidden>Chọn phim</option>
+                        <option value="">Tây du ký</option>
+                        <option value="">Đi tìm nemo</option>
+                        <option value="">Doraemon</option>
+                    </select>
+                    <select name="" id="" class="select">
+                        <option value="" disabled selected hidden>Chọn rạp</option>
+                        <option value="">Rạp 1</option>
+                        <option value="">Rạp 2</option>
+                        <option value="">Rạp 3</option>
+                    </select>
+                    <select name="" id="" class="select">
+                        <option value="" disabled selected hidden>Chọn ngày</option>
+                        <option value="">13/3/2023</option>
+                        <option value="">14/3/2023</option>
+                        <option value="">15/3/2023</option>
+                    </select>
+                    <select name="" id="" class="select">
+                        <option value="" disabled selected hidden>Chọn suất</option>
+                        <option value="">Suất 1</option>
+                        <option value="">Suất 2</option>
+                        <option value="">Suất 3</option>
+                    </select>
+                    <div class="buy-ticket-btn">
+                        <button class="buy-ticket">MUA VÉ</button>
+                    </div>
+                </div>
+                <div class="now-showing">
+                    <h4>PHIM ĐANG CHIẾU</h4>
+                </div>
+                {{#each all4films}}
+                <div class="row">
+                    <div class="col-md col-sm col-xs right-movie-item">
+                        <img class="movie-img" src="/img/{{poster}}" alt="" />
+                        <div class="hidden-buy-ticket">
+                            <p><label class="age">C{{dotuoi}}</label></p>
+                            <a href="/chi-tiet-phim/{{maphim}}">
+                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
+                            </a>
+                        </div>
+                        <div class="right-movie-name">
+                            <h5>{{tenphim}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="view-more">
+                    <button class="view-more-btn">XEM THÊM
+                        <label id="right-arrow">→</label></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

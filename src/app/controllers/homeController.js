@@ -4,6 +4,13 @@ const commingSoonServices = require('../../services/comming_soon.service')
 const nowShowingServices = require('../../services/now_showing.service')
 const movieDetailServices = require('../../services/movie_detail.service')
 const searchServices = require('../../services/search.service')
+const reviewDetailServices = require('../../services/review_detail.service')
+const blogDetailServices = require('../../services/blog_detail.service')
+const actorServices = require('../../services/actor.service')
+const actorDetailServices = require('../../services/actor_detail.service')
+const directorServices = require('../../services/director.service')
+const directorDetailServices = require('../../services/director_detail.service')
+const movielServices = require('../../services/movie.service')
 const { request } = require('express')
 const mailer = require('../../util/mailer')
 
@@ -54,11 +61,79 @@ async function smovies(req, res, next) {
     }
 }
 
+async function actor(req, res, next) {
+    try {
+        const list = await actorServices.getActor()
+
+        res.render('actor', { data: list });
+    } catch (err) {
+        console.error('An error when watching actor', err.message);
+        next(err);
+    }
+}
+
+async function actorDetail(req, res, next) {
+    try {
+        let actors = [];
+        if (req.params.madienvien) {
+            actors = await actorDetailServices.getActor(req.params.madienvien);
+        }
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('actor_detail', { actors: actors, all4films: all4films, nameUser: req.session.name });
+    } catch (err) {
+        console.error('An error', err.message);
+        next(err);
+    }
+}
+
+async function director(req, res, next) {
+    try {
+        const list = await directorServices.getDiector()
+
+        res.render('director', { data: list });
+    } catch (err) {
+        console.error('An error when watching director', err.message);
+        next(err);
+    }
+}
+
+async function directorDetail(req, res, next) {
+    try {
+        let directors = [];
+        if (req.params.madaodien) {
+            directors = await directorDetailServices.getDirector(req.params.madaodien);
+        }
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('director_detail', { directors: directors, all4films: all4films, nameUser: req.session.name });
+    } catch (err) {
+        console.error('An error', err.message);
+        next(err);
+    }
+}
+
 async function review(req, res, next) {
     try {
         const list = await homeServices.getListNotifications()
         const films = await homeServices.getShortFilms()
         res.render('movie_review', { data: list, films: films, nameUser: req.session.name });
+    } catch (err) {
+        console.error('An error when register account', err.message);
+        next(err);
+    }
+}
+
+async function reviewDetail(req, res, next) {
+    try {
+        let tin = [];
+        if (req.params.matin) {
+            tin = await reviewDetailServices.getReviewDetail(req.params.matin);
+        }
+
+        const list = await reviewDetailServices.getRelatedPosts()
+
+        const allfilms = await nowShowingServices.getNowShowingFilm();
+        
+        res.render('movie_review_detail', {tin: tin, data: list, allfilms: allfilms});
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -76,6 +151,24 @@ async function blog(req, res, next) {
     }
 }
 
+async function blogDetail(req, res, next) {
+    try {
+        let tin = [];
+        if (req.params.matin) {
+            tin = await blogDetailServices.getBlogDetail(req.params.matin);
+        }
+
+        const list = await blogDetailServices.getRelatedPosts()
+
+        const allfilms = await nowShowingServices.getNowShowingFilm();
+        
+        res.render('movie_blog_detail', {tin: tin, data: list, allfilms: allfilms});
+    } catch (err) {
+        console.error('An error when register account', err.message);
+        next(err);
+    }
+}
+
 async function support(req, res, next) {
     try {
         const films = await homeServices.getShortFilms()
@@ -85,6 +178,10 @@ async function support(req, res, next) {
         next(err);
     }
 
+}
+
+function supportPost(req, res, next) {
+    res.render('support');
 }
 
 
@@ -152,6 +249,16 @@ async function chooseTicket(req, res, next) {
     res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name });
 }
 
+async function movie(req, res, next) {
+    try {
+        const list = await movielServices.getMovie()
+
+        res.render('movie_genre', { data: list });
+    } catch (err) {
+        console.error('An error when watching movie', err.message);
+        next(err);
+    }
+}
 
 async function detail(req, res, next) {
     try {
@@ -310,5 +417,13 @@ module.exports = {
     sendLinkReset,
     resetPassword,
     changePass,
-    aboutUs
+    aboutUs,
+    reviewDetail,
+    blogDetail,
+    supportPost,
+    actor,
+    actorDetail,
+    director,
+    directorDetail,
+    movie
 };

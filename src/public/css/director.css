@@ -47,7 +47,7 @@
 }
 
 .director-info {
-    margin-left: 20px;
+    margin-left: 70px;
 }
 
 .director-image img {
@@ -62,17 +62,14 @@
 
 .director-name a {
     color: #42464a;
-
-
+    display: block;
+    word-wrap: break-word;
+    width: 590px;
 }
 
 .director-name a:hover {
     text-decoration: none;
     color: #f36a38;
-}
-
-.director-detail {
-    margin-top: 10px;
 }
 
 .director-button {
@@ -83,12 +80,10 @@
 .director-views-lbl {
     background-color: #e8ecf1;
     height: 30px;
-    width: 90px;
+    width: 150px;
     text-align: center;
     border-radius: 5px;
     padding-top: 2px;
-    margin-left: 20px;
-
 }
 
 .director-description {
@@ -166,8 +161,7 @@
 
 .movie-img {
     width: 100%;
-    height: auto;
-    display: table-cell;
+    height: 230px;
 }
 
 
