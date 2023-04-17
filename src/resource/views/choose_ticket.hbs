@@ -53,85 +53,174 @@
     .number-form[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
     }
+
+    .seats {
+        width: 100%;
+        overflow-x: auto;
+        align-items: center;
+    }
+
+    .group-btn {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .square {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .caption {
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 10px;
+        margin-bottom: 0px;
+        vertical-align: middle;
+    }
 </style>
 
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-9 mb-3">
             <div style="background-color: orange;">
-                <h3 class="p-2 text-light mb-3">CHỌN VÉ/COMBO</h1>
-                    <div class="p-2">
-                        {{!-- Ticket Table --}}
-                        <table class="table bg-light table-striped ticket-table mb-0">
-                            <thead>
-                                <tr class="table-dark">
-                                    <th scope="col-md-6">Loại vé</th>
-                                    <th scope="col-md-2" class="text-center">Số lượng</th>
-                                    <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
-                                    <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p class="m-0"><b>Nguoi Lon - Member</b></p>
-                                        <p class="m-0">Vé 2D-áp dụng khách hàng thành viên</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="" onclick="return false;"><i class="fa fa-minus-circle ticket-minus"
-                                                style="font-size:120%"></i></a>
-                                        <input onkeyup="checkNumTicket(this)" class="number-form" type="number" min="0"
-                                            max="10" name="number" id="number" style="width: 40px;">
-                                        <a href="" onclick="return false;"><i class="fa fa-plus-circle ticket-plus"
-                                                style="font-size:120%"></i></a>
-                                    </td>
-                                    <td class="text-end ticket-price">{{formatNumber suatchieu.giave}}</td>
-                                    <td class="text-end calculator-ticket-price">0</td>
-                                </tr>
-                                {{!-- Sum Row --}}
-                                <tr>
-                                    <th scope="row" colspan="3" class="text-danger">Tổng</th>
-                                    <td class="text-end text-danger sum-ticket-price">0</td>
-                                </tr>
-                        </table>
-                        {{!-- End Ticket Table --}}
-                        {{!-- Combo Table --}}
-                        <table class="table bg-light table-striped ticket-table mb-0">
-                            <thead>
-                                <tr class="table-dark">
-                                    <th scope="col-md-6">Combo</th>
-                                    <th scope="col-md-2" class="text-center">Số lượng</th>
-                                    <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
-                                    <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each combo}}
-                                <tr>
-                                    <td>
-                                        <p class="m-0"><b>{{tencombo}}</b></p>
-                                        <p class="m-0">{{chitiet}}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="minus-btn" onclick="return false;" href=""><i
-                                                class="fa fa-minus-circle" style="font-size:120%"></i></a>
-                                        <input onkeyup="checkNumCombo(this)" class="number-form" type="number" min="0"
-                                            name="number" id="combo-number" style="width: 40px;">
-                                        <a class="plus-btn" onclick="return false;" href=""><i class="fa fa-plus-circle"
-                                                style="font-size:120%"></i></a>
-                                    </td>
-                                    <td class="text-end price">{{formatNumber giatien}}</td>
-                                    <td class="text-end combo-cal-price">0</td>
-                                </tr>
-                                {{/each}}
-                                {{!-- Sum Row --}}
-                                <tr>
-                                    <th scope="row" colspan="3" class="text-danger">Tổng</th>
-                                    <td class="text-end text-danger combo-all-price">0</td>
-                                </tr>
-                        </table>
-                        {{!-- End Combo Table --}}
+
+                {{!-- Choose Ticket/ Choose Combo --}}
+                <h4 class="p-2 text-light mb-3 title-ticket-combo">CHỌN VÉ/COMBO</h4>
+                <div class="p-2 choose-ticket-combo">
+                    {{!-- Ticket Table --}}
+                    <table class="table bg-light table-striped ticket-table mb-0">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col-md-6">Loại vé</th>
+                                <th scope="col-md-2" class="text-center">Số lượng</th>
+                                <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
+                                <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p class="m-0"><b>Nguoi Lon - Member</b></p>
+                                    <p class="m-0">Vé 2D-áp dụng khách hàng thành viên</p>
+                                </td>
+                                <td class="text-center">
+                                    <a href="" class="ticket-minus" onclick="return false;"><i
+                                            class="fa fa-minus-circle" style="font-size:120%"></i></a>
+                                    <input onkeyup="checkNumTicket(this)" class="number-form" type="number" min="0"
+                                        max="10" name="number" id="number" style="width: 40px;">
+                                    <a href="" class="ticket-plus" onclick="return false;"><i class="fa fa-plus-circle"
+                                            style="font-size:120%"></i></a>
+                                </td>
+                                <td class="text-end ticket-price">{{formatNumber suatchieu.giave}}</td>
+                                <td class="text-end calculator-ticket-price">0</td>
+                            </tr>
+                            {{!-- Sum Row --}}
+                            <tr>
+                                <th scope="row" colspan="3" class="text-danger">Tổng</th>
+                                <td class="text-end text-danger sum-ticket-price">0</td>
+                            </tr>
+                    </table>
+                    {{!-- End Ticket Table --}}
+                    {{!-- Combo Table --}}
+                    <table class="table bg-light table-striped ticket-table mb-0">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col-md-6">Combo</th>
+                                <th scope="col-md-2" class="text-center">Số lượng</th>
+                                <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
+                                <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each combo}}
+                            <tr>
+                                <td>
+                                    <p class="m-0"><b>{{tencombo}}</b></p>
+                                    <p class="m-0">{{chitiet}}</p>
+                                </td>
+                                <td class="text-center">
+                                    <a class="minus-btn" onclick="return false;" href=""><i class="fa fa-minus-circle"
+                                            style="font-size:120%"></i></a>
+                                    <input onkeyup="checkNumCombo(this)" class="number-form" type="number" min="0"
+                                        name="number" id="combo-number" style="width: 40px;">
+                                    <a class="plus-btn" onclick="return false;" href=""><i class="fa fa-plus-circle"
+                                            style="font-size:120%"></i></a>
+                                </td>
+                                <td class="text-end price">{{formatNumber giatien}}</td>
+                                <td class="text-end combo-cal-price">0</td>
+                            </tr>
+                            {{/each}}
+                            {{!-- Sum Row --}}
+                            <tr>
+                                <th scope="row" colspan="3" class="text-danger">Tổng</th>
+                                <td class="text-end text-danger combo-all-price">0</td>
+                            </tr>
+                    </table>
+                    {{!-- End Combo Table --}}
+                </div>
+                {{!-- End Choose Ticket/ Choose Combo --}}
+
+                {{!-- Choose Seat --}}
+                <h4 class="p-2 text-light mb-3 title-seat" hidden>CHỌN GHẾ: </h4>
+                <div class="p-2 choose-seat bg-light" hidden>
+                    <div class="alert alert-warning">
+                        <center>SCREEN</center>
                     </div>
+                    <hr>
+                    <div class="seats mt-5">
+                        {{#each seat}}
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-primary me-3 btn-sm seat-name" style="float: left;"
+                                disabled>{{row}}</button>
+                            <div class="group-btn">
+                                {{#each data}}
+                                <button onclick="chooseSeat(this)" type="button"
+                                    class="btn btn-secondary btn-sm seat-number">{{maghe}}</button>
+                                {{/each}}
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{!-- <div class="mt-3">
+                            <button type="button" class="btn btn-primary me-3 btn-sm seat-name" style="float: left;"
+                                disabled>A</button>
+                            <div class="group-btn">
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">1</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">2</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">3</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">4</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">5</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">6</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">7</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">8</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">9</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">10</button>
+                                <button type="button" class="btn btn-secondary btn-sm seat-number">11</button>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="mt-5">
+                        <div class="text-danger fs-4">Chú thích:</div>
+
+                        <div class="square bg-secondary"></div>
+                        <p class="caption">: Có thể chọn</p><br>
+                        <div class="square bg-danger"></div>
+                        <p class="caption">: Đã có chỗ</p><br>
+                        <div class="square bg-success"></div>
+                        <p class="caption">: Đang chọn</p>
+
+                    </div>
+                </div>
+                {{!-- End Choose Seat --}}
+
+                {{!-- Payment --}}
+                <h4 class="p-2 text-light mb-3 title-payment" hidden>THANH TOÁN</h4>
+                <div class="p-2 choose-payment" hidden>
+                    Chọn thanh toán
+                </div>
+                {{!-- End Payment --}}
+
             </div>
         </div>
         <div class="col-md-3">
@@ -161,14 +250,48 @@
                 <div><b>Tổng: </b><span class="fs-5 text-danger total-price">0</span><span class="fs-5 text-danger">
                         VNĐ</span></div>
                 <div class="select-group d-flex justify-content-around mt-2">
-                    <button class="btn btn-danger text-light"><i class="fa fa-long-arrow-left"> QUAY LẠI</i></button>
-                    <button class="btn btn-danger text-light">TIẾP TỤC <i class="fa fa-long-arrow-right"></i></button>
+                    <button onclick="getBack()" class="btn btn-danger text-light back"><i class="fa fa-long-arrow-left">
+                            QUAY LẠI</i></button>
+                    <button onclick="getContinue()" class="btn btn-danger text-light continue">TIẾP TỤC <i
+                            class="fa fa-long-arrow-right"></i></button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        function getBack() {
+            if (!$('.title-payment').is(':hidden')) {
+                $('.title-payment').attr("hidden", true);
+                $('.choose-payment').attr("hidden", true);
+                $('.title-seat').removeAttr("hidden");
+                $('.choose-seat').removeAttr("hidden");
+                //$("div").attr("hidden", true);
+            } else if (!$('.title-seat').is(':hidden')) {
+                $('.title-seat').attr("hidden", true);
+                $('.choose-seat').attr("hidden", true);
+                $('.title-ticket-combo').removeAttr("hidden");
+                $('.choose-ticket-combo').removeAttr("hidden");
+            }
+            else {
+            }
+        }
+        function getContinue() {
+            if (!$('.title-ticket-combo').is(':hidden')) {
+                $('.title-ticket-combo').attr("hidden", true);
+                $('.choose-ticket-combo').attr("hidden", true);
+                $('.title-seat').removeAttr("hidden");
+                $('.choose-seat').removeAttr("hidden");
+                //$("div").attr("hidden", true);
+            } else if (!$('.title-seat').is(':hidden')) {
+                $('.title-seat').attr("hidden", true);
+                $('.choose-seat').attr("hidden", true);
+                $('.title-payment').removeAttr("hidden");
+                $('.choose-payment').removeAttr("hidden");
+            }
+            else {
+            }
+        }
         function getAllPrice() {
             let sumTicketPrice = $('.sum-ticket-price').html()
             let comboAllPrice = $('.combo-all-price').html()
@@ -182,8 +305,7 @@
             for (var i = 0; i < comboNumber.length; i++) {
                 let tr = comboNumber[i].parentNode.parentNode
                 let comboName = tr.children[0].children[0].children[0].textContent
-                if(comboNumber[i].value > 0)
-                {
+                if (comboNumber[i].value > 0) {
                     if (i == comboNumber.length - 1)
                         listComboName += `${comboName}(${comboNumber[i].value})`
                     else
@@ -193,6 +315,7 @@
             $('.combo-list').html(listComboName)
         }
 
+        ////////////////////////////////Choose Ticket And Combo
         function checkNumTicket(input) {
             if (input.value <= 0) {
                 input.value = null;
@@ -298,4 +421,18 @@
             sumTicketPrice.innerHTML = calculatorTicketPrice.innerHTML
             getAllPrice()
         });
+        ////////////////////////////////End Choose Ticket And Combo
+
+        ////////////////////////////////Choose Seat
+        function chooseSeat(seatBtn) {
+            if (seatBtn.classList.contains('btn-secondary')) {
+                seatBtn.classList.remove("btn-secondary");
+                seatBtn.classList.add("btn-success");
+            }
+            else{
+                seatBtn.classList.remove("btn-success");
+                seatBtn.classList.add("btn-secondary");
+            }
+        }
+        ////////////////////////////////End Choose Seat
     </script>

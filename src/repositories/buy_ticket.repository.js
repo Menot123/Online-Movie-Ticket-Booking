@@ -20,8 +20,16 @@ async function getComboList() {
     return record;
 };
 
+async function getRoomSeat(roomId) {
+    const record = await dbClient.query(
+        `SELECT * FROM ghe WHERE maphong = '${roomId}' `
+    );
+    return record;
+};
+
 module.exports = {
     getCalender,
     getSuatChieu,
-    getComboList
+    getComboList,
+    getRoomSeat
 }

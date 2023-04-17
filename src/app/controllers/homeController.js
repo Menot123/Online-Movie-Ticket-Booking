@@ -123,8 +123,33 @@ async function chooseTicket(req, res, next) {
     // console.log(req.params.masuatchieu)
     const film = await movieDetailServices.getPhim(req.params.maphim);
     const combo = await buyticketServices.getComboList();
-    // console.log(combo);
-    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo });
+
+    const seat = await buyticketServices.getRoomSeat(suatchieu.maphong);
+    const groupSeat = [];
+    seat.forEach((row) => {
+        row.forEach((seat) => {
+            const row = seat.maghe.charAt(0);
+            seat.maghe = seat.maghe.substring(1)
+            let rowSeat = groupSeat.find((item) => item.row === row);
+            if (!rowSeat) {
+                rowSeat = {
+                    row,
+                    data: []
+                };
+                groupSeat.push(rowSeat);
+            }
+            rowSeat.data.push(seat);
+        });
+    });
+
+    // Sort number seat
+    groupSeat.forEach((row) => {
+        row.data.sort(function(a, b) {
+            return parseInt(a.maghe) - parseInt(b.maghe);
+        });
+    });
+    // console.log(groupSeat[0]);
+    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name });
 }
 
 
@@ -205,8 +230,7 @@ async function checkSession(req, res, next) {
     try {
         if (req.session.name) {
             res.status(200).json(req.session.name)
-        }
-        else {
+        } else {
             res.send('failed to get session')
         }
     } catch (err) {
@@ -253,7 +277,7 @@ async function changePass(req, res, next) {
 async function aboutUs(req, res, next) {
     try {
         const all4films = await nowShowingServices.get4NowShowingFilm();
-        res.render('about_us', {all4films: all4films});
+        res.render('about_us', { all4films: all4films });
     } catch (err) {
         console.error('An error', err.message);
         next(err);
