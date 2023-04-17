@@ -101,20 +101,31 @@ async function ticket(req, res, next) {
     if (req.params.maphim) {
         calenders = await buyticketServices.getFilmCalender(req.params.maphim);
     }
+
     const groupCalenders = calenders.reduce((acc, cur) => {
         const existingDate = acc.find(item => item.ngaychieu === cur.ngaychieu);
         if (existingDate) {
-            existingDate.giochieu.push(cur.giochieu);
+            existingDate.suatchieu.push({ masuatchieu: cur.masuatchieu, giochieu: cur.giochieu });
         } else {
             acc.push({
                 ngaychieu: cur.ngaychieu,
-                giochieu: [cur.giochieu],
+                suatchieu: [{ masuatchieu: cur.masuatchieu, giochieu: cur.giochieu }]
             });
         }
         return acc;
     }, []);
     res.render('buy_ticket', { films: films, calenders: groupCalenders, choose: req.params.maphim, nameUser: req.session.name });
 }
+
+async function chooseTicket(req, res, next) {
+    const suatchieu = await buyticketServices.getSuatChieu(req.params.masuatchieu);
+    // console.log(req.params.masuatchieu)
+    const film = await movieDetailServices.getPhim(req.params.maphim);
+    const combo = await buyticketServices.getComboList();
+    // console.log(combo);
+    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo });
+}
+
 
 async function detail(req, res, next) {
     try {
@@ -134,7 +145,7 @@ async function detail(req, res, next) {
 }
 async function search(req, res, next) {
     try {
-        let films = []; 
+        let films = [];
         if (req.query.keyword) {
             films = await searchServices.searchFilms(req.query.keyword);
         }
@@ -161,7 +172,7 @@ function handleRegister(req, res, next) {
 
 async function member(req, res, next) {
     var info = {}
-    if(req.session.name) {
+    if (req.session.name) {
         info = await homeServices.getInfomationUser(req.session.name)
     }
     res.render('member', {info: info[0], nameUser: req.session.name, social : req.session.social})
@@ -173,21 +184,21 @@ async function handleUpdateInfo(req, res, next) {
     if(req.session.name && req.session.idUser) {
         info = await homeServices.handleUpdateInfo(req.body, req.session.idUser)
     }
-    if(info) {
+    if (info) {
         req.session.flash = {
             message: `Cập nhật thông tin thành công!`,
         }
         res.redirect('/thanh-vien')
-    } 
+    }
 }
 
 async function checkPass(req, res, next) {
     const status = await homeServices.checkPass(req.body.password, req.body.phone)
     var check = false
-    if(status == 1) {
+    if (status == 1) {
         check = true
     }
-    res.json({check: check})
+    res.json({ check: check })
 }
 
 async function checkSession(req, res, next) {
@@ -227,4 +238,5 @@ module.exports = {
     checkSession,
     errorPage,
     handleLogout,
+    chooseTicket
 };

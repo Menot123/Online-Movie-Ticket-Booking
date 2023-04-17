@@ -17,6 +17,7 @@ router.get('/tim-kiem', homeController.search);
 
 
 router.get('/mua-ve/:maphim?', homeController.ticket);
+router.get('/mua-ve/:maphim/:masuatchieu', homeController.chooseTicket);
 
 router.get('/binh-luan-phim', homeController.review);
 router.get('/blog-dien-anh', homeController.blog);

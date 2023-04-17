@@ -29,9 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `combo` (
   `macombo` char(30) NOT NULL,
+  `tencombo` varchar(50) NOT NULL,
   `giatien` int(11) DEFAULT NULL,
   `chitiet` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `combo`
+--
+
+INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`) VALUES
+('cb01', 'Combo 1', 65000, '1 BẮP (NGỌT/MẶN) + 1 NƯỚC (PEPSI/7UP/MIRINDA CAM/M'),
+('cb02', 'Combo 2', 80000, '1 BẮP (NGỌT/MẶN) + 2 NƯỚC (PEPSI/7UP/MIRINDA CAM/M'),
+('cb03', 'Family 2 Voucher', 150000, '2 BẮP (NGỌT/MẶN) + 4 NƯỚC (PEPSI/7UP/MIRINDA CAM/M');
+
+-- --------------------------------------------------------
 
 -- --------------------------------------------------------
 
@@ -141,17 +153,17 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`) VALUES
-('P01', 'Phòng 1', 80),
-('P02', 'Phòng 2', 80),
-('P03', 'Phòng 3', 80),
-('P04', 'Phòng 4', 80),
-('P05', 'Phòng 5', 80),
-('P06', 'Phòng 6', 80),
-('P07', 'Phòng 7', 80),
-('P08', 'Phòng 8', 80),
-('P09', 'Phòng 9', 80),
-('P10', 'Phòng 10', 80),
-('P11', 'Phòng 11', 80);
+('P01', 'Phòng 1', 40),
+('P02', 'Phòng 2', 40),
+('P03', 'Phòng 3', 40),
+('P04', 'Phòng 4', 40),
+('P05', 'Phòng 5', 40),
+('P06', 'Phòng 6', 40),
+('P07', 'Phòng 7', 40),
+('P08', 'Phòng 8', 40),
+('P09', 'Phòng 9', 40),
+('P10', 'Phòng 10', 40),
+('P11', 'Phòng 11', 40);
 
 -- --------------------------------------------------------
 
@@ -259,7 +271,21 @@ CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `ve`
+--
+
+INSERT INTO `ve` (`mave`, `maphim`, `giave`) VALUES
+('Vdaotoiac', 'daotoiac', 70000),
+('Vdemoslayer', 'demoslayer', 65000),
+('Vsieulay', 'sieulay', 65000),
+('Vsongsot', 'songsot', 70000),
+('Vthecovenant', 'thecovenant', NULL),
+('Vthefirstslamdunk', 'thefirstslamdunk', NULL),
+('Vtomandjerry', 'tomandjerry', 80000),
+('Vtrinhcongson', 'trinhcongson', 60000);
 
 --
 -- Chỉ mục cho các bảng đã đổ

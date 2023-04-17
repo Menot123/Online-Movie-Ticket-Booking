@@ -1,0 +1,301 @@
+<style>
+    .ticket-table {}
+
+    .combo-table {}
+
+    td:nth-child(2),
+    th:nth-child(2),
+    td:nth-child(3),
+    th:nth-child(3),
+    td:nth-child(4),
+    th:nth-child(4) {
+        vertical-align: middle;
+    }
+
+    .icon-c {
+        padding: 2px;
+        background-color: orange;
+        text-align: center;
+        color: white;
+    }
+
+    .name-movie {
+        overflow: hidden;
+    }
+
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .notice {
+        color: red;
+        font-size: 75%;
+    }
+
+    .dotted {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-bottom: 1px dotted #ced0da;
+        font-size: smaller;
+    }
+
+    input[type=number] {
+        -webkit-appearance: none;
+    }
+
+    .number-form {
+        text-align: center;
+    }
+
+    .number-form[type="number"]::-webkit-inner-spin-button,
+    .number-form[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+</style>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-9 mb-3">
+            <div style="background-color: orange;">
+                <h3 class="p-2 text-light mb-3">CHỌN VÉ/COMBO</h1>
+                    <div class="p-2">
+                        {{!-- Ticket Table --}}
+                        <table class="table bg-light table-striped ticket-table mb-0">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th scope="col-md-6">Loại vé</th>
+                                    <th scope="col-md-2" class="text-center">Số lượng</th>
+                                    <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
+                                    <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p class="m-0"><b>Nguoi Lon - Member</b></p>
+                                        <p class="m-0">Vé 2D-áp dụng khách hàng thành viên</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="" onclick="return false;"><i class="fa fa-minus-circle ticket-minus"
+                                                style="font-size:120%"></i></a>
+                                        <input onkeyup="checkNumTicket(this)" class="number-form" type="number" min="0"
+                                            max="10" name="number" id="number" style="width: 40px;">
+                                        <a href="" onclick="return false;"><i class="fa fa-plus-circle ticket-plus"
+                                                style="font-size:120%"></i></a>
+                                    </td>
+                                    <td class="text-end ticket-price">{{formatNumber suatchieu.giave}}</td>
+                                    <td class="text-end calculator-ticket-price">0</td>
+                                </tr>
+                                {{!-- Sum Row --}}
+                                <tr>
+                                    <th scope="row" colspan="3" class="text-danger">Tổng</th>
+                                    <td class="text-end text-danger sum-ticket-price">0</td>
+                                </tr>
+                        </table>
+                        {{!-- End Ticket Table --}}
+                        {{!-- Combo Table --}}
+                        <table class="table bg-light table-striped ticket-table mb-0">
+                            <thead>
+                                <tr class="table-dark">
+                                    <th scope="col-md-6">Combo</th>
+                                    <th scope="col-md-2" class="text-center">Số lượng</th>
+                                    <th scope="col-md-2" class="text-end">Giá (VNĐ)</th>
+                                    <th scope="col" class="text-end">Tổng giá (VNĐ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each combo}}
+                                <tr>
+                                    <td>
+                                        <p class="m-0"><b>{{tencombo}}</b></p>
+                                        <p class="m-0">{{chitiet}}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="minus-btn" onclick="return false;" href=""><i
+                                                class="fa fa-minus-circle" style="font-size:120%"></i></a>
+                                        <input onkeyup="checkNumCombo(this)" class="number-form" type="number" min="0"
+                                            name="number" id="combo-number" style="width: 40px;">
+                                        <a class="plus-btn" onclick="return false;" href=""><i class="fa fa-plus-circle"
+                                                style="font-size:120%"></i></a>
+                                    </td>
+                                    <td class="text-end price">{{formatNumber giatien}}</td>
+                                    <td class="text-end combo-cal-price">0</td>
+                                </tr>
+                                {{/each}}
+                                {{!-- Sum Row --}}
+                                <tr>
+                                    <th scope="row" colspan="3" class="text-danger">Tổng</th>
+                                    <td class="text-end text-danger combo-all-price">0</td>
+                                </tr>
+                        </table>
+                        {{!-- End Combo Table --}}
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div style="background-color: rgb(245, 240, 240);" class="p-2">
+                <div class="text-center">
+                    <img src="/img/{{film.poster}}" alt="" width="50%">
+                </div>
+                <div class="name-movie">
+                    <p class="mb-0"><b>{{film.tenphim}}</b></p>
+                    <p class="ellipsis mb-0 text-secondary"><b>{{film.tenphim}}</b></p>
+                </div>
+                <i class="icon-c">C{{film.dotuoi}}</i><span class="notice"> (*) Phim chỉ dành cho khán giả từ
+                    {{film.dotuoi}} tuổi trở lên</span>
+                <div class="dotted">
+                    <b>Phòng: </b>{{suatchieu.maphong}}
+                </div>
+                <div class="dotted">
+                    <b>Suất chiếu: </b>{{suatchieu.giochieu}} | {{suatchieu.ngaychieu}}
+                </div>
+                <div class="dotted">
+                    <b>Combo: </b><span class="combo-list"></span>
+                </div>
+                <div class="dotted">
+                    <b>Ghế: </b>E1,E3
+                </div>
+
+                <div><b>Tổng: </b><span class="fs-5 text-danger total-price">0</span><span class="fs-5 text-danger">
+                        VNĐ</span></div>
+                <div class="select-group d-flex justify-content-around mt-2">
+                    <button class="btn btn-danger text-light"><i class="fa fa-long-arrow-left"> QUAY LẠI</i></button>
+                    <button class="btn btn-danger text-light">TIẾP TỤC <i class="fa fa-long-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getAllPrice() {
+            let sumTicketPrice = $('.sum-ticket-price').html()
+            let comboAllPrice = $('.combo-all-price').html()
+            let totalPrice = parseFloat(sumTicketPrice.replace(/,/g, '')) + parseFloat(comboAllPrice.replace(/,/g, ''))
+            $('.total-price').html(totalPrice.toLocaleString('en-US'));
+        }
+
+        function getAllComboText() {
+            let comboNumber = document.querySelectorAll('#combo-number');
+            let listComboName = ""
+            for (var i = 0; i < comboNumber.length; i++) {
+                let tr = comboNumber[i].parentNode.parentNode
+                let comboName = tr.children[0].children[0].children[0].textContent
+                if(comboNumber[i].value > 0)
+                {
+                    if (i == comboNumber.length - 1)
+                        listComboName += `${comboName}(${comboNumber[i].value})`
+                    else
+                        listComboName += `${comboName}(${comboNumber[i].value}),`
+                }
+            }
+            $('.combo-list').html(listComboName)
+        }
+
+        function checkNumTicket(input) {
+            if (input.value <= 0) {
+                input.value = null;
+            }
+            let tr = input.parentNode.parentNode;
+            let price = tr.children[2].innerHTML.replace(/,/g, '');
+            let calPriceNumber = (price * input.value).toLocaleString('en-US');;
+            tr.children[3].innerHTML = calPriceNumber
+            $('.sum-ticket-price').html(calPriceNumber)
+            getAllPrice()
+        }
+
+        var comboCalPrice = document.querySelectorAll('.combo-cal-price');
+        function checkNumCombo(input) {
+            if (input.value <= 0) {
+                input.value = null;
+            }
+            let tr = input.parentNode.parentNode;
+            let price = tr.children[2].innerHTML.replace(/,/g, '');
+            let calPriceNumber = (price * input.value).toLocaleString('en-US');
+            tr.children[3].innerHTML = calPriceNumber
+            let sum = 0;
+            for (var i = 0; i < comboCalPrice.length; i++) {
+                sum += parseFloat(comboCalPrice[i].innerHTML.replace(/,/g, ''))
+            }
+            $('.combo-all-price').html(sum.toLocaleString('en-US'))
+            getAllPrice()
+            getAllComboText()
+        }
+        //Bắt sự kiện click cho nút plus và minus của table combo
+        $(document).ready(function () {
+            $('.plus-btn, .minus-btn').click(function (e) {
+                e.preventDefault();
+                let input = $(this).parent().find('input');
+                let currentValue = parseInt(input.val());
+                if (isNaN(currentValue)) {
+                    currentValue = 0;
+                }
+                let newValue = currentValue + ($(this).hasClass('plus-btn') ? 1 : -1);
+                if (newValue >= 0) {
+                    input.val(newValue);
+                    let tr = $(this).parent().parent();
+                    let price = parseFloat(tr.find('.price').html().replace(/,/g, ''));
+                    let calPriceNumber = (price * newValue).toLocaleString('en-US');
+                    tr.find('.combo-cal-price').html(calPriceNumber);
+                    let sum = 0;
+                    for (var i = 0; i < comboCalPrice.length; i++) {
+                        sum += parseFloat(comboCalPrice[i].innerHTML.replace(/,/g, ''))
+                    }
+                    $('.combo-all-price').html(sum.toLocaleString('en-US'))
+                    getAllPrice()
+                    getAllComboText()
+                    if (input.val() == 0)
+                        input.val(null)
+                }
+            });
+        });
+
+        // Lấy các phần tử cần thiết cho ticket table
+        var minusBtnTicket = document.querySelector(".ticket-minus");
+        var plusBtnTicket = document.querySelector(".ticket-plus");
+        var numberInput = document.querySelector("#number");
+        var ticketPrice = document.querySelector(".ticket-price")
+        var calculatorTicketPrice = document.querySelector(".calculator-ticket-price")
+        var sumTicketPrice = document.querySelector(".sum-ticket-price")
+
+        // Thêm sự kiện "click" vào các nút minus và plus trong ticket table
+        minusBtnTicket.addEventListener("click", function () {
+            // Lấy giá trị hiện tại của ô input
+            var currentValue = parseInt(numberInput.value);
+            // Kiểm tra giá trị hiện tại có lớn hơn 0 không
+            if (currentValue > 0) {
+                // Giảm giá trị đó đi 1
+                var newValue = currentValue - 1;
+                // Cập nhật giá trị mới vào ô input
+                numberInput.value = newValue;
+                if (numberInput.value == 0) {
+                    numberInput.value = null;
+                    calculatorTicketPrice.innerHTML = 0
+                }
+                else {
+                    let quantity = numberInput.value
+                    let price = ticketPrice.innerHTML.toLocaleString().replace(/,/g, '')
+                    calculatorTicketPrice.innerHTML = (price * quantity).toLocaleString('en-US');
+                }
+                sumTicketPrice.innerHTML = calculatorTicketPrice.innerHTML
+                getAllPrice()
+            }
+        });
+        plusBtnTicket.addEventListener("click", function () {
+            // Lấy giá trị hiện tại của ô input
+            var currentValue = parseInt(numberInput.value);
+            if (isNaN(currentValue)) {
+                currentValue = 0;
+            }
+            // Tăng giá trị đó lên 1
+            var newValue = currentValue + 1;
+            // Cập nhật giá trị mới vào ô input
+            numberInput.value = newValue;
+            let quantity = numberInput.value
+            let price = ticketPrice.innerHTML.toLocaleString().replace(/,/g, '')
+            calculatorTicketPrice.innerHTML = (price * quantity).toLocaleString('en-US');
+            sumTicketPrice.innerHTML = calculatorTicketPrice.innerHTML
+            getAllPrice()
+        });
+    </script>
