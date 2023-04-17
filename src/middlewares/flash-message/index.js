@@ -4,4 +4,5 @@ function flashMessage (req, res, next) {
     next();
 }
 
+
 module.exports = flashMessage;

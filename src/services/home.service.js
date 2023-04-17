@@ -48,11 +48,12 @@ async function getInfomationUser(name) {
     }
 }
 
-async function handleUpdateInfo(user) {
+async function handleUpdateInfo(user, id) {
     try {
-        const info = await repo.handleUpdateInfo(user)
+        const info = await repo.handleUpdateInfo(user, id)
         return info;
     } catch (err) {
+        console.log(err)
         throw new Error('Service: Cannot update info user');
     }
 }

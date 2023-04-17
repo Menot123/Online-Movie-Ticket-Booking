@@ -14,7 +14,7 @@ async function handleLogin(phone, password) {
     );
     
     if (record.length > 0) {
-        return record[0].hoten
+        return record[0]
     } else {
         return false
     }

@@ -159,6 +159,12 @@
                                         value="{{info.hoten }}">
                                 </div>
 
+                                {{!-- <div class="name col-md-6 col-sm-7 col-xs-7" style="display: none;">
+                                    <label for="input__name">Họ Tên</label>
+                                    <input class="w-100 blur" type="text" name="input__name" id="input__name"
+                                        value="{{info.hoten }}">
+                                </div> --}}
+
                                 <div class="stars col-md-3 col-sm-5 col-xs-5">
                                     <label for="numStar">Sao hiện tại</label>
                                     <input class="w-100 blur" type="text" name="numStar" id="numStar" disabled
@@ -200,15 +206,15 @@
 
                                 <div class="phone col-md-3 col-sm-5 col-xs-5">
                                     <label for="phoneContact">Số điện thoại</label>
+                                    {{#if info.sodienthoai}}
                                     <input class="w-100 blur" type="text" name="phoneContact" id="phoneContact" disabled
                                         value="{{info.sodienthoai }}">
+                                    {{else}}
+                                    <input class="w-100 p8" type="text" name="phoneContact" id="phoneContact" required>
+                                    {{/if}}
+
                                 </div>
 
-                                <div class="phone col-md-3 col-sm-5 col-xs-5" style="display: none;">
-                                    <label for="phoneContact">Số điện thoại</label>
-                                    <input class="w-100 blur" type="text" name="phoneContact" id="phoneContact"
-                                        value="{{info.sodienthoai }}">
-                                </div>
                             </div>
 
                             <div class="row my-4">
@@ -302,8 +308,8 @@
                                 <div class="Email__address col-md-6 col-sm-7 col-xs-7">
                                     <label for="input__Email">Email</label>
                                     {{#if info.email}}
-                                    <input class="w-100 p8" type="text" name="input__Email" id="input__Email"
-                                        value="{{info.email}}" required>
+                                    <input class="w-100 blur" type="text" name="input__Email" id="input__Email"
+                                        value="{{info.email}}" disabled>
                                     {{else}}
                                     <input class="w-100 p8" type="text" name="input__Email" id="input__Email"
                                         placeholder="nguyenvana@gmail.com" required>
@@ -313,6 +319,10 @@
 
                             </div>
 
+                            {{#if social}}
+                            
+                            {{else}}
+                            
                             <div class="changePass mt-4">
                                 <input type="checkbox" name="pass-change" id="pass-change">
                                 <label for="pass-change">Đổi mật khẩu</label>
@@ -345,6 +355,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {{/if}}
+
                             <button id="btn-save" class="btn btn-primary mt-4">LƯU LẠI</button>
                         </form>
                         {{/if }}

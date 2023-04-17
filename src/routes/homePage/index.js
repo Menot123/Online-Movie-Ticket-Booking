@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { loggedin }  = require('../../middlewares/auth/auth.middware')
 
 const homeController = require('../../app/controllers/homeController');
+
+router.post('/logout',homeController.handleLogout)
 
 router.get('/phim-dang-chieu', homeController.movies);
 router.get('/phim-sap-chieu', homeController.smovies);
@@ -21,12 +24,14 @@ router.get('/blog-dien-anh', homeController.blog);
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);
 router.get('/register', homeController.handleRegister);
-router.get('/thanh-vien', homeController.member);
+router.get('/thanh-vien',loggedin, homeController.member);
 router.post('/thanh-vien', homeController.handleUpdateInfo);
 router.post('/check-pass', homeController.checkPass);
 
 
 router.get('/', homeController.index);
+// router.post('/check', homeController.checkSession);
+
 
 
 

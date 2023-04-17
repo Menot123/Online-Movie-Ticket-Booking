@@ -14,10 +14,9 @@ async function signUpAccount(username,phone,password) {
 
 async function handleLogin(phone,password) {
     try {
-        let name = ""
-        name = await repo.handleLogin(phone, password);
-        if (name) {
-            return name;
+        let user = await repo.handleLogin(phone, password);
+        if (user) {
+            return user;
         } else {
             return false;
         }

@@ -24,6 +24,57 @@
         color: aqua !important;
         background-color: black !important
     }
+
+    #name__user {
+        color: #a0a3a7;
+        font-weight: 400;
+    }
+
+    #name__user:hover {
+        color: orangered;
+        cursor: pointer;
+    }
+
+    .user {
+        position: relative;
+    }
+
+    .dropdown__hover {
+        display: none;
+        position: absolute;
+        left: 34px;
+        min-width: 150px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+    }
+
+    .dropdown__hover span,
+    a {
+        padding: 4px 8px;
+        font-weight: 1rem;
+    }
+
+    .dropdown__hover a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .dropdown__hover span:hover {
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .dropdown__hover a:hover {
+        background-color: #ccc;
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .user:hover .dropdown__hover {
+        display: flex;
+    }
 </style>
 
 <!-- Header -->
@@ -42,7 +93,23 @@
             </button>
         </form>
 
+        <!-- Flash message -->
+        {{#if nameUser}}
+        <div class="user">
+            <img id="icon__user" src="/img/user.png" alt="icon__user">
+            <span id="name__user">{{ nameUser }}</span>
+
+            <div class="dropdown__hover  flex-column">
+                <a href="/thanh-vien" class="w-100">Tài khoản</a>
+                <span id="logout" class="w-100 ">Đăng xuất</span>
+            </div>
+        </div>
+        {{else}}
         <a href="/login" class="navbar-brand"><i class='fa fa-user'></i> Đăng nhập</a>
+        {{/if}}
+        <!-- End Flash message -->
+
+        {{!-- <a href="/login" class="navbar-brand"><i class='fa fa-user'></i> Đăng nhập</a> --}}
     </div>
 
     <div class="navbar-expand-lg container-fluid bg-black">
@@ -112,4 +179,17 @@
     img__logo.addEventListener("click", function (e) {
         window.location.href = '/'
     })
+
+    const logout = document.getElementById("logout")
+    logout.addEventListener("click", function (e) {
+        fetch("/logout", {
+            method: "POST",
+        })
+            .then((response) => {
+                window.location.href = '/'
+            })
+            .catch((error) => {
+                console.log("Lỗi khi gửi yêu cầu đăng xuất", error);
+            });
+    });
 </script>
