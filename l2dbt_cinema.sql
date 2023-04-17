@@ -253,13 +253,18 @@ INSERT INTO `tintuc` (`matin`, `tieude`, `noidung`, `hinhanh`, `luotxem`, `luotd
 CREATE TABLE `user` (
   `userid` int(11) NOT NULL,
   `hoten` varchar(50) NOT NULL,
-  `namsinh` int(11) DEFAULT NULL,
+  `ngaysinh` varchar(10) DEFAULT NULL,
   `gioitinh` varchar(10) DEFAULT NULL,
   `email` char(50) DEFAULT NULL,
-  `sodienthoai` char(12) NOT NULL,
+  `sodienthoai` char(12) DEFAULT NULL,
   `matkhau` char(50) NOT NULL,
-  `role` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role` varchar(10) DEFAULT 'khach',
+  `diachi` varchar(50) DEFAULT NULL,
+  `tinh` varchar(50) DEFAULT NULL
+)
+
+INSERT INTO `user` (`userid`, `hoten`, `ngaysinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`, `diachi`, `tinh`) VALUES(1, 'admin', NULL, NULL, NULL, '0123456789', '123456', 'khach', NULL, NULL);
+
 
 -- --------------------------------------------------------
 
