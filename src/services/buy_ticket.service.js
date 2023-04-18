@@ -58,10 +58,30 @@ async function getRoomSeat(roomId) {
     }
 }
 
+async function getTicketId(maphim) {
+    try {
+        let ticketId = await repo.getTicketId(maphim)
+        return ticketId[0].mave
+    } catch (err) {
+        throw new Error('Service: Cannot get ticket Id');
+    }
+}
+
+async function createBill(data) {
+    try {
+        let bill = await repo.createBill(data)
+        return { status: "success" }
+    } catch (err) {
+        throw new Error('Service: Cannot Create Bill');
+    }
+}
+
 
 module.exports = {
     getFilmCalender,
     getSuatChieu,
     getComboList,
-    getRoomSeat
+    getRoomSeat,
+    getTicketId,
+    createBill
 }

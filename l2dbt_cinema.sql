@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 17, 2023 lúc 11:10 PM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Thời gian đã tạo: Th4 18, 2023 lúc 08:14 PM
+-- Phiên bản máy phục vụ: 10.3.16-MariaDB
+-- Phiên bản PHP: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -561,16 +562,24 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 --
 
 CREATE TABLE `hoadon` (
-  `mahd` char(30) NOT NULL,
+  `mahd` int(30) NOT NULL,
   `userid` int(11) NOT NULL,
   `mave` char(30) NOT NULL,
   `macombo` char(30) NOT NULL,
-  `makhuyenmai` char(30) NOT NULL,
+  `makhuyenmai` char(30) DEFAULT NULL,
   `masuatchieu` char(30) NOT NULL,
   `maghe` char(30) NOT NULL,
   `soluong` int(11) DEFAULT NULL,
   `thanhtien` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`mahd`, `userid`, `mave`, `macombo`, `makhuyenmai`, `masuatchieu`, `maghe`, `soluong`, `thanhtien`) VALUES
+(1, 1, 'Vdemonslayer', 'Combo 1(2),Family 2 Voucher(1)', NULL, 'Sdemoslayer03', 'A8,B8', 2, 410000),
+(2, 1, 'Vtomandjerry', '', NULL, 'Stomandjerry01', 'A1', 1, 80000);
 
 -- --------------------------------------------------------
 
@@ -772,6 +781,13 @@ CREATE TABLE `user` (
   `role` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`userid`, `hoten`, `namsinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`) VALUES
+(1, 'Hazano Kazutake', NULL, NULL, NULL, '0334353660', '123456789', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -790,7 +806,7 @@ CREATE TABLE `ve` (
 
 INSERT INTO `ve` (`mave`, `maphim`, `giave`) VALUES
 ('Vdaotoiac', 'daotoiac', 70000),
-('Vdemoslayer', 'demoslayer', 65000),
+('Vdemonslayer', 'demoslayer', 65000),
 ('Vsieulay', 'sieulay', 65000),
 ('Vsongsot', 'songsot', 70000),
 ('Vthecovenant', 'thecovenant', NULL),
@@ -834,10 +850,8 @@ ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`mahd`),
   ADD KEY `userid` (`userid`),
   ADD KEY `mave` (`mave`),
-  ADD KEY `macombo` (`macombo`),
   ADD KEY `makhuyenmai` (`makhuyenmai`),
-  ADD KEY `masuatchieu` (`masuatchieu`),
-  ADD KEY `maghe` (`maghe`);
+  ADD KEY `masuatchieu` (`masuatchieu`);
 
 --
 -- Chỉ mục cho bảng `hotro`
@@ -907,6 +921,12 @@ ALTER TABLE `dienvien`
   MODIFY `madienvien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `mahd` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `hotro`
 --
 ALTER TABLE `hotro`
@@ -922,7 +942,7 @@ ALTER TABLE `tintuc`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -940,10 +960,8 @@ ALTER TABLE `ghe`
 ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`),
   ADD CONSTRAINT `hoadon_ibfk_2` FOREIGN KEY (`mave`) REFERENCES `ve` (`mave`),
-  ADD CONSTRAINT `hoadon_ibfk_3` FOREIGN KEY (`macombo`) REFERENCES `combo` (`macombo`),
   ADD CONSTRAINT `hoadon_ibfk_4` FOREIGN KEY (`makhuyenmai`) REFERENCES `khuyenmai` (`makhuyenmai`),
-  ADD CONSTRAINT `hoadon_ibfk_5` FOREIGN KEY (`masuatchieu`) REFERENCES `suatchieu` (`masuatchieu`),
-  ADD CONSTRAINT `hoadon_ibfk_6` FOREIGN KEY (`maghe`) REFERENCES `ghe` (`maghe`);
+  ADD CONSTRAINT `hoadon_ibfk_5` FOREIGN KEY (`masuatchieu`) REFERENCES `suatchieu` (`masuatchieu`);
 
 --
 -- Các ràng buộc cho bảng `suatchieu`

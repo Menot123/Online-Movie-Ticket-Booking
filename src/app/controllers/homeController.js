@@ -33,7 +33,7 @@ async function index(req, res, next) {
 }
 
 async function indexAdmin(req, res, next) {
-    res.render('admin',{layout: false})
+    res.render('admin', { layout: false })
 }
 
 async function errorPage(req, res, next) {
@@ -136,8 +136,8 @@ async function reviewDetail(req, res, next) {
         const list = await reviewDetailServices.getRelatedPosts()
 
         const allfilms = await nowShowingServices.getNowShowingFilm();
-        
-        res.render('movie_review_detail', {tin: tin, data: list, allfilms: allfilms});
+
+        res.render('movie_review_detail', { tin: tin, data: list, allfilms: allfilms });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -165,8 +165,8 @@ async function blogDetail(req, res, next) {
         const list = await blogDetailServices.getRelatedPosts()
 
         const allfilms = await nowShowingServices.getNowShowingFilm();
-        
-        res.render('movie_blog_detail', {tin: tin, data: list, allfilms: allfilms});
+
+        res.render('movie_blog_detail', { tin: tin, data: list, allfilms: allfilms });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -216,7 +216,7 @@ async function ticket(req, res, next) {
         }
         return acc;
     }, []);
-    res.render('buy_ticket', { films: films, calenders: groupCalenders, choose: req.params.maphim, nameUser: req.session.name });
+    res.render('buy_ticket', { films: films, calenders: groupCalenders, choose: req.params.maphim, nameUser: req.session.name, phoneUser: req.session.phone });
 }
 
 async function chooseTicket(req, res, next) {
@@ -249,8 +249,29 @@ async function chooseTicket(req, res, next) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
-    // console.log(groupSeat[0]);
-    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name });
+    // console.log(req.session.idUser);
+    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser });
+}
+
+async function payMent(req, res, next) {
+    const data = req.body;
+    // Kiểm tra xem chuỗi có bắt đầu bằng dấu phẩy hay không
+    if (data.comboList.startsWith(",")) {
+        data.comboList = data.comboList.slice(1); // Xóa dấu phẩy đầu tiên
+    }
+    // Kiểm tra xem chuỗi có kết thúc bằng dấu phẩy hay không
+    if (data.comboList.endsWith(",")) {
+        data.comboList = data.comboList.slice(0, -1); // Xóa dấu phẩy cuối cùng
+    }
+
+    const ticketId = await buyticketServices.getTicketId(data.maphim);
+    delete data.maphim;
+    data.ticketId = ticketId;
+    // console.log(data);
+    const result = await buyticketServices.createBill(data)
+        // console.log(result);
+        // console.log(data);
+    res.json(result);
 }
 
 async function movie(req, res, next) {
@@ -430,5 +451,6 @@ module.exports = {
     actorDetail,
     director,
     directorDetail,
-    movie
+    movie,
+    payMent
 };
