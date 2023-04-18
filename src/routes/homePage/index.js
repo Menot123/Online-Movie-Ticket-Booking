@@ -13,14 +13,27 @@ router.get('/ho-tro', homeController.support);
 router.get('/uu-dai', homeController.deal);
 router.get('/chinh-sach', homeController.policy);
 router.get('/chi-tiet-phim/:maphim?', homeController.detail);
+
 router.get('/tim-kiem', homeController.search);
+router.get('/ve-chung-toi', homeController.aboutUs);
 
 
 router.get('/mua-ve/:maphim?', homeController.ticket);
 router.get('/mua-ve/:maphim/:masuatchieu', homeController.chooseTicket);
 
+router.get('/the-loai-phim', homeController.movie);
+
+router.get('/dien-vien', homeController.actor);
+router.get('/chi-tiet-dien-vien/:madienvien?', homeController.actorDetail);
+
+router.get('/dao-dien', homeController.director);
+router.get('/chi-tiet-dao-dien/:madaodien?', homeController.directorDetail);
+
 router.get('/binh-luan-phim', homeController.review);
+router.get('/chi-tiet-binh-luan-phim/:matin?', homeController.reviewDetail);
+
 router.get('/blog-dien-anh', homeController.blog);
+router.get('/chi-tiet-blog-dien-anh/:matin?', homeController.blogDetail);
 
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);

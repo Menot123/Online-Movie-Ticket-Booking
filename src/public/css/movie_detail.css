@@ -1,6 +1,20 @@
 .cover {
     margin-top: 30px;
 }
+.link a {
+    text-decoration: none;
+    color: gray;
+}
+.link a:hover {
+    text-decoration: none;
+    color: orange;
+}
+.link label{
+    color: gray;
+}
+#arrow{
+    margin-right: 10px;
+}
 
 .movie-image {
     width: 100%;
@@ -20,7 +34,9 @@
     color: gray;
 
 }
-
+.movie-info{
+    margin-left: 10px;
+}
 .rating-count {
     color: #b3acab;
     margin-right: 10px;
@@ -51,7 +67,10 @@
 #label {
     color: gray;
 }
-
+.movie-content{
+    font-size: 17px;
+    text-align: justify;
+}
 .movie-content-lbl h4 {
     color: #42464a;
     margin-bottom: 40px;
@@ -117,8 +136,6 @@
 
 .now-showing {
     margin-bottom: 20px;
-    color: #007bff;
-    margin-top: 35px;
 }
 
 .now-showing:after {

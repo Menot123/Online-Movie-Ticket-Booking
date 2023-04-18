@@ -47,7 +47,7 @@
 }
 
 .movie-info {
-    margin-left: 20px;
+    margin-left: 70px;
 }
 
 .movie-image img {
@@ -61,9 +61,9 @@
 }
 
 .movie-name a {
-    color: #42464a;
-
-
+    display: block;
+    word-wrap: break-word;
+    width: 590px;
 }
 
 .movie-name a:hover {
@@ -71,28 +71,13 @@
     color: #f36a38;
 }
 
-.movie-detail {
-    margin-top: 10px;
-}
-
 .movie-button {
     height: 40px;
     width: 100px;
 }
 
-.movie-views-lbl {
-    background-color: #e8ecf1;
-    height: 30px;
-    width: 90px;
-    text-align: center;
-    border-radius: 5px;
-    padding-top: 2px;
-    margin-left: 20px;
-
-}
-
 .movie-description {
-    margin-top: 10px;
+    margin-top: 30px;
     width: 540px;
     text-align: justify;
     color: #a9a4aa;
@@ -166,8 +151,7 @@
 
 .movie-img {
     width: 100%;
-    height: auto;
-    display: table-cell;
+    height: 230px;
 }
 
 

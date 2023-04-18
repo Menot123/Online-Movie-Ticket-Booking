@@ -27,7 +27,7 @@ async function getSuatChieu(masuatchieu) {
         result.giochieu = result.giochieu.split(':').slice(0, 2).join(':');
         return result
     } catch (err) {
-        throw new Error('Service: Cannot get film calenders');
+        throw new Error('Service: Cannot get suat chieu');
     }
 }
 
@@ -36,7 +36,25 @@ async function getComboList() {
         let combos = await repo.getComboList()
         return combos
     } catch (err) {
-        throw new Error('Service: Cannot get film calenders');
+        throw new Error('Service: Cannot get combo list');
+    }
+}
+
+async function getRoomSeat(roomId) {
+    try {
+        let seats = await repo.getRoomSeat(roomId)
+        let groupSeat = seats.reduce((acc, curr) => {
+            const firstChar = curr.maghe.charAt(0);
+            if (!acc[firstChar]) {
+                acc[firstChar] = [];
+            }
+            acc[firstChar].push(curr);
+            return acc;
+        }, {});
+        let resultGroupSeat = Object.values(groupSeat);
+        return resultGroupSeat
+    } catch (err) {
+        throw new Error('Service: Cannot get room seat');
     }
 }
 
@@ -44,5 +62,6 @@ async function getComboList() {
 module.exports = {
     getFilmCalender,
     getSuatChieu,
-    getComboList
+    getComboList,
+    getRoomSeat
 }

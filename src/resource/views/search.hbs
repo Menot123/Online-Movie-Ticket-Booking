@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/css/search.css" />
-    <title>Tìm kiếm</title>
+    <title>Tìm kiếm: {{key}} </title>
 </head>
 
 <body>
@@ -18,8 +18,13 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
+                <div class="link">
+                    <a href="/">Trang chủ</a> 
+                    <label id="arrow">></label>  
+                    Tìm kiếm
+                </div>
                 <div class="result">
-                    <p>Có <label>{{count}}</label> kết quả tìm kiếm cho từ khóa: <label>{{key}}</label></p>
+                    <p>Có <label>{{count}}</label> kết quả tìm kiếm phim cho từ khóa: <label>{{key}}</label></p>
                 </div>
                 <div class="movie">
                     <div class="row">
@@ -30,7 +35,7 @@
                                 <div class="hidden-content">
                                     <p><label class="movie-c">C{{dotuoi}}</label></p>
                                     <a href="/chi-tiet-phim/{{maphim}}">
-                                        <button class="hidden-button" id="hidden-button">Mua vé</button>
+                                        <button class="hidden-button" id="hidden-button">CHI TIẾT</button>
                                     </a>
                                 </div>
                             </div>
@@ -43,6 +48,9 @@
                 </div>
 
                 <div class="movie-des">
+                    <div class="cinema-name-des">
+                            <h4>L2DBT CINEMA</h4>
+                        </div>  
                     {{#each films}}
                     <div class="des">
                         <div class="movie-des">

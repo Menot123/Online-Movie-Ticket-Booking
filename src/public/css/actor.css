@@ -47,7 +47,7 @@
 }
 
 .actor-info {
-    margin-left: 20px;
+    margin-left: 70px;
 }
 
 .actor-image img {
@@ -62,8 +62,9 @@
 
 .actor-name a {
     color: #42464a;
-
-
+    display: block;
+    word-wrap: break-word;
+    width: 590px;
 }
 
 .actor-name a:hover {
@@ -71,24 +72,13 @@
     color: #f36a38;
 }
 
-.actor-detail {
-    margin-top: 10px;
-}
-
-.actor-button {
-    height: 40px;
-    width: 100px;
-}
-
 .actor-views-lbl {
     background-color: #e8ecf1;
     height: 30px;
-    width: 90px;
+    width: 150px;
     text-align: center;
     border-radius: 5px;
     padding-top: 2px;
-    margin-left: 20px;
-
 }
 
 .actor-description {
@@ -166,8 +156,7 @@
 
 .movie-img {
     width: 100%;
-    height: auto;
-    display: table-cell;
+    height: 230px;
 }
 
 
