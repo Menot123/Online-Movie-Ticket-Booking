@@ -25,6 +25,10 @@ async function index(req, res, next) {
     }
 }
 
+async function indexAdmin(req, res, next) {
+    res.render('admin',{layout: false})
+}
+
 async function errorPage(req, res, next) {
     res.render('404',{ layout: false })
 }
@@ -278,4 +282,5 @@ module.exports = {
     sendLinkReset,
     resetPassword,
     changePass,
+    indexAdmin,
 };

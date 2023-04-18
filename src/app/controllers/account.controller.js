@@ -23,10 +23,13 @@ async function handleLogin(req, res, next) {
         const {phone,  password} = req.body
         let user = await accountServices.handleLogin(phone,  password)
         if(user) {
+            let url = '/'
+            if(user.role == 'admin') {
+                url = '/admin'
+            }
             req.session.name = user.hoten;
-            // req.session.flash = user.hoten;
             req.session.idUser = user.userid;
-            res.redirect('/')
+            res.redirect(url)
         } else {
             res.render('login')
         }

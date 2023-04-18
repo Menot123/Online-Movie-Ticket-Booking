@@ -34,7 +34,7 @@ router.post('/forgot-password',homeController.sendLinkReset);
 router.get('/reset-password/:email',homeController.resetPassword);
 router.post('/change-password',homeController.changePass);
 
-
+router.get('/admin', homeController.indexAdmin);
 router.get('/', homeController.index);
 // router.post('/check', homeController.checkSession);
 
