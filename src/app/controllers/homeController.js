@@ -421,9 +421,7 @@ module.exports = {
     sendLinkReset,
     resetPassword,
     changePass,
-<<<<<<< HEAD
     indexAdmin,
-=======
     aboutUs,
     reviewDetail,
     blogDetail,
@@ -433,5 +431,4 @@ module.exports = {
     director,
     directorDetail,
     movie
->>>>>>> aa0eb7b91a372e441c20dde821ae22ab3fe6e6a4
 };
