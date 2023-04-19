@@ -33,7 +33,7 @@ async function index(req, res, next) {
 }
 
 async function indexAdmin(req, res, next) {
-    res.render('admin',{layout: false})
+    res.render('admin', { layout: false })
 }
 
 async function errorPage(req, res, next) {
@@ -136,8 +136,8 @@ async function reviewDetail(req, res, next) {
         const list = await reviewDetailServices.getRelatedPosts()
 
         const allfilms = await nowShowingServices.getNowShowingFilm();
-        
-        res.render('movie_review_detail', {tin: tin, data: list, allfilms: allfilms});
+
+        res.render('movie_review_detail', { tin: tin, data: list, allfilms: allfilms });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -165,8 +165,8 @@ async function blogDetail(req, res, next) {
         const list = await blogDetailServices.getRelatedPosts()
 
         const allfilms = await nowShowingServices.getNowShowingFilm();
-        
-        res.render('movie_blog_detail', {tin: tin, data: list, allfilms: allfilms});
+
+        res.render('movie_blog_detail', { tin: tin, data: list, allfilms: allfilms });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -245,7 +245,7 @@ async function chooseTicket(req, res, next) {
 
     // Sort number seat
     groupSeat.forEach((row) => {
-        row.data.sort(function(a, b) {
+        row.data.sort(function (a, b) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
@@ -395,6 +395,15 @@ async function aboutUs(req, res, next) {
     }
 }
 
+async function sendLinkResponse(req, res, next) {
+    if (req.params.email && req.body.content) {
+        mailer.sendMail(req.params.email, "CẢM ƠN bạn đã phản hồi cho chúng tôi", req.body.content)
+        res.status(200).json({ message: 'Gửi phản hồi thành công', status : 1, email: req.params.email})
+    } else {
+        res.status(400).json({ message: 'Gửi phản hồi thất bại', status : 0 , email: req.params.email})
+    }
+}
+
 module.exports = {
     index,
     movies,
@@ -430,5 +439,6 @@ module.exports = {
     actorDetail,
     director,
     directorDetail,
-    movie
+    movie,
+    sendLinkResponse,
 };

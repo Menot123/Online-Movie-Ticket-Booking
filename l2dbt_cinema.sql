@@ -764,13 +764,15 @@ INSERT INTO `tintuc` (`matin`, `tieude`, `noidung`, `hinhanh`, `luotxem`, `luotd
 CREATE TABLE `user` (
   `userid` int(11) NOT NULL,
   `hoten` varchar(50) NOT NULL,
-  `namsinh` int(11) DEFAULT NULL,
+  `ngaysinh` varchar(10) DEFAULT NULL,
   `gioitinh` varchar(10) DEFAULT NULL,
   `email` char(50) DEFAULT NULL,
-  `sodienthoai` char(12) NOT NULL,
+  `sodienthoai` char(12) DEFAULT NULL,
   `matkhau` char(50) NOT NULL,
-  `role` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `role` varchar(10) DEFAULT 'khach',
+  `diachi` varchar(50) DEFAULT NULL,
+  `tinh` varchar(50) DEFAULT NULL
+);
 
 -- --------------------------------------------------------
 
@@ -782,8 +784,7 @@ CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+) ;
 --
 -- Đang đổ dữ liệu cho bảng `ve`
 --

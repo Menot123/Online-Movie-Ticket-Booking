@@ -46,6 +46,13 @@ async function updateInfo(id, phone,pass) {
     return record.affectedRows;
 };
 
+async function getResponsesAPI() {
+    const record = await dbClient.query(
+        `Select * from hotro `
+    );
+    return record;
+};
+
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo
+    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,
 }

@@ -185,8 +185,8 @@
         </div>
 
         <div class="wrapper">
-            <a class="cta" href="/admin/quan-ly-phim">
-                <span style="margin-top: 16px;">QUẢN LÝ PHIM</span>
+            <a class="cta" href="/admin/quan-ly-khuyen-mai">
+                <span style="margin-top: 16px;">QUẢN LÝ KHUYẾN MÃI</span>
                 <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -242,16 +242,16 @@
         <form id="form__update">
             <div class="inside">
                 <img id="img__close" src="/img/close.png" alt="close">
-                <h1>Cập nhật tài khoản</h1>
+                <h1>Trả lời phản hồi</h1>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Người nhận</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label">Nội dung</label> <br>
+                    <textarea class="w-100" name="content" id="content" cols="20" rows="8"></textarea>
                 </div>
-                <button id="btn-update" class="btn btn-primary float-end">Cập nhật</button>
+                <button id="btn-update" class="btn btn-primary float-end">Gửi</button>
             </div>
         </form>
 
@@ -259,24 +259,22 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Người gửi</th>
                     <th scope="col">Số điện thoại</th>
-                    <th scope="col">Mật khẩu</th>
-                    <th scope="col">Vai trò</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Thao tác</th>
+                    <th scope="col">Chủ để</th>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 {{#each data}}
                 <tr>
-                    <th scope="row">{{this.userid}}</th>
+                    <th scope="row">{{this.mahotro}}</th>
+                    <td>{{this.ten}}</td>
                     <td>{{this.sodienthoai}}</td>
-                    <td>{{this.matkhau}}</td>
-                    <td>{{this.role}}</td>
-                    <td>{{this.email}}</td>
-                    <td><span id="btn__update" onclick="update({{this.userid}})">Chỉnh sửa</span> l <span
-                            class="btn__delete" onclick="deleteAccount({{this.userid}})" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Xóa</span></td>
+                    <td>{{this.chude}}</td>
+                    <td>{{this.noidung}}</td>
+                    <td><span id="btn__update" onclick="res('{{this.sodienthoai}}')">Phản hồi</span> </td>
                 </tr>
                 {{/each}}
 
@@ -296,6 +294,7 @@
     const exampleInputEmail1 = document.getElementById("exampleInputEmail1");
     const exampleInputPassword1 = document.getElementById("exampleInputPassword1");
     const btnUpdate = document.getElementById("btn-update");
+    const content = document.getElementById('content')
 
     const blurBg = document.querySelector('#blur')
 
@@ -303,59 +302,40 @@
         window.location.href = '/admin'
     })
 
-    function update(id) {
+    function res(email) {
         form__update.style.display = 'block';
         blurBg.style.display = 'block';
-        const url = `http://localhost:3000/admin/api/get-info/${id}`
-        fetch(url, {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        exampleInputEmail1.value = email
+        btnUpdate.addEventListener('click', (e) => {
+            form__update.addEventListener('submit', (e) => {
+                e.preventDefault();
+            })
+            e.preventDefault()
+            fetch(`http://localhost:3000/send-response/${email}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: content.value,
+                })
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status > 0) {
+                        form__update.style.display = 'none'
+                        showAlertSuccess(`Đã gửi phản hồi đến ${data.email} thành công !`)
+                    } else {
+                        form__update.style.display = 'none'
+                        showAlertFail(`Gửi phản hồi đến ${data.email} thất bại !`)
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                });
         })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                if (data.result) {
-                    exampleInputEmail1.value = data.result[0].sodienthoai
-                    exampleInputPassword1.value = data.result[0].matkhau
-                    btnUpdate.addEventListener('click', (e) => {
-                        form__update.addEventListener('submit', (e) => {
-                            e.preventDefault();
-                        })
-                        e.preventDefault()
-                        fetch(`http://localhost:3000/admin/api/update/${id}`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                sodienthoai: exampleInputEmail1.value,
-                                pass: exampleInputPassword1.value
-                            })
-                        })
-                            .then(response => {
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.status > 0) {
-                                    form__update.style.display = 'none'
-                                    showAlertSuccess(`Cập nhật thông tin tài khoản ${data.id} thành công!`)
-                                } else {
-                                    form__update.style.display = 'none'
-                                    showAlertFail(`Cập nhật thông tin tài khoản ${data.id} thất bại!`)
-                                }
-                            })
-                            .catch(error => {
-                                console.log(error)
-                            });
-                    })
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            });
     }
 
     blurBg.addEventListener('click', () => {
@@ -368,34 +348,6 @@
         form__update.style.display = 'none';
     })
 
-    function deleteAccount(id) {
-        exampleModalLabel.innerText = `Bạn có chắc muốn xóa vĩnh viễn tài khoản ${id} ?`
-        btnAccept.addEventListener('click', () => {
-            const url = `http://localhost:3000/admin/api/delete/${id}`
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status) {
-                        document.getElementById('exampleModal').classList.add('d-none');
-                        document.querySelector('.modal-backdrop').classList.add('d-none');
-                        showAlertSuccess( `<span><strong>Xóa user ${data.id} thành công!</strong></span>`)
-                    } else {
-                        showAlertFail(`<span><strong>Có lỗi xảy ra khi xóa ${data.id}</strong></span>`)
-                    }
-                })
-                .catch(error => {
-                    console.log(error)
-                });
-        })
-
-    }
 
     function showAlertSuccess(msg) {
         const flash_success = document.getElementById("flash-alert-success");
