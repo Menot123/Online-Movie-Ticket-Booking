@@ -10,5 +10,8 @@ router.post('/api/delete/:id', adminController.handleDelete);
 router.get('/api/get-info/:id', adminController.getInfo);
 router.put('/api/update/:id', adminController.updateInfo);
 
+router.get('/api/phan-hoi', adminController.getResponsesAPI)
+router.get('/phan-hoi',adminController.getResponses)
+
 
 module.exports = router;

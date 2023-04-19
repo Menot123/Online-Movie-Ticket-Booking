@@ -436,6 +436,15 @@ async function aboutUs(req, res, next) {
     }
 }
 
+async function sendLinkResponse(req, res, next) {
+    if (req.params.email && req.body.content) {
+        mailer.sendMail(req.params.email, "CẢM ƠN bạn đã phản hồi cho chúng tôi", req.body.content)
+        res.status(200).json({ message: 'Gửi phản hồi thành công', status: 1, email: req.params.email })
+    } else {
+        res.status(400).json({ message: 'Gửi phản hồi thất bại', status: 0, email: req.params.email })
+    }
+}
+
 module.exports = {
     index,
     movies,
@@ -472,6 +481,7 @@ module.exports = {
     director,
     directorDetail,
     movie,
+    sendLinkResponse,
     payMent,
     useSale
 };

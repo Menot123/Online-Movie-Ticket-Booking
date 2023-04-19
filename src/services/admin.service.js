@@ -48,7 +48,16 @@ async function updateInfo(id, phone,pass) {
         throw new Error('Service: Cannot update account');
     }
 }
+async function getResponsesAPI() {
+    try {
+        const result = await repo.getResponsesAPI()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get responses from db');
+    }
+}
 
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,
+    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,
 }
