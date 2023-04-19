@@ -249,7 +249,7 @@ async function chooseTicket(req, res, next) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
-    // console.log(req.session.idUser);
+    // console.log(groupSeat[0]);
     res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser });
 }
 
