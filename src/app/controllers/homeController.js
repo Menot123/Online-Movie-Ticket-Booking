@@ -245,16 +245,17 @@ async function chooseTicket(req, res, next) {
 
     // Sort number seat
     groupSeat.forEach((row) => {
-        row.data.sort(function (a, b) {
+        row.data.sort(function(a, b) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
-    // console.log(req.session.idUser);
+    // console.log(groupSeat[0]);
     res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser });
 }
 
 async function payMent(req, res, next) {
     const data = req.body;
+
     // Kiểm tra xem chuỗi có bắt đầu bằng dấu phẩy hay không
     if (data.comboList.startsWith(",")) {
         data.comboList = data.comboList.slice(1); // Xóa dấu phẩy đầu tiên
@@ -269,9 +270,29 @@ async function payMent(req, res, next) {
     data.ticketId = ticketId;
     // console.log(data);
     const result = await buyticketServices.createBill(data)
-        // console.log(result);
-        // console.log(data);
+
+    // Change seat status
+    const roomId = await buyticketServices.getRoomId(data.masuatchieu)
+    let seatString = data.seatList.split(",")
+    seatString.forEach(async(row) => {
+        let unableSeat = await buyticketServices.unableSeat(row, roomId);
+    });
+
+    // console.log(roomId);
     res.json(result);
+}
+
+async function useSale(req, res, next) {
+    const data = req.body;
+    const result = await buyticketServices.useSale(data.makhuyenmai)
+    if (result) {
+        // console.log(result.giamgia);
+        res.json({ giamgia: result.giamgia })
+            // res.json(result);
+    } else {
+        res.json({ failed: 1 });
+    }
+
 }
 
 async function movie(req, res, next) {
@@ -419,9 +440,9 @@ async function aboutUs(req, res, next) {
 async function sendLinkResponse(req, res, next) {
     if (req.params.email && req.body.content) {
         mailer.sendMail(req.params.email, "CẢM ƠN bạn đã phản hồi cho chúng tôi", req.body.content)
-        res.status(200).json({ message: 'Gửi phản hồi thành công', status : 1, email: req.params.email})
+        res.status(200).json({ message: 'Gửi phản hồi thành công', status: 1, email: req.params.email })
     } else {
-        res.status(400).json({ message: 'Gửi phản hồi thất bại', status : 0 , email: req.params.email})
+        res.status(400).json({ message: 'Gửi phản hồi thất bại', status: 0, email: req.params.email })
     }
 }
 
@@ -463,4 +484,9 @@ module.exports = {
     movie,
     sendLinkResponse,
     payMent,
+<<<<<<< HEAD
 }
+=======
+    useSale
+};
+>>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de

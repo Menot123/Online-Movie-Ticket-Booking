@@ -42,11 +42,35 @@ async function createBill(data) {
     return record;
 };
 
+async function getRoomId(masuatchieu) {
+    const record = await dbClient.query(
+        `SELECT maphong FROM suatchieu WHERE masuatchieu = '${masuatchieu}' `
+    );
+    return record;
+};
+
+async function unableSeat(maghe, maphong) {
+    const record = await dbClient.query(
+        `UPDATE ghe SET trangthai = 'đã đặt' WHERE maghe = '${maghe}' AND maphong = '${maphong}'`
+    );
+    return record;
+};
+
+async function useSale(makhuyenmai) {
+    const record = await dbClient.query(
+        `SELECT giamgia FROM khuyenmai WHERE makhuyenmai = '${makhuyenmai}' `
+    );
+    return record;
+};
+
 module.exports = {
     getCalender,
     getSuatChieu,
     getComboList,
     getRoomSeat,
     getTicketId,
-    createBill
+    createBill,
+    getRoomId,
+    unableSeat,
+    useSale
 }
