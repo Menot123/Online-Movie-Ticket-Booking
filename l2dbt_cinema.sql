@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 17, 2023 lúc 11:10 PM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Host: 127.0.0.1
+-- Generation Time: Apr 19, 2023 at 11:31 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `l2dbt_cinema`
+-- Database: `l2dbt_cinema`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `combo`
+-- Table structure for table `combo`
 --
 
 CREATE TABLE `combo` (
@@ -32,10 +32,10 @@ CREATE TABLE `combo` (
   `tencombo` varchar(50) NOT NULL,
   `giatien` int(11) DEFAULT NULL,
   `chitiet` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `combo`
+-- Dumping data for table `combo`
 --
 
 INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `daodien`
+-- Table structure for table `daodien`
 --
 
 CREATE TABLE `daodien` (
@@ -60,10 +60,10 @@ CREATE TABLE `daodien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `daodien`
+-- Dumping data for table `daodien`
 --
 
 INSERT INTO `daodien` (`madaodien`, `ten`, `hinhanh`, `hinhanhdoc`, `luotxem`, `mota`, `ngaysinh`, `chieucao`, `quoctich`, `tieusu`) VALUES
@@ -72,7 +72,7 @@ INSERT INTO `daodien` (`madaodien`, `ten`, `hinhanh`, `hinhanhdoc`, `luotxem`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `dienvien`
+-- Table structure for table `dienvien`
 --
 
 CREATE TABLE `dienvien` (
@@ -86,10 +86,10 @@ CREATE TABLE `dienvien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `dienvien`
+-- Dumping data for table `dienvien`
 --
 
 INSERT INTO `dienvien` (`madienvien`, `ten`, `hinhanh`, `hinhanhdoc`, `luotxem`, `mota`, `ngaysinh`, `chieucao`, `quoctich`, `tieusu`) VALUES
@@ -98,7 +98,7 @@ INSERT INTO `dienvien` (`madienvien`, `ten`, `hinhanh`, `hinhanhdoc`, `luotxem`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ghe`
+-- Table structure for table `ghe`
 --
 
 CREATE TABLE `ghe` (
@@ -106,10 +106,10 @@ CREATE TABLE `ghe` (
   `maphong` char(30) NOT NULL,
   `loaighe` varchar(30) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `ghe`
+-- Dumping data for table `ghe`
 --
 
 INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
@@ -557,7 +557,7 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hoadon`
+-- Table structure for table `hoadon`
 --
 
 CREATE TABLE `hoadon` (
@@ -570,45 +570,52 @@ CREATE TABLE `hoadon` (
   `maghe` char(30) NOT NULL,
   `soluong` int(11) DEFAULT NULL,
   `thanhtien` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hotro`
+-- Table structure for table `hotro`
 --
 
 CREATE TABLE `hotro` (
   `mahotro` int(11) NOT NULL,
   `ten` varchar(100) NOT NULL,
-  `sodienthoai` char(12) NOT NULL,
+  `sodienthoai` char(30) NOT NULL,
   `chude` text NOT NULL,
   `noidung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hotro`
+-- Dumping data for table `hotro`
 --
 
 INSERT INTO `hotro` (`mahotro`, `ten`, `sodienthoai`, `chude`, `noidung`) VALUES
-(9, 'Admin', '0123456789', 'test', 'test');
+(1, 'Tuấn Tú', 'tuantu13@gmail.com', 'Đóng góp ý kiến', 'Chất lượng dịch vụ còn nhiều sai sót!'),
+(2, 'Thanh Bình', 'khanhduy8768@gmail.com', 'Đánh giá chất lượng', 'Mình khá hài lòng về rạp này. 5 sao luôn'),
+(3, 'Yến Trang', 'yentrang2k2@gmail.com', 'Phản hồi dịch vụ', 'Nước ngọt hôm nay ít gas quá nhaaa.'),
+(4, 'Thanh Danh', 'danhtran@gmail.com', 'Đóng góp', 'Nhiệt độ phòng chiếu hơi nóng ạ.'),
+(5, 'Văn Bình', 'binhty12@gmail.com', 'Chê', 'Đúng là đường đến lò rèn gươm :))'),
+(6, 'Hoàng Mỹ', 'myhoangg@gmail.com', 'Khen', 'Phim hay, nhân viên nhiệt tình, chuyên nghiệp. Yêu'),
+(7, 'Hoài Bảo', 'baohoainevedie@gmail.com', 'Chê quá chê', 'Đi xem phim ở rạp mà xem lại các tập phim mình đã xem rồi :(( thất vọng.'),
+(8, 'Diễm Kiều', 'kieudiemphung@gmail.com', 'Phản hồi', 'Yêu cầu ad cải thiện đệm ghế nha. Ngồi 1 hồi hơi bị đau lưng.');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmai`
+-- Table structure for table `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
   `makhuyenmai` char(30) NOT NULL,
   `chitiet` text DEFAULT NULL,
   `tenkhuyenmai` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phim`
+-- Table structure for table `phim`
 --
 
 CREATE TABLE `phim` (
@@ -623,10 +630,10 @@ CREATE TABLE `phim` (
   `poster` char(200) DEFAULT NULL,
   `dotuoi` int(11) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phim`
+-- Dumping data for table `phim`
 --
 
 INSERT INTO `phim` (`maphim`, `tenphim`, `theloai`, `daodien`, `diemdanhgia`, `thoiluong`, `ngaykhoichieu`, `mota`, `poster`, `dotuoi`, `trangthai`) VALUES
@@ -642,17 +649,17 @@ INSERT INTO `phim` (`maphim`, `tenphim`, `theloai`, `daodien`, `diemdanhgia`, `t
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phong`
+-- Table structure for table `phong`
 --
 
 CREATE TABLE `phong` (
   `maphong` char(30) NOT NULL,
   `tenphong` varchar(30) DEFAULT NULL,
   `soluongghe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phong`
+-- Dumping data for table `phong`
 --
 
 INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`) VALUES
@@ -671,7 +678,7 @@ INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `suatchieu`
+-- Table structure for table `suatchieu`
 --
 
 CREATE TABLE `suatchieu` (
@@ -681,10 +688,10 @@ CREATE TABLE `suatchieu` (
   `ngaychieu` date DEFAULT NULL,
   `giochieu` time DEFAULT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `suatchieu`
+-- Dumping data for table `suatchieu`
 --
 
 INSERT INTO `suatchieu` (`masuatchieu`, `maphim`, `maphong`, `ngaychieu`, `giochieu`, `giave`) VALUES
@@ -720,7 +727,7 @@ INSERT INTO `suatchieu` (`masuatchieu`, `maphim`, `maphong`, `ngaychieu`, `gioch
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tintuc`
+-- Table structure for table `tintuc`
 --
 
 CREATE TABLE `tintuc` (
@@ -739,10 +746,10 @@ CREATE TABLE `tintuc` (
   `cthinhanh2` varchar(100) DEFAULT NULL,
   `cthinhanh3` varchar(100) DEFAULT NULL,
   `hinhanhdoc` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tintuc`
+-- Dumping data for table `tintuc`
 --
 
 INSERT INTO `tintuc` (`matin`, `tieude`, `noidung`, `hinhanh`, `luotxem`, `luotdanhgia`, `category`, `ctnoidung1`, `ctnoidung2`, `ctnoidung3`, `ctnoidung4`, `cthinhanh1`, `cthinhanh2`, `cthinhanh3`, `hinhanhdoc`) VALUES
@@ -758,7 +765,7 @@ INSERT INTO `tintuc` (`matin`, `tieude`, `noidung`, `hinhanh`, `luotxem`, `luotd
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -772,21 +779,32 @@ CREATE TABLE `user` (
   `role` varchar(10) DEFAULT 'khach',
   `diachi` varchar(50) DEFAULT NULL,
   `tinh` varchar(50) DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userid`, `hoten`, `ngaysinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`, `diachi`, `tinh`) VALUES
+(1, 'admin', NULL, NULL, NULL, '0123456789', '123456', 'admin', NULL, NULL),
+(2, 'Huỳnh Khánh Duy', '28/2/2002', 'Nam', 'khanhtran@gmail.com', '0369999999', '906297824027179', 'khach', '19 Nguyễn Hữu Thọ', 'Bình Phước'),
+(3, 'Yến Trang', '28/2/2003', 'Nữ', 'yentrang2k3@gmail.com', '0361231115', '123123', 'khach', '19 Nguyễn Thị Thập', 'TP. Hồ Chí Minh'),
+(4, 'Nhocs Vlogss', '28/2/2005', 'Nam', 'khanhduy16012k2@gmail.com', '0369999999', 'google', 'khach', '06 Lê Thị Riêng', 'TP. Hồ Chí Minh');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ve`
+-- Table structure for table `ve`
 --
 
 CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
--- Đang đổ dữ liệu cho bảng `ve`
+-- Dumping data for table `ve`
 --
 
 INSERT INTO `ve` (`mave`, `maphim`, `giave`) VALUES
@@ -800,36 +818,36 @@ INSERT INTO `ve` (`mave`, `maphim`, `giave`) VALUES
 ('Vtrinhcongson', 'trinhcongson', 60000);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `combo`
+-- Indexes for table `combo`
 --
 ALTER TABLE `combo`
   ADD PRIMARY KEY (`macombo`);
 
 --
--- Chỉ mục cho bảng `daodien`
+-- Indexes for table `daodien`
 --
 ALTER TABLE `daodien`
   ADD PRIMARY KEY (`madaodien`);
 
 --
--- Chỉ mục cho bảng `dienvien`
+-- Indexes for table `dienvien`
 --
 ALTER TABLE `dienvien`
   ADD PRIMARY KEY (`madienvien`);
 
 --
--- Chỉ mục cho bảng `ghe`
+-- Indexes for table `ghe`
 --
 ALTER TABLE `ghe`
   ADD PRIMARY KEY (`maghe`,`maphong`),
   ADD KEY `maphong` (`maphong`);
 
 --
--- Chỉ mục cho bảng `hoadon`
+-- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`mahd`),
@@ -841,31 +859,31 @@ ALTER TABLE `hoadon`
   ADD KEY `maghe` (`maghe`);
 
 --
--- Chỉ mục cho bảng `hotro`
+-- Indexes for table `hotro`
 --
 ALTER TABLE `hotro`
   ADD PRIMARY KEY (`mahotro`);
 
 --
--- Chỉ mục cho bảng `khuyenmai`
+-- Indexes for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`makhuyenmai`);
 
 --
--- Chỉ mục cho bảng `phim`
+-- Indexes for table `phim`
 --
 ALTER TABLE `phim`
   ADD PRIMARY KEY (`maphim`);
 
 --
--- Chỉ mục cho bảng `phong`
+-- Indexes for table `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`maphong`);
 
 --
--- Chỉ mục cho bảng `suatchieu`
+-- Indexes for table `suatchieu`
 --
 ALTER TABLE `suatchieu`
   ADD PRIMARY KEY (`masuatchieu`),
@@ -873,70 +891,70 @@ ALTER TABLE `suatchieu`
   ADD KEY `maphong` (`maphong`);
 
 --
--- Chỉ mục cho bảng `tintuc`
+-- Indexes for table `tintuc`
 --
 ALTER TABLE `tintuc`
   ADD PRIMARY KEY (`matin`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`userid`);
 
 --
--- Chỉ mục cho bảng `ve`
+-- Indexes for table `ve`
 --
 ALTER TABLE `ve`
   ADD PRIMARY KEY (`mave`),
   ADD KEY `maphim` (`maphim`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `daodien`
+-- AUTO_INCREMENT for table `daodien`
 --
 ALTER TABLE `daodien`
   MODIFY `madaodien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `dienvien`
+-- AUTO_INCREMENT for table `dienvien`
 --
 ALTER TABLE `dienvien`
   MODIFY `madienvien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `hotro`
+-- AUTO_INCREMENT for table `hotro`
 --
 ALTER TABLE `hotro`
-  MODIFY `mahotro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `mahotro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT cho bảng `tintuc`
+-- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
   MODIFY `matin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `ghe`
+-- Constraints for table `ghe`
 --
 ALTER TABLE `ghe`
   ADD CONSTRAINT `ghe_ibfk_1` FOREIGN KEY (`maphong`) REFERENCES `phong` (`maphong`);
 
 --
--- Các ràng buộc cho bảng `hoadon`
+-- Constraints for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`),
@@ -947,14 +965,14 @@ ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_ibfk_6` FOREIGN KEY (`maghe`) REFERENCES `ghe` (`maghe`);
 
 --
--- Các ràng buộc cho bảng `suatchieu`
+-- Constraints for table `suatchieu`
 --
 ALTER TABLE `suatchieu`
   ADD CONSTRAINT `suatchieu_ibfk_1` FOREIGN KEY (`maphim`) REFERENCES `phim` (`maphim`),
   ADD CONSTRAINT `suatchieu_ibfk_2` FOREIGN KEY (`maphong`) REFERENCES `phong` (`maphong`);
 
 --
--- Các ràng buộc cho bảng `ve`
+-- Constraints for table `ve`
 --
 ALTER TABLE `ve`
   ADD CONSTRAINT `ve_ibfk_1` FOREIGN KEY (`maphim`) REFERENCES `phim` (`maphim`);

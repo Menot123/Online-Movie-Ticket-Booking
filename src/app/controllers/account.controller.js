@@ -3,8 +3,8 @@ const accountServices = require('../../services/account.service')
 
 async function handleRegister(req, res, next) {
     try {
-        const {username, phone, password} = req.body
-        if(await accountServices.signUpAccount(username,phone,password)){
+        const { username, phone, password } = req.body
+        if (await accountServices.signUpAccount(username, phone, password)) {
             req.session.flash = {
                 message: 'Đăng ký tài khoản thành công'
             }
@@ -20,14 +20,15 @@ async function handleRegister(req, res, next) {
 
 async function handleLogin(req, res, next) {
     try {
-        const {phone,  password} = req.body
-        let user = await accountServices.handleLogin(phone,  password)
-        if(user) {
+        const { phone, password } = req.body
+        let user = await accountServices.handleLogin(phone, password)
+        if (user) {
             let url = '/'
-            if(user.role == 'admin') {
+            if (user.role == 'admin') {
                 url = '/admin'
             }
             req.session.name = user.hoten;
+            req.session.phone = user.sodienthoai;
             req.session.idUser = user.userid;
             res.redirect(url)
         } else {
@@ -44,5 +45,6 @@ async function handleLogin(req, res, next) {
 
 
 module.exports = {
-    handleRegister,handleLogin,
+    handleRegister,
+    handleLogin,
 };

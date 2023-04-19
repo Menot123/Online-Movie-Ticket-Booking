@@ -214,12 +214,53 @@
                 </div>
                 {{!-- End Choose Seat --}}
 
+
                 {{!-- Payment --}}
                 <h4 class="p-2 text-light mb-3 title-payment" hidden>THANH TOÁN</h4>
-                <div class="p-2 choose-payment" hidden>
-                    Chọn thanh toán
+                <div class="p-2 choose-payment bg-light" hidden>
+
+                    <div class="row p-3">
+                        <div class="col-md-4 p-2">Hình thức thanh toán:</div>
+                        <div class="col-md-5">
+                            <select class="form-select p-2" aria-label="Default select example">
+                                <option selected value="momo">Ví điện tử Momo</option>
+                                <option value="zalo">Zalo Pay</option>
+                                <option value="bank">Banking</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4 p-2">Họ tên:</div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" placeholder="Username" disabled
+                                value="{{nameUser}}">
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4 p-2">Email:</div>
+                        <div class="col-md-5">
+
+                            <input type="text" class="form-control" placeholder="Nhập mail">
+
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4 p-2">Số điện thoại:</div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" placeholder="Phone Number" disabled
+                                value="{{phoneUser}}">
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4 p-2">Mã giảm giá:</div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" placeholder="Nhập mã giảm giá (Nếu có)">
+                        </div>
+                    </div>
+
                 </div>
                 {{!-- End Payment --}}
+
 
             </div>
         </div>
@@ -244,28 +285,55 @@
                     <b>Combo: </b><span class="combo-list"></span>
                 </div>
                 <div class="dotted">
-                    <b>Ghế: </b>E1,E3
+                    <b>Ghế: </b><span class="seat-list"></span>
                 </div>
 
                 <div><b>Tổng: </b><span class="fs-5 text-danger total-price">0</span><span class="fs-5 text-danger">
                         VNĐ</span></div>
                 <div class="select-group d-flex justify-content-around mt-2">
-                    <button onclick="getBack()" class="btn btn-danger text-light back"><i class="fa fa-long-arrow-left">
+                    <button onclick="getBack(this)" class="btn btn-danger text-light back"><i
+                            class="fa fa-long-arrow-left">
                             QUAY LẠI</i></button>
-                    <button onclick="getContinue()" class="btn btn-danger text-light continue">TIẾP TỤC <i
+                    <button onclick="getContinue(this)" class="btn btn-danger text-light continue">TIẾP TỤC <i
                             class="fa fa-long-arrow-right"></i></button>
+                    <button data-bs-toggle="modal" data-bs-target="#qrCodeModal"
+                        class="btn btn-success text-light do-payment" hidden>THANH
+                        TOÁN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="qrCodeModalLabel">Quét mã thanh toán sau:</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/img/qrcode.png" width="100%" alt="QR Code">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button onclick="doPayment(this)" type="button" data-bs-dismiss="modal" class="btn btn-primary">Quét
+                        thành công</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function getBack() {
+        let count = null;
+        function getBack(backBtn) {
             if (!$('.title-payment').is(':hidden')) {
                 $('.title-payment').attr("hidden", true);
                 $('.choose-payment').attr("hidden", true);
                 $('.title-seat').removeAttr("hidden");
                 $('.choose-seat').removeAttr("hidden");
+                $('.do-payment').attr("hidden", true);
+                $('.continue').removeAttr("hidden");
                 //$("div").attr("hidden", true);
             } else if (!$('.title-seat').is(':hidden')) {
                 $('.title-seat').attr("hidden", true);
@@ -276,7 +344,7 @@
             else {
             }
         }
-        function getContinue() {
+        function getContinue(continueBtn) {
             if (!$('.title-ticket-combo').is(':hidden')) {
                 $('.title-ticket-combo').attr("hidden", true);
                 $('.choose-ticket-combo').attr("hidden", true);
@@ -288,9 +356,11 @@
                 $('.choose-seat').attr("hidden", true);
                 $('.title-payment').removeAttr("hidden");
                 $('.choose-payment').removeAttr("hidden");
+
+                $('.continue').attr("hidden", true);
+                $('.do-payment').removeAttr("hidden");
             }
-            else {
-            }
+
         }
         function getAllPrice() {
             let sumTicketPrice = $('.sum-ticket-price').html()
@@ -320,6 +390,11 @@
             if (input.value <= 0) {
                 input.value = null;
             }
+
+            count = input.value
+            $('.seat-number').removeClass('btn-success').addClass('btn-secondary');
+            $('.seat-list').html("")
+
             let tr = input.parentNode.parentNode;
             let price = tr.children[2].innerHTML.replace(/,/g, '');
             let calPriceNumber = (price * input.value).toLocaleString('en-US');;
@@ -382,6 +457,7 @@
         var calculatorTicketPrice = document.querySelector(".calculator-ticket-price")
         var sumTicketPrice = document.querySelector(".sum-ticket-price")
 
+
         // Thêm sự kiện "click" vào các nút minus và plus trong ticket table
         minusBtnTicket.addEventListener("click", function () {
             // Lấy giá trị hiện tại của ô input
@@ -390,6 +466,11 @@
             if (currentValue > 0) {
                 // Giảm giá trị đó đi 1
                 var newValue = currentValue - 1;
+
+                count = newValue
+                $('.seat-number').removeClass('btn-success').addClass('btn-secondary');
+                $('.seat-list').html("")
+
                 // Cập nhật giá trị mới vào ô input
                 numberInput.value = newValue;
                 if (numberInput.value == 0) {
@@ -413,6 +494,11 @@
             }
             // Tăng giá trị đó lên 1
             var newValue = currentValue + 1;
+
+            count = newValue
+            $('.seat-number').removeClass('btn-success').addClass('btn-secondary');
+            $('.seat-list').html("")
+
             // Cập nhật giá trị mới vào ô input
             numberInput.value = newValue;
             let quantity = numberInput.value
@@ -424,15 +510,86 @@
         ////////////////////////////////End Choose Ticket And Combo
 
         ////////////////////////////////Choose Seat
+
         function chooseSeat(seatBtn) {
+            let num = seatBtn.innerHTML
+            let nameRow = seatBtn.parentNode.parentNode.children[0].innerHTML
             if (seatBtn.classList.contains('btn-secondary')) {
-                seatBtn.classList.remove("btn-secondary");
-                seatBtn.classList.add("btn-success");
+                if (count > 0) {
+                    seatBtn.classList.remove("btn-secondary");
+                    seatBtn.classList.add("btn-success");
+                    count = count - 1;
+
+                    if ($('.seat-list').html() == '') {
+                        $('.seat-list').html(nameRow + num)
+                    }
+                    else {
+                        $('.seat-list').html($('.seat-list').html() + "," + nameRow + num)
+                    }
+                }
             }
-            else{
+            else if (seatBtn.classList.contains('btn-success')) {
+                count = count + 1;
                 seatBtn.classList.remove("btn-success");
                 seatBtn.classList.add("btn-secondary");
+
+                let list = $('.seat-list').html()
+                seats = list.split(',')
+                result = ""
+                seats.forEach(function (seat) {
+                    if (seat == (nameRow + num)) {
+                        result = result
+                    }
+                    else result = result + seat + ","
+                });
+                result = result.slice(0, -1)
+                $('.seat-list').html(result)
             }
         }
         ////////////////////////////////End Choose Seat
+
+
+        ////////////////////////////////Do Payment
+        async function doPayment(payBtn) {
+            let userid = "{{idUser}}";
+            let maphim = "{{film.maphim}}";
+            let comboList = $('.combo-list').html();
+            let makhuyenmai = null;
+            let masuatchieu = "{{suatchieu.masuatchieu}}";
+            let seatList = $('.seat-list').html();
+            let soluong = $('#number').val();
+            let price = $('.total-price').html().replace(/,/g, '')
+            await fetch('http://localhost:3000/mua-ve/{{film.maphim}}/{{suatchieu.masuatchieu}}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userid: userid,
+                    maphim: maphim,
+                    comboList: comboList,
+                    makhuyenmai: makhuyenmai,
+                    masuatchieu: masuatchieu,
+                    seatList: seatList,
+                    soluong: soluong,
+                    price: price
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if(data.status == "success"){
+                    alert("Thanh toán thành công");
+                    window.location.href = "/"
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+        ////////////////////////////////End Do Payment
     </script>
