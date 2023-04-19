@@ -31,10 +31,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (user, cb) {
+passport.serializeUser(function(user, cb) {
     cb(null, user);
 });
-passport.deserializeUser(function (obj, cb) {
+passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
@@ -49,21 +49,21 @@ app.engine(
     handlebars.engine({
         extname: '.hbs',
         helpers: {
-            checkChoosenBackground: function (maphim1, maphim2) {
+            checkChoosenBackground: function(maphim1, maphim2) {
                 if (maphim1 == maphim2) {
                     return 'style="background-color: rgb(198, 196, 196);"';
                 } else {
                     return '';
                 }
             },
-            checkChoosenTextMain: function (maphim1, maphim2) {
+            checkChoosenTextMain: function(maphim1, maphim2) {
                 if (maphim1 == maphim2) {
                     return `style="color: red;"`;
                 } else {
                     return '';
                 }
             },
-            checkChoosenTextSub: function (maphim1, maphim2) {
+            checkChoosenTextSub: function(maphim1, maphim2) {
                 if (maphim1 == maphim2) {
                     return `style="color: orange;"`;
                 } else {
@@ -75,6 +75,20 @@ app.engine(
             },
             unformatNumber: function(number) {
                 return Number(number.replace(/,/g, ''));
+            },
+            checkSeat: function(status) {
+                if (status == "còn trống") {
+                    return 'btn-secondary'
+                } else {
+                    return 'btn-danger'
+                }
+            },
+            seatIsOrder: function(status) {
+                if (status == "còn trống") {
+                    return ''
+                } else {
+                    return 'disabled'
+                }
             }
         }
     }),

@@ -177,7 +177,8 @@
                             <div class="group-btn">
                                 {{#each data}}
                                 <button onclick="chooseSeat(this)" type="button"
-                                    class="btn btn-secondary btn-sm seat-number">{{maghe}}</button>
+                                    class="btn {{checkSeat trangthai}} btn-sm seat-number" {{seatIsOrder
+                                    trangthai}}>{{maghe}}</button>
                                 {{/each}}
                             </div>
                         </div>
@@ -232,8 +233,7 @@
                     <div class="row p-3">
                         <div class="col-md-4 p-2">Họ tên:</div>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" placeholder="Username" disabled
-                                value="{{nameUser}}">
+                            <input type="text" class="form-control" placeholder="Username" value="{{nameUser}}">
                         </div>
                     </div>
                     <div class="row p-3">
@@ -247,14 +247,15 @@
                     <div class="row p-3">
                         <div class="col-md-4 p-2">Số điện thoại:</div>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" placeholder="Phone Number" disabled
-                                value="{{phoneUser}}">
+                            <input type="text" class="form-control" placeholder="Phone Number" value="{{phoneUser}}">
                         </div>
                     </div>
                     <div class="row p-3">
                         <div class="col-md-4 p-2">Mã giảm giá:</div>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" placeholder="Nhập mã giảm giá (Nếu có)">
+                            <input type="text" class="form-control sale-id" placeholder="Nhập mã giảm giá (Nếu có)">
+                            <button onclick="useSale(this)" type="button" class="btn btn-secondary use-sale">Áp
+                                dụng</button>
                         </div>
                     </div>
 
@@ -550,11 +551,48 @@
 
 
         ////////////////////////////////Do Payment
+        let useS = false;
+        async function useSale(btnSale) {
+            if (!useS) {
+                saleId = btnSale.parentNode.children[0].value
+                await fetch('http://localhost:3000/dung-ma-giam-gia', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        makhuyenmai: saleId
+                    })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if(data.giamgia){
+                            useS = true;
+                            let originalPrice = $('.total-price').html().replace(/,/g, '')
+                            let percentSale = data.giamgia
+                            let totalPrice = originalPrice - originalPrice*percentSale/100
+                            alert("Sử dụng mã giảm giá thành công")
+                            $('.total-price').html(totalPrice.toLocaleString('en-US'))
+                        }
+                        else{
+                            alert("Sử dụng mã giảm giá thất bại")
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+        }
         async function doPayment(payBtn) {
             let userid = "{{idUser}}";
             let maphim = "{{film.maphim}}";
             let comboList = $('.combo-list').html();
-            let makhuyenmai = null;
+            let makhuyenmai = $('.sale-id').val();
             let masuatchieu = "{{suatchieu.masuatchieu}}";
             let seatList = $('.seat-list').html();
             let soluong = $('#number').val();
@@ -575,21 +613,21 @@
                     price: price
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if(data.status == "success"){
-                    alert("Thanh toán thành công");
-                    window.location.href = "/"
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status == "success") {
+                        alert("Thanh toán thành công");
+                        window.location.href = "/"
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
         }
         ////////////////////////////////End Do Payment
     </script>

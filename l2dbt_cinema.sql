@@ -565,7 +565,7 @@ CREATE TABLE `hoadon` (
   `userid` int(11) NOT NULL,
   `mave` char(30) NOT NULL,
   `macombo` char(30) NOT NULL,
-  `makhuyenmai` char(30) DEFAULT NULL,
+  `makhuyenmai` int DEFAULT NULL,
   `masuatchieu` char(30) NOT NULL,
   `maghe` char(30) NOT NULL,
   `soluong` int(11) DEFAULT NULL,
@@ -608,11 +608,11 @@ INSERT INTO `hotro` (`mahotro`, `ten`, `sodienthoai`, `chude`, `noidung`) VALUES
 --
 
 CREATE TABLE `khuyenmai` (
-  `makhuyenmai` char(30) NOT NULL,
-  `chitiet` text DEFAULT NULL,
-  `tenkhuyenmai` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+ `makhuyenmai` int,
+ `chitiet` text DEFAULT NULL,
+ `tenkhuyenmai` varchar(50) DEFAULT NULL,
+ `giamgia` int(10) NOT NULL
+);
 -- --------------------------------------------------------
 
 --
@@ -868,7 +868,7 @@ ALTER TABLE `hotro`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`makhuyenmai`);
-
+ALTER TABLE `khuyenmai` CHANGE `makhuyenmai` `makhuyenmai` INT(11) NOT NULL AUTO_INCREMENT;
 --
 -- Chỉ mục cho bảng `phim`
 --

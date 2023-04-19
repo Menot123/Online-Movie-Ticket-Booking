@@ -269,9 +269,29 @@ async function payMent(req, res, next) {
     data.ticketId = ticketId;
     // console.log(data);
     const result = await buyticketServices.createBill(data)
-        // console.log(result);
-        // console.log(data);
+
+    // Change seat status
+    const roomId = await buyticketServices.getRoomId(data.masuatchieu)
+    let seatString = data.seatList.split(",")
+    seatString.forEach(async(row) => {
+        let unableSeat = await buyticketServices.unableSeat(row, roomId);
+    });
+
+    // console.log(roomId);
     res.json(result);
+}
+
+async function useSale(req, res, next) {
+    const data = req.body;
+    const result = await buyticketServices.useSale(data.makhuyenmai)
+    if (result) {
+        // console.log(result.giamgia);
+        res.json({ giamgia: result.giamgia })
+            // res.json(result);
+    } else {
+        res.json({ failed: 1 });
+    }
+
 }
 
 async function movie(req, res, next) {
@@ -452,5 +472,6 @@ module.exports = {
     director,
     directorDetail,
     movie,
-    payMent
+    payMent,
+    useSale
 };
