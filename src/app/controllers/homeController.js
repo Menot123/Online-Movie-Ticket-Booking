@@ -255,6 +255,7 @@ async function chooseTicket(req, res, next) {
 
 async function payMent(req, res, next) {
     const data = req.body;
+
     // Kiểm tra xem chuỗi có bắt đầu bằng dấu phẩy hay không
     if (data.comboList.startsWith(",")) {
         data.comboList = data.comboList.slice(1); // Xóa dấu phẩy đầu tiên

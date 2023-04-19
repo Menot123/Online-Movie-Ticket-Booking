@@ -1,6 +1,6 @@
 const dbClient = require('./db_client');
 
-async function manageAccounts(username,phone,password) {
+async function manageAccounts(username, phone, password) {
     const record = await dbClient.query(
         `INSERT INTO user(sodienthoai, matkhau, hoten) VALUES (?,?,?) `, [phone, password, username]
     );
@@ -16,31 +16,31 @@ async function getAccounts() {
 
 async function handleDelete(id) {
     const record = await dbClient.query(
-        `DELETE FROM USER WHERE userid = ?`,[id]
+        `DELETE FROM USER WHERE userid = ?`, [id]
     );
     return record.affectedRows;
 };
 
 async function getInfo(id) {
     const record = await dbClient.query(
-        `Select * from user where userid = ?`,[id]
+        `Select * from user where userid = ?`, [id]
     );
     return record;
 };
 
-async function updateInfo(id, phone,pass) {
+async function updateInfo(id, phone, pass) {
     var record = null
-    if(phone && pass == undefined) {
+    if (phone && pass == undefined) {
         record = await dbClient.query(
-            `update user set sodienthoai = ? where userid = ?`,[phone, id]
+            `update user set sodienthoai = ? where userid = ?`, [phone, id]
         );
-    } else if(pass && phone == undefined) {
+    } else if (pass && phone == undefined) {
         record = await dbClient.query(
-            `update user set matkhau = ? where userid = ?`,[pass,id]
+            `update user set matkhau = ? where userid = ?`, [pass, id]
         );
     } else {
         record = await dbClient.query(
-            `update user set sodienthoai = ?,  matkhau = ? where userid = ?`,[phone, pass ,id]
+            `update user set sodienthoai = ?,  matkhau = ? where userid = ?`, [phone, pass, id]
         );
     }
     return record.affectedRows;
@@ -53,6 +53,57 @@ async function getResponsesAPI() {
     return record;
 };
 
+async function getSales() {
+    const record = await dbClient.query(
+        `SELECT * FROM khuyenmai`
+    );
+    return record;
+};
+
+async function getSale(id) {
+    const record = await dbClient.query(
+        `Select * from khuyenmai where makhuyenmai = ?`, [id]
+    );
+    return record;
+};
+
+async function updateSale(id, tenkhuyenmai, chitiet, giamgia) {
+    var record = null
+
+    record = await dbClient.query(
+        `update khuyenmai set tenkhuyenmai = ?,  chitiet = ?,  giamgia = ? where makhuyenmai = ?`, [tenkhuyenmai, chitiet, giamgia, id]
+    );
+
+    return record.affectedRows;
+};
+
+async function handleDeleteSale(id) {
+    const record = await dbClient.query(
+        `DELETE FROM khuyenmai WHERE makhuyenmai = ?`, [id]
+    );
+    return record.affectedRows;
+};
+
+async function addSale(tenkhuyenmai, chitiet, giamgia) {
+    var record = null
+
+    record = await dbClient.query(
+        `INSERT INTO khuyenmai(tenkhuyenmai, chitiet, giamgia) VALUES (?,?,?) `, [tenkhuyenmai, chitiet, giamgia]
+    );
+
+    return record.affectedRows;
+};
+
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,
+    manageAccounts,
+    getAccounts,
+    handleDelete,
+    getInfo,
+    updateInfo,
+    getResponsesAPI,
+    getSales,
+    getSale,
+    updateSale,
+    handleDeleteSale,
+    addSale
 }
