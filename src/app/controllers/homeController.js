@@ -461,9 +461,6 @@ module.exports = {
     director,
     directorDetail,
     movie,
-<<<<<<< HEAD
     sendLinkResponse,
-=======
-    payMent
->>>>>>> aa6e7f21e7176948426826784f6d471086b296b4
-};
+    payMent,
+}

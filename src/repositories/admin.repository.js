@@ -53,6 +53,50 @@ async function getResponsesAPI() {
     return record;
 };
 
+async function getSuatChieuAPI() {
+    const record = await dbClient.query(
+        `Select * from suatchieu where trangthai is NULL`
+    );
+    return record;
+};
+
+async function getMaPhimAPI() {
+    const record = await dbClient.query(
+        `Select maphim from phim`
+    );
+    return record;
+};
+
+async function addMaPhim(obj) {
+    const record = await dbClient.query(
+        `Insert into suatchieu (masuatchieu, maphim, maphong, ngaychieu, giochieu, giave) values (?,?,?,?,?,?)`,
+         [obj.masuatchieu, obj.maphim, obj.maphong, obj.ngaychieu, obj.giochieu, obj.giave]
+    );
+    return record.affectedRows;
+};
+
+async function hideMaPhim(code) {
+    const record = await dbClient.query(
+        `update suatchieu set trangthai = ? where masuatchieu = ?`,['an', code]
+    );
+    return record.changedRows;
+};
+
+async function getPhimAPI() {
+    const record = await dbClient.query(
+        `Select * from phim`
+    );
+    return record;
+};
+
+async function getSuatChieu(tenphim) {
+    const record = await dbClient.query(
+        `Select * from suatchieu where maphim = ? && trangthai is NULL`,[tenphim] 
+    );
+    return record;
+};
+
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,
+    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,getSuatChieuAPI, getMaPhimAPI,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu
 }
