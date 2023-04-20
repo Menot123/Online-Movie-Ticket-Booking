@@ -53,81 +53,52 @@ async function getResponsesAPI() {
     return record;
 };
 
-<<<<<<< HEAD
+
 async function getSuatChieuAPI() {
     const record = await dbClient.query(
         `Select * from suatchieu where trangthai is NULL`
-=======
-<<<<<<< HEAD
-async function getSuatChieuAPI() {
-    const record = await dbClient.query(
-        `Select * from suatchieu where trangthai is NULL`
-=======
-async function getSales() {
-    const record = await dbClient.query(
-        `SELECT * FROM khuyenmai`
->>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
     );
     return record;
 };
 
-<<<<<<< HEAD
 async function getMaPhimAPI() {
     const record = await dbClient.query(
         `Select maphim from phim`
-=======
-<<<<<<< HEAD
-async function getMaPhimAPI() {
-    const record = await dbClient.query(
-        `Select maphim from phim`
-=======
+    );
+    return record
+}
 async function getSale(id) {
     const record = await dbClient.query(
         `Select * from khuyenmai where makhuyenmai = ?`, [id]
->>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
     );
     return record;
 };
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
 async function addMaPhim(obj) {
     const record = await dbClient.query(
         `Insert into suatchieu (masuatchieu, maphim, maphong, ngaychieu, giochieu, giave) values (?,?,?,?,?,?)`,
-         [obj.masuatchieu, obj.maphim, obj.maphong, obj.ngaychieu, obj.giochieu, obj.giave]
-<<<<<<< HEAD
-=======
-=======
+        [obj.masuatchieu, obj.maphim, obj.maphong, obj.ngaychieu, obj.giochieu, obj.giave]
+    )
+    return record.affectedRows
+}
 async function updateSale(id, tenkhuyenmai, chitiet, giamgia) {
     var record = null
-
     record = await dbClient.query(
         `update khuyenmai set tenkhuyenmai = ?,  chitiet = ?,  giamgia = ? where makhuyenmai = ?`, [tenkhuyenmai, chitiet, giamgia, id]
     );
-
     return record.affectedRows;
 };
 
 async function handleDeleteSale(id) {
     const record = await dbClient.query(
         `DELETE FROM khuyenmai WHERE makhuyenmai = ?`, [id]
->>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
     );
     return record.affectedRows;
 };
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
 async function hideMaPhim(code) {
     const record = await dbClient.query(
-        `update suatchieu set trangthai = ? where masuatchieu = ?`,['an', code]
+        `update suatchieu set trangthai = ? where masuatchieu = ?`, ['an', code]
     );
     return record.changedRows;
 };
@@ -141,16 +112,15 @@ async function getPhimAPI() {
 
 async function getSuatChieu(tenphim) {
     const record = await dbClient.query(
-        `Select * from suatchieu where maphim = ? && trangthai is NULL`,[tenphim] 
+        `Select * from suatchieu where maphim = ? && trangthai is NULL`, [tenphim]
     );
     return record;
 };
 
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu
+    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale
 }
-=======
 async function addSale(tenkhuyenmai, chitiet, giamgia) {
     var record = null
 
@@ -161,17 +131,3 @@ async function addSale(tenkhuyenmai, chitiet, giamgia) {
     return record.affectedRows;
 };
 
-module.exports = {
-    manageAccounts,
-    getAccounts,
-    handleDelete,
-    getInfo,
-    updateInfo,
-    getResponsesAPI,
-    getSales,
-    getSale,
-    updateSale,
-    handleDeleteSale,
-    addSale
-}
->>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de

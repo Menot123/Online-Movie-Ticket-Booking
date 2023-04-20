@@ -484,13 +484,6 @@ module.exports = {
     movie,
     sendLinkResponse,
     payMent,
-<<<<<<< HEAD
-}
-=======
-<<<<<<< HEAD
-}
-=======
-    useSale
+    useSale, 
 };
->>>>>>> 55b0e1967f5df257205625cdbc993d410a8fc3de
->>>>>>> 4ccf4c6fcd30d1438435bf17285ea9dac5e6668f
+
