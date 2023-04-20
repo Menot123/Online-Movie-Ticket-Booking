@@ -1,6 +1,6 @@
 // Define your services here
 const repo = require('../repositories/admin.repository')
-
+const moment = require('moment');
 
 async function manageAccounts(username, phone, password) {
     try {
@@ -166,8 +166,58 @@ async function addSale(tenkhuyenmai, chitiet, giamgia) {
         throw new Error('Service: Cannot add sale');
     }
 }
+async function getFilmsInfo(maphim) {
+    try {
+        const result = await repo.getFilmsInfo(maphim)
+
+        return result
+    } catch (err) {
+        throw new Error('Service: Cannot get films information');
+    }
+}
+async function updateFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai) {
+    try {
+        const result = await repo.updateFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot update films');
+    }
+}
+async function addFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai) {
+    try {
+        const result = await repo.addFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot add films');
+    }
+}
+
+async function getFilmsAPI() {
+    try {
+        const result = await repo.getFilmsAPI()
+        result.forEach((value, index, array) => {
+            value.ngaykhoichieu = moment.utc(value.ngaykhoichieu).format('DD/MM/YYYY');
+
+        })
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get films from db');
+    }
+}
+async function hideFilms(maphim) {
+    try {
+        const result = await repo.hideFilms(maphim)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot change status film to db');
+    }
+}
 
 module.exports = {
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
 }

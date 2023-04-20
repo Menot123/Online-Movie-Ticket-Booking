@@ -321,10 +321,96 @@ async function addSale(req, res, next) {
         next(err);
     }
 }
+async function getFilms(req, res, next) {
+    try {
+        const fetch = await import('node-fetch');
+        const response = await fetch.default(`http://localhost:3000/admin/api/films`);
+        const data = await response.json();
+        if (data) {
+            res.render('ad_films', { layout: false, data: data.status })
+        } else {
+            res.render('404')
+        }
+
+    } catch (err) {
+        console.error('An error when get films', err.message);
+        next(err);
+    }
+}
+async function getFilmsAPI(req, res, next) {
+    try {
+        const status = await adminServices.getFilmsAPI();
+        if (status.length > 0) {
+            res.status(200).json({ message: `Get films successfully`, status: status });
+        } else {
+            res.status(400).json({ message: `Get films fail`, status: status });
+        }
+
+    } catch (err) {
+        console.error('An error when get films api', err.message);
+        next(err);
+    }
+}
+async function getFilmsInfo(req, res, next) {
+    try {
+        if (req.params.maphim) {
+            const result = await adminServices.getFilmsInfo(req.params.maphim);
+            res.status(200).json({ message: `getInfo film ${req.params.maphim} succesfully`, result: result, maphim: req.params.maphim });
+        } else {
+            res.status(404).json({ message: 'getInfo film failed' });
+        }
+    } catch (err) {
+        console.error('An error when get info', err.message);
+        next(err);
+    }
+}
+async function updateFilms(req, res, next) {
+    try {
+        if (req.params.maphim && req.body.tenphim && req.body.theloai && req.body.dienvien && req.body.quocgia && req.body.daodien && req.body.diemdanhgia && req.body.thoiluong && req.body.ngaykhoichieu && req.body.mota && req.body.poster && req.body.hinhngang && req.body.dotuoi && req.body.trailer && req.body.trangthai) {
+            const status = await adminServices.updateFilms(req.params.maphim, req.body.tenphim, req.body.theloai, req.body.dienvien, req.body.quocgia, req.body.daodien, req.body.diemdanhgia, req.body.thoiluong, req.body.ngaykhoichieu, req.body.mota, req.body.poster, req.body.hinhngang, req.body.dotuoi, req.body.trailer, req.body.trangthai);
+            res.status(200).json({ message: `Update films ${req.params.maphim} succesfully`, status: status, maphim: req.params.maphim });
+        } else {
+            res.status(404).json({ message: 'Update films failed' });
+        }
+    } catch (err) {
+        console.error('An error when get info', err.message);
+        next(err);
+    }
+}
+
+
+async function addFilms(req, res, next) {
+    try {
+        if (req.body.maphim && req.body.tenphim && req.body.theloai && req.body.dienvien && req.body.quocgia && req.body.daodien && req.body.diemdanhgia && req.body.thoiluong && req.body.ngaykhoichieu && req.body.mota && req.body.poster && req.body.hinhngang && req.body.dotuoi && req.body.trailer && req.body.trangthai) {
+            const status = await adminServices.addFilms(req.body.maphim, req.body.tenphim, req.body.theloai, req.body.dienvien, req.body.quocgia, req.body.daodien, req.body.diemdanhgia, req.body.thoiluong, req.body.ngaykhoichieu, req.body.mota, req.body.poster, req.body.hinhngang, req.body.dotuoi, req.body.trailer, req.body.trangthai);
+            res.status(200).json({ message: `Add films ${req.body.maphim} succesfully`, status: status, maphim: req.body.maphim });
+        } else {
+            res.status(404).json({ message: 'Add films failed' });
+        }
+    } catch (err) {
+        console.error('An error when add films', err.message);
+        next(err);
+    }
+}
+async function hideFilms(req, res, next) {
+    try {
+        if (req.params.maphim) {
+            const status = await adminServices.hideFilms(req.params.maphim);
+            if (status > 0) {
+                res.status(200).json({ message: `Hide film successfully`, status: status });
+            } else {
+                res.status(400).json({ message: `Hide film fail`, status: status });
+            }
+        }
+    } catch (err) {
+        console.error('An error when  hide film', err.message);
+        next(err);
+    }
+}
 
 module.exports = {
 
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponses, getResponsesAPI, getSuatChieuAPI,
     getSuatChieu, getMaPhimAPI, addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu2, getSales,
-    manageSales,getSale,updateSale,handleDeleteSale, addSale, 
+    manageSales, getSale, updateSale, handleDeleteSale, addSale, getFilms, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
 }

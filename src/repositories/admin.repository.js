@@ -96,7 +96,8 @@ async function handleDeleteSale(id) {
     return record.affectedRows;
 };
 
-async function hideMaPhim(code) {
+
+async function hideMaPhim(code) { 
     const record = await dbClient.query(
         `update suatchieu set trangthai = ? where masuatchieu = ?`, ['an', code]
     );
@@ -133,11 +134,41 @@ async function getSales() {
     );
     return record;
 };
+async function getFilmsInfo(maphim) {
+    const record = await dbClient.query(
+        `Select * from phim where maphim = ?`, [maphim]
+    );
+    return record;
+};
+async function updateFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai) {
+    var record = await dbClient.query(
+        `update phim set tenphim = ?,  theloai = ?,  dienvien = ?,  quocgia = ?,  daodien = ?,  diemdanhgia = ?,  thoiluong = ?,  ngaykhoichieu = ?,  mota = ?,  poster = ?,  hinhngang = ?,  dotuoi = ?,  trailer = ?,  trangthai = ? where maphim = ?`, [tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai, maphim]
+    );
+    return record.affectedRows;
+};
+async function addFilms(maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai) {
+    var record = await dbClient.query(
+        `INSERT INTO phim(maphim, tenphim, theloai,dienvien,quocgia,daodien,diemdanhgia,thoiluong,ngaykhoichieu,mota,poster,hinhngang,dotuoi,trailer,trangthai) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [maphim, tenphim, theloai, dienvien, quocgia, daodien, diemdanhgia, thoiluong, ngaykhoichieu, mota, poster, hinhngang, dotuoi, trailer, trangthai]
+    );
+    return record.insertId;
+};
 
+async function getFilmsAPI() {
+    const record = await dbClient.query(
+        `SELECT * FROM phim WHERE trangthai = 'dangchieu' OR trangthai = 'sapchieu'`
+    );
+    return record;
+};
+async function hideFilms(maphim) { 
+    const record = await dbClient.query(
+        `update phim set trangthai = 'khongchieu' where maphim = ?`, [maphim]
+    );
+    return record.changedRows;
+};
 
 module.exports = {
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
 }
 
 

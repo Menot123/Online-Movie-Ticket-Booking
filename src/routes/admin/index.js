@@ -25,27 +25,16 @@ router.get('/api/suat-chieu', adminController.getSuatChieuAPI)
 router.get('/suat-chieu', adminController.getSuatChieu)
 router.post('/suat-chieu', adminController.getSuatChieu2)
 
-router.get('/api/ma-phim', adminController.getMaPhimAPI)
-router.post('/api/ma-phim', adminController.addMaPhim)
-router.post('/api/:masuatchieu', adminController.hideMaPhim)
-router.get('/api/phim', adminController.getPhimAPI)
-
-
-
-
-
-router.get('/api/suat-chieu', adminController.getSuatChieuAPI)
-router.get('/suat-chieu', adminController.getSuatChieu)
-router.post('/suat-chieu', adminController.getSuatChieu2)
+router.get('/api/films', adminController.getFilmsAPI)
+router.get('/quan-ly-phim', adminController.getFilms)
+router.get('/api/get-films-info/:maphim', adminController.getFilmsInfo);
+router.put('/api/updateFilms/:maphim', adminController.updateFilms);
+router.post('/api/hideFilms/:maphim', adminController.hideFilms);
+router.post('/api/addFilms', adminController.addFilms);
 
 router.get('/api/ma-phim', adminController.getMaPhimAPI)
 router.post('/api/ma-phim', adminController.addMaPhim)
 router.post('/api/:masuatchieu', adminController.hideMaPhim)
 router.get('/api/phim', adminController.getPhimAPI)
-
-
-
-
-
 
 module.exports = router;
