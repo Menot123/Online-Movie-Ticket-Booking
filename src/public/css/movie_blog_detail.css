@@ -4,6 +4,24 @@
     background-color: #e8ecf1;
 }
 
+.link a {
+    text-decoration: none;
+    color: gray;
+}
+
+.link a:hover {
+    text-decoration: none;
+    color: orange;
+}
+
+.link label {
+    color: gray;
+}
+
+#arrow {
+    margin-right: 10px;
+}
+
 #icon__view {
     height: 14px;
     width: 20px;
@@ -25,7 +43,7 @@
     margin-bottom: 10px;
 }
 
-.img-content img{
+.img-content img {
     width: 80%;
 }
 
@@ -33,7 +51,7 @@
     color: black;
 }
 
-.related-blog:hover{
+.related-blog:hover {
     text-decoration: none;
     color: orange;
 }
@@ -70,13 +88,13 @@
     background-color: #e46434;
 }
 
-.buy-ticket-btn{
+.buy-ticket-btn {
     text-align: right;
     margin-right: 25px;
     margin-bottom: 30px;
 }
 
-.now-showing{
+.now-showing {
     margin-bottom: 20px;
     margin-top: 35px;
 }
@@ -124,7 +142,7 @@
     background-color: #e46434;
 }
 
-.hidden-buy-ticket{
+.hidden-buy-ticket {
     text-align: center;
     padding-top: 80px;
     padding-left: 10px;
@@ -135,9 +153,10 @@
     background-color: #f46c3c;
     border: 0;
 }
-.right-movie-name{
+
+.right-movie-name {
     color: #42464a;
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 .view-more-btn {
@@ -153,8 +172,8 @@
     background-color: #e46434;
 }
 
-#right-arrow{
-    
+#right-arrow {
+
     font-size: 25px;
     font-weight: bold;
 }
@@ -168,7 +187,7 @@ h4:after {
     display: block;
     width: 55px;
     height: 3px;
-    margin-top:10px;
+    margin-top: 10px;
     content: "";
     background-color: #f36a38;
     margin-bottom: 15px;

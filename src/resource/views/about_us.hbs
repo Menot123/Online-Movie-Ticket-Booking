@@ -18,42 +18,47 @@
 <body>
     <div class="container-fluid">
         <div class="row cover">
-            <div class="col-md-1"></div>
-
-            <div class="col-md-7">
-                <div class="link">
-                    <a href="/">Trang chủ</a>
-                    <label id="arrow">></label>
-                    Về chúng tôi
-                </div>
-                <br>
-                <div class="now-showing">
-                    <h4>VỀ CHÚNG TÔI - L2DBT CINEMA</h4>
-                </div>
-                <div class="des">
-                    <p>
-                        <b>L2DBT CINEMA</b> là một trang web đặt vé xem phim chuyên nghiệp và uy tín, cung cấp cho khách
-                        hàng
-                        những trải nghiệm giải trí tuyệt vời với các bộ phim đa dạng và hấp dẫn không chỉ từ Việt Nam
-                        hay Hollywood mà còn từ Hàn Quốc, Thái Lan, Nhật Bản… <br><br>
-                        Với giao diện thân thiện và dễ sử dụng, khách hàng có thể dễ dàng tìm kiếm và chọn lựa các bộ
-                        phim mới nhất và hot nhất hiện nay. Ngoài ra, trang web cũng cung cấp cho khách hàng các thông
-                        tin về lịch chiếu, giá vé, đặt vé online nhanh chóng và tiện lợi.
-                        <br><br>
-                        Với đội ngũ nhân viên chuyên nghiệp và nhiệt tình, <b>L2DBT CINEMA</b> cam kết mang đến cho
-                        khách hàng
-                        những trải nghiệm tuyệt vời nhất khi xem phim tại rạp.
-                    </p>
+            <div class="col-1"></div>
+            <div class="col-7">
+                <div class="col-11">
+                    <div class="link">
+                        <a href="/">Trang chủ</a>
+                        <label id="arrow">></label>
+                        Về chúng tôi
+                    </div>
+                    <br>
+                    <div class="now-showing">
+                        <h4>VỀ CHÚNG TÔI - L2DBT CINEMA</h4>
+                    </div>
+                    <div class="des">
+                        <p>
+                            <b>L2DBT CINEMA</b> là một trang web đặt vé xem phim chuyên nghiệp và uy tín, cung cấp cho
+                            khách
+                            hàng
+                            những trải nghiệm giải trí tuyệt vời với các bộ phim đa dạng và hấp dẫn không chỉ từ Việt
+                            Nam
+                            hay Hollywood mà còn từ Hàn Quốc, Thái Lan, Nhật Bản… <br><br>
+                            Với giao diện thân thiện và dễ sử dụng, khách hàng có thể dễ dàng tìm kiếm và chọn lựa các
+                            bộ
+                            phim mới nhất và hot nhất hiện nay. Ngoài ra, trang web cũng cung cấp cho khách hàng các
+                            thông
+                            tin về lịch chiếu, giá vé, đặt vé online nhanh chóng và tiện lợi.
+                            <br><br>
+                            Với đội ngũ nhân viên chuyên nghiệp và nhiệt tình, <b>L2DBT CINEMA</b> cam kết mang đến cho
+                            khách hàng
+                            những trải nghiệm tuyệt vời nhất khi xem phim tại rạp.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-3 right">
+            <div class="col-3 right">
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
                 {{#each all4films}}
                 <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
+                    <div class="col right-movie-item">
                         <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
                         <div class="hidden-buy-ticket">
                             <p><label class="age">C{{dotuoi}}</label></p>

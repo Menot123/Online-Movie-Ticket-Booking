@@ -17,108 +17,78 @@
 <body>
     <div class="container-fluid">
         <div class="row cover">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <div class="col-1"></div>
+            <div class="col-7">
                 <div class="row">
-                    <a class="movie-review" href="#">
+                    <div class="link mb-3">
+                        <a href="/">Trang chủ</a>
+                        <label id="arrow">></label>
+                        Bình luận phim
+                    </div>
+                    <div class="movie-blog">
                         <h4>BÌNH LUẬN PHIM</h4>
-                    </a>
+                    </div>
                 </div>
 
                 {{#each data}}
                 <div class="movie-item">
                     <div class="row">
-                        
-                        <div class="movie-image  col-md-3">
-                            <a href="/chi-tiet-binh-luan-phim/{{this.matin}}">
+                        <div class="movie-image col-4">
+                            <a href="/chi-tiet-binh-luan-phim/{{matin}}">
                                 <img src="{{this.hinhanh}}">
                             </a>
                         </div>
-                        <div class="movie-info col-md-8">
+                        <div class="movie-info col-7">
                             <div class="movie-name">
-                                <a href="/chi-tiet-binh-luan-phim/{{this.matin}}"><h5>[Review] {{this.tieude}}</h5></a>
+                                <a href="/chi-tiet-binh-luan-phim/{{matin}}">
+                                    <h5>{{this.tieude}}</h5>
+                                </a>
                             </div>
                             <div class="movie-detail">
-                                <button type="button" class="btn btn-primary movie-button">👍🏻Thích <label id="count-like">{{this.luotdanhgia}}</label></button>
-                                <label class="movie-views-lbl">Lượt xem: <label id = "count-view">{{this.luotxem}}</label></label>
-                                <label class="rating-movie">★</label>
-                                <label class="rating-count">{{this.luotdanhgia}}</label>
-                                <label class="rating-count-all">/10 (220)</label>
-                                <button class="rating-btn">ĐÁNH GIÁ</button>
-                                
+                                <label class="movie-views-lbl">Lượt xem: <label
+                                        id="count-view">{{this.luotxem}}</label></label>
                             </div>
-                            <div class = "movie-description">
+                            <div class="movie-description">
                                 <p>
                                     {{this.noidung}}
                                 </p>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
                 {{/each}}
-                
+
             </div>
-            
-            <div class="col-md-3 right">
-                <div class="quick-buy-ticket">
-                    <h4>MUA VÉ NHANH</h4>
-                </div>
-                <div class="select-all">
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn phim</option>
-                        <option value="">Tây du ký</option>
-                        <option value="">Đi tìm nemo</option>
-                        <option value="">Doraemon</option>
-                    </select>        
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn rạp</option>
-                        <option value="">Rạp 1</option>
-                        <option value="">Rạp 2</option>
-                        <option value="">Rạp 3</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn ngày</option>
-                        <option value="">13/3/2023</option>
-                        <option value="">14/3/2023</option>
-                        <option value="">15/3/2023</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn suất</option>
-                        <option value="">Suất 1</option>
-                        <option value="">Suất 2</option>
-                        <option value="">Suất 3</option>
-                    </select>
-                    <div class="buy-ticket-btn">
-                        <button class="buy-ticket">MUA VÉ</button>
-                    </div>
-                </div>
+
+            <div class="col-3 right">
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
-
-                {{#each films}}
+                {{#each all4films}}
                 <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
-                        <a href="#">
-                            <img class="movie-img" src="/img/{{this.poster}}" alt="{{this.tenphim}}">
-                            <div class="hidden-buy-ticket">
-                                <p><label class="age">C{{dotuoi}}</label></p>
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
-                            </div>
-                        </a>
+                    <div class="col right-movie-item">
+                        <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
+                        <div class="hidden-buy-ticket">
+                            <p><label class="age">C{{dotuoi}}</label></p>
+                            <a href="/chi-tiet-phim/{{maphim}}">
+                                <button class="hidden-buy-ticket-btn">CHI TIẾT</button>
+                            </a>
+                        </div>
                         <div class="right-movie-name">
-                            <h5>{{this.tenphim}}</h5>
+                            <h5>{{tenphim}}</h5>
                         </div>
                     </div>
                 </div>
                 {{/each}}
-
                 <div class="view-more">
-                    <button class="view-more-btn">XEM THÊM <label id="right-arrow">→</label></button>
+                    <a href="/phim-dang-chieu">
+                        <button class="view-more-btn">
+                            XEM THÊM<label id="right-arrow">→</label>
+                        </button>
+                    </a>
                 </div>
             </div>
-            
+
         </div>
         <div class="pagi">
             <div class="pagination">
@@ -133,22 +103,30 @@
             </div>
         </div>
 
-        
+
 
         <div class="row cover">
             <div class="col-md-1"></div>
-            <div class="col-md-10"> 
+            <div class="col-md-10">
                 <div>
-                    <h4>GALAXY CINEMA</h4>
+                    <h4>L2DBT CINEMA</h4>
                 </div>
-                
-                <div class="summary">
-                    <p>Bạn là một người mê phim, bạn thích khám phá bí mật phía sau hậu trường của các bom tấn, bạn thần tượng nhà làm phim nào đấy bởi tư duy vượt thời đại, phong cách quay phim đặc biệt và những câu chuyện đầy mới lạ, bạn ngưỡng mộ một ngôi sao bởi khả năng diễn xuất cực đỉnh… Thậm chí nếu bạn muốn tìm hiểu sâu hơn về điện ảnh, các trào lưu chủ nghĩa từng tạo tiếng vang trong lịch sử, sự ra đời của các thể loại và bản sắc riêng của từng nền điện ảnh đến từ các quốc gia khác nhau.</p>
-                    <p>Chào mừng đến chuyên trang điện ảnh, nơi được xem như một thư viện với đầy đủ các thông tin về những bộ phim, đạo diễn, diễn viên dành cho người yêu phim. Tại đây bạn dễ dàng tìm hiểu được tiểu sử của vị đạo diễn yêu thích, có được thông tin bên lề của các bộ phim hay đang chiếu tại rạp. Ngoài ra nếu đam mê những tác phẩm kinh điển trong quá khứ, vẫn có những bài bình luận với hạng mục Phim Kinh Điển.</p>
-                </div> 
-            </div>
 
-            
+                <div class="summary">
+                    {{!-- <p>Bạn là một người mê phim, bạn thích khám phá bí mật phía sau hậu trường của các bom tấn,
+                        bạn thần
+                        tượng nhà làm phim nào đấy bởi tư duy vượt thời đại, phong cách quay phim đặc biệt và những câu
+                        chuyện đầy mới lạ, bạn ngưỡng mộ một ngôi sao bởi khả năng diễn xuất cực đỉnh… Thậm chí nếu bạn
+                        muốn tìm hiểu sâu hơn về điện ảnh, các trào lưu chủ nghĩa từng tạo tiếng vang trong lịch sử, sự
+                        ra đời của các thể loại và bản sắc riêng của từng nền điện ảnh đến từ các quốc gia khác nhau.
+                    </p>
+                    <p>Chào mừng đến chuyên trang điện ảnh, nơi được xem như một thư viện với đầy đủ các thông tin về
+                        những bộ phim, đạo diễn, diễn viên dành cho người yêu phim. Tại đây bạn dễ dàng tìm hiểu được
+                        tiểu sử của vị đạo diễn yêu thích, có được thông tin bên lề của các bộ phim hay đang chiếu tại
+                        rạp. Ngoài ra nếu đam mê những tác phẩm kinh điển trong quá khứ, vẫn có những bài bình luận với
+                        hạng mục Phim Kinh Điển.</p> --}}
+                </div>
+            </div>
         </div>
     </div>
 </body>

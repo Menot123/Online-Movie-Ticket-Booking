@@ -622,16 +622,18 @@ CREATE TABLE `khuyenmai` (
   `makhuyenmai` int(11) NOT NULL,
   `chitiet` text DEFAULT NULL,
   `tenkhuyenmai` varchar(50) DEFAULT NULL,
+  `hinhkhuyenmai` varchar(50) NOT NULL,
+  `hinhkhuyenmaingang` varchar(50) NOT NULL,
   `giamgia` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
 --
 
-INSERT INTO `khuyenmai` (`makhuyenmai`, `chitiet`, `tenkhuyenmai`, `giamgia`) VALUES
-(1, 'Giảm giá 30%', 'Khuyến mãi 30', 30),
-(2, 'Giảm giá 50%', 'Khuyến mãi 50', 50);
+INSERT INTO `khuyenmai` (`makhuyenmai`, `chitiet`, `tenkhuyenmai`, `hinhkhuyenmai`, `hinhkhuyenmaingang`, `giamgia`) VALUES
+(1, 'Giảm giá 30%', 'Khuyến mãi 30', 'km30.jpg', 'km30ngang.jpg', 30),
+(2, 'Giảm giá 50%', 'Khuyến mãi 50', 'km50.jpg', 'km50ngang.jpg', 50);
 
 -- --------------------------------------------------------
 

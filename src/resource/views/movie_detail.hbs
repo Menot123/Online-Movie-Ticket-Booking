@@ -18,24 +18,24 @@
 <body>
     <div class="container-fluid">
         <div class="row cover">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <div class="col-1"></div>
+            <div class="col-7">
                 {{#each films}}
                 <div class="link">
-                    <a href="/">Trang chủ</a> 
+                    <a href="/">Trang chủ</a>
                     <label>></label>
-                    <a href="/phim-dang-chieu">Phim</a> 
-                    <label id="arrow">></label>  
+                    <a href="/phim-dang-chieu">Phim</a>
+                    <label id="arrow">></label>
                     Chi tiết phim {{tenphim}}
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <div>
                             <img src="/img/{{poster}}" class="movie-image" />
                         </div>
                     </div>
-                    <div class="col-md">
+                    <div class="col-7">
                         <div class="movie-info">
                             <div class="movie-name">
                                 <h3>{{tenphim}}</h3>
@@ -86,8 +86,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-11">
-                         <div class="movie-content-lbl">
+                    <div class="col-11">
+                        <div class="movie-content-lbl">
                             <h4>NỘI DUNG PHIM</h4>
                         </div>
                         <div class="movie-content">
@@ -104,19 +104,19 @@
                                     allowfullscreen></iframe>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 {{/each}}
             </div>
 
-            <div class="col-md-3 right">
+            <div class="col-3 right">
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
                 {{#each all4films}}
                 <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
+                    <div class="col right-movie-item">
                         <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
                         <div class="hidden-buy-ticket">
                             <p><label class="age">C{{dotuoi}}</label></p>

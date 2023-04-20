@@ -16,11 +16,11 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <div class="col-1"></div>
+            <div class="col-10">
                 <div class="link">
-                    <a href="/">Trang chủ</a> 
-                    <label id="arrow">></label>  
+                    <a href="/">Trang chủ</a>
+                    <label id="arrow">></label>
                     Tìm kiếm
                 </div>
                 <div class="result">
@@ -29,7 +29,7 @@
                 <div class="movie">
                     <div class="row">
                         {{#each films}}
-                        <div class="col-md-3 movie-item">
+                        <div class="col-lg-3 col-md-4 col-sm-6 movie-item">
                             <div class="image-container">
                                 <img src="./img/{{poster}}" class="movie-image" />
                                 <div class="hidden-content">
@@ -49,8 +49,8 @@
 
                 <div class="movie-des">
                     <div class="cinema-name-des">
-                            <h4>L2DBT CINEMA</h4>
-                        </div>  
+                        <h4>L2DBT CINEMA</h4>
+                    </div>
                     {{#each films}}
                     <div class="des">
                         <div class="movie-des">

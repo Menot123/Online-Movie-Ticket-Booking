@@ -2,14 +2,17 @@ const homeServices = require('../../services/home.service')
 const buyticketServices = require('../../services/buy_ticket.service')
 const commingSoonServices = require('../../services/comming_soon.service')
 const nowShowingServices = require('../../services/now_showing.service')
+const favServices = require('../../services/fav.service')
 const movieDetailServices = require('../../services/movie_detail.service')
 const searchServices = require('../../services/search.service')
 const reviewDetailServices = require('../../services/review_detail.service')
 const blogDetailServices = require('../../services/blog_detail.service')
 const actorServices = require('../../services/actor.service')
+const topServices = require('../../services/top.service')
 const actorDetailServices = require('../../services/actor_detail.service')
 const directorServices = require('../../services/director.service')
 const directorDetailServices = require('../../services/director_detail.service')
+const favDetailService = require('../../services/fav_detail.service')
 const movielServices = require('../../services/movie.service')
 const { request } = require('express')
 const mailer = require('../../util/mailer')
@@ -64,14 +67,32 @@ async function smovies(req, res, next) {
         next(err);
     }
 }
-
+async function fav(req, res, next) {
+    try {
+        const fav = await favServices.getFav();
+        res.render('favorable', { fav: fav, nameUser: req.session.name });
+    } catch (err) {
+        console.error('An error when render fav', err.message);
+        next(err);
+    }
+}
 async function actor(req, res, next) {
     try {
         const list = await actorServices.getActor()
-
-        res.render('actor', { data: list });
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('actor', { data: list, all4films: all4films });
     } catch (err) {
         console.error('An error when watching actor', err.message);
+        next(err);
+    }
+}
+async function top(req, res, next) {
+    try {
+        const list = await topServices.getTop()
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('top', { data: list, all4films: all4films });
+    } catch (err) {
+        console.error('An error when watching top', err.message);
         next(err);
     }
 }
@@ -89,12 +110,24 @@ async function actorDetail(req, res, next) {
         next(err);
     }
 }
-
+async function favDetail(req, res, next) {
+    try {
+        let fav = [];
+        if (req.params.makhuyenmai) {
+            fav = await favDetailService.getFav(req.params.makhuyenmai);
+        }
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('fav_detail', { fav: fav,all4films: all4films, nameUser: req.session.name });
+    } catch (err) {
+        console.error('An error', err.message);
+        next(err);
+    }
+}
 async function director(req, res, next) {
     try {
         const list = await directorServices.getDiector()
-
-        res.render('director', { data: list });
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('director', { data: list, all4films: all4films });
     } catch (err) {
         console.error('An error when watching director', err.message);
         next(err);
@@ -119,7 +152,8 @@ async function review(req, res, next) {
     try {
         const list = await homeServices.getListNotifications()
         const films = await homeServices.getShortFilms()
-        res.render('movie_review', { data: list, films: films, nameUser: req.session.name });
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('movie_review', { data: list, films: films, nameUser: req.session.name, all4films: all4films });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -136,8 +170,8 @@ async function reviewDetail(req, res, next) {
         const list = await reviewDetailServices.getRelatedPosts()
 
         const allfilms = await nowShowingServices.getNowShowingFilm();
-
-        res.render('movie_review_detail', { tin: tin, data: list, allfilms: allfilms });
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('movie_review_detail', { tin: tin, data: list, allfilms: allfilms, all4films: all4films });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -148,7 +182,8 @@ async function blog(req, res, next) {
     try {
         const blogs = await homeServices.getBlogs()
         const films = await homeServices.getShortFilms()
-        res.render('movie_blog', { blogs: blogs, films: films, nameUser: req.session.name });
+        const all4films = await nowShowingServices.get4NowShowingFilm();
+        res.render('movie_blog', { blogs: blogs, films: films, nameUser: req.session.name, all4films: all4films });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -163,10 +198,10 @@ async function blogDetail(req, res, next) {
         }
 
         const list = await blogDetailServices.getRelatedPosts()
-
+        const all4films = await nowShowingServices.get4NowShowingFilm();
         const allfilms = await nowShowingServices.getNowShowingFilm();
 
-        res.render('movie_blog_detail', { tin: tin, data: list, allfilms: allfilms });
+        res.render('movie_blog_detail', { tin: tin, data: list, allfilms: allfilms, all4films: all4films });
     } catch (err) {
         console.error('An error when register account', err.message);
         next(err);
@@ -245,11 +280,10 @@ async function chooseTicket(req, res, next) {
 
     // Sort number seat
     groupSeat.forEach((row) => {
-        row.data.sort(function(a, b) {
+        row.data.sort(function (a, b) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
-
     // console.log(groupSeat[0]);
     res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser, emailUser: req.session.email });
 }
@@ -275,7 +309,7 @@ async function payMent(req, res, next) {
     // Change seat status
     const roomId = await buyticketServices.getRoomId(data.masuatchieu)
     let seatString = data.seatList.split(",")
-    seatString.forEach(async(row) => {
+    seatString.forEach(async (row) => {
         let unableSeat = await buyticketServices.unableSeat(row, roomId);
     });
 
@@ -289,7 +323,7 @@ async function useSale(req, res, next) {
     if (result) {
         // console.log(result.giamgia);
         res.json({ giamgia: result.giamgia })
-            // res.json(result);
+        // res.json(result);
     } else {
         res.json({ failed: 1 });
     }
@@ -486,4 +520,8 @@ module.exports = {
     sendLinkResponse,
     payMent,
     useSale,
+    fav,
+    favDetail,
+    top
 };
+

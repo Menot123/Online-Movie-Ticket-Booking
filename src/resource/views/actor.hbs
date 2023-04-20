@@ -17,116 +17,75 @@
 <body>
     <div class="container-fluid">
         <div class="row cover">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <div class="col-1"></div>
+            <div class="col-7">
+
+                <div class="link">
+                    <a href="/">Trang chủ</a>
+                    <label id="arrow">></label>
+                    Diễn viên
+                </div>
                 <div class="row">
-                    <div class="total-filter">
-                        <select name="" class="filter1">
-                            <option value="" disabled selected hidden>Quốc gia</option>
-                            <option value="">Việt Nam</option>
-                            <option value="">Trung Quốc</option>
-                            <option value="">Mỹ</option>
-                        </select>
-                        <select name="" class="filter2">
-                            <option value="" disabled selected hidden>Sắp xếp</option>
-                            <option value="">Mới nhất</option>
-                            <option value="">Xem nhiều nhất</option>
-                            <option value="">Đánh giá tốt nhất</option>
-                        </select>
+                    <div class="actor">
+                        <h5>DIỄN VIÊN</h5>
                     </div>
                 </div>
-                <div class="row">
-                    <a class="actor" href="#">
-                        <h5>DIỄN VIÊN</h5>
-                    </a>
-                </div>
+                {{#each data}}
                 <div class="actor-item">
-                    {{#each data}}
                     <div class="row">
-                        <div class="actor-image col-md-3">
+                        <div class="actor-image col-4">
                             <a href="/chi-tiet-dien-vien/{{madienvien}}">
-                                <img
-                                    src="/img/{{hinhanh}}">
+                                <img src="/img/{{hinhanh}}">
                             </a>
                         </div>
-                        <div class="actor-info col-md-8">
+                        <div class="actor-info col-7">
                             <div class="actor-name">
-                                <a href="#">
+                                <a href="/chi-tiet-dien-vien/{{madienvien}}">
                                     <h4>{{ten}}</h4>
                                 </a>
                             </div>
                             <div class="actor-detail">
-                                <label class="actor-views-lbl">Lượt xem: <label id="count-view">{{luotxem}}</label></label>
+                                <label class="actor-views-lbl">Lượt xem: <label
+                                        id="count-view">{{luotxem}}</label></label>
                             </div>
                             <div class="actor-description">
                                 <p>
-                                    Khác với Chris Hemsworth vẫn đang loay hoay trong hình tượng vị thần sấm sét, đa số
-                                    người hâm mộ vẫn nhìn nhận rõ ràng, Chris Evans và Captain America là hai con người
-                                    hoàn toàn khác nhau.
+                                    {{mota}}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    {{/each}}
+
                 </div>
-                
+                {{/each}}
             </div>
 
-            <div class="col-md-3 right">
-                <div class="quick-buy-ticket">
-                    <h4>MUA VÉ NHANH</h4>
-                </div>
-                <div class="select-all">
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn phim</option>
-                        <option value="">Tây du ký</option>
-                        <option value="">Đi tìm nemo</option>
-                        <option value="">Doraemon</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn rạp</option>
-                        <option value="">Rạp 1</option>
-                        <option value="">Rạp 2</option>
-                        <option value="">Rạp 3</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn ngày</option>
-                        <option value="">13/3/2023</option>
-                        <option value="">14/3/2023</option>
-                        <option value="">15/3/2023</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn suất</option>
-                        <option value="">Suất 1</option>
-                        <option value="">Suất 2</option>
-                        <option value="">Suất 3</option>
-                    </select>
-                    <div class="buy-ticket-btn">
-                        <button class="buy-ticket">MUA VÉ</button>
-                    </div>
-                </div>
+            <div class="col-3 right">
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
-                
+                {{#each all4films}}
                 <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
-                        <a href="#">
-                            <img class="movie-img"
-                                src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                            <div class="hidden-buy-ticket">
-                                <p><label class="age">C13</label></p>
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
-                            </div>
-                        </a>
+                    <div class="col right-movie-item">
+                        <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
+                        <div class="hidden-buy-ticket">
+                            <p><label class="age">C{{dotuoi}}</label></p>
+                            <a href="/chi-tiet-phim/{{maphim}}">
+                                <button class="hidden-buy-ticket-btn">CHI TIẾT</button>
+                            </a>
+                        </div>
                         <div class="right-movie-name">
-                            <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
+                            <h5>{{tenphim}}</h5>
                         </div>
                     </div>
                 </div>
-                
+                {{/each}}
                 <div class="view-more">
-                    <button class="view-more-btn">XEM THÊM <label id="right-arrow">→</label></button>
+                    <a href="/phim-dang-chieu">
+                        <button class="view-more-btn">
+                            XEM THÊM<label id="right-arrow">→</label>
+                        </button>
+                    </a>
                 </div>
             </div>
 
@@ -144,14 +103,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="cinema-title" href="#">
-                    <h5>LDBT CINEMA</h5>
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="cinema-title">
+                    <h5>L2DBT CINEMA</h5>
                 </div>
-                <div class="cinema-description">
+                <div class="cinema-description" style='text-align:justify'>
                     <p>
-                        Bạn là một người mê phim, bạn thích khám phá bí mật phía sau hậu trường của các bom tấn, bạn
+                        {{!-- Bạn là một người mê phim, bạn thích khám phá bí mật phía sau hậu trường của các bom tấn,
+                        bạn
                         thần tượng nhà làm phim nào đấy bởi tư duy vượt thời đại, phong cách quay phim đặc biệt và những
                         câu
                         chuyện đầy mới lạ, bạn ngưỡng mộ một ngôi sao bởi khả năng diễn xuất cực đỉnh… Thậm chí nếu bạn
@@ -172,7 +132,7 @@
 
                         Galaxy Cinema – rạp chiếu được trang bị hệ thống âm thanh và hình ảnh hàng đầu Việt Nam, tự hào
                         là Trạm Điện Ảnh sẵn sàng đưa bạn vào thế giới Phim Như Sống – Sống Như Phim, cùng những chuyến
-                        tàu với trải nghiệm thú vị tuyệt vời nhất trên màn ảnh.
+                        tàu với trải nghiệm thú vị tuyệt vời nhất trên màn ảnh. --}}
                     </p>
                 </div>
             </div>

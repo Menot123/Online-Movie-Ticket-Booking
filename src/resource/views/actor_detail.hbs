@@ -16,23 +16,31 @@
 <body>
     <div class="container-fluid">
         <div class="row cover">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <div class="col-1"></div>
+            <div class="col-7">
                 {{#each actors}}
+                <div class="link mb-3">
+                    <a href="/">Trang chủ</a>
+                    <label>></label>
+                    <a href="/dien-vien">Diễn viên</a>
+                    <label id="arrow">></label>
+                    Chi tiết diễn viên {{ten}}
+                </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-4">
                         <div>
                             <img src="/img/{{hinhanhdoc}}" class="actor-image" />
                         </div>
                     </div>
-                    <div class="col-md">
+                    <div class="col-7">
                         <div class="actor-info">
                             <div class="actor-name">
                                 <h3>{{ten}}</h3>
                             </div>
-                            
+
                             <div class="rate d-flex mb-3">
-                                <div class="view"><img id="icon__view" src="/img/view.png" alt="iconView"><span id="numView">
+                                <div class="view"><img id="icon__view" src="/img/view.png" alt="iconView"><span
+                                        id="numView">
                                         {{luotxem}}</span></div>
                             </div>
 
@@ -54,18 +62,22 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="actor-content-lbl">
-                    <h4>TIỂU SỬ</h4>
+                <div class="row">
+                    <div class="col-11">
+                        <div class="actor-content-lbl">
+                            <h4>TIỂU SỬ</h4>
+                        </div>
+                        <div class="actor-content">
+                            <p>{{tieusu}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="actor-content">
-                    <p>{{tieusu}}</p>
-                </div>
-
                 <div class="review-cover mb-3">
-                    <h4>BÀI VIẾT LIÊN QUAN</h4>
+                    <div class="actor-content-lbl">
+                        <h4>BÀI VIẾT LIÊN QUAN</h4>
+                    </div>
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="img-review-container">
                                 <a href="#">
                                     <img class="img-review" src="/img/{{hinhanhdoc}}">
@@ -87,50 +99,18 @@
                 {{/each}}
             </div>
 
-            <div class="col-md-3 right">
-                <div class="quick-buy-ticket">
-                    <h4>MUA VÉ NHANH</h4>
-                </div>
-                <div class="select-all">
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn phim</option>
-                        <option value="">Tây du ký</option>
-                        <option value="">Đi tìm nemo</option>
-                        <option value="">Doraemon</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn rạp</option>
-                        <option value="">Rạp 1</option>
-                        <option value="">Rạp 2</option>
-                        <option value="">Rạp 3</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn ngày</option>
-                        <option value="">13/3/2023</option>
-                        <option value="">14/3/2023</option>
-                        <option value="">15/3/2023</option>
-                    </select>
-                    <select name="" id="" class="select">
-                        <option value="" disabled selected hidden>Chọn suất</option>
-                        <option value="">Suất 1</option>
-                        <option value="">Suất 2</option>
-                        <option value="">Suất 3</option>
-                    </select>
-                    <div class="buy-ticket-btn">
-                        <button class="buy-ticket">MUA VÉ</button>
-                    </div>
-                </div>
+            <div class="col-3 right">
                 <div class="now-showing">
                     <h4>PHIM ĐANG CHIẾU</h4>
                 </div>
                 {{#each all4films}}
                 <div class="row">
-                    <div class="col-md col-sm col-xs right-movie-item">
-                        <img class="movie-img" src="/img/{{poster}}" alt="" />
+                    <div class="col right-movie-item">
+                        <img class="movie-img" src="/img/{{hinhngang}}" alt="" />
                         <div class="hidden-buy-ticket">
                             <p><label class="age">C{{dotuoi}}</label></p>
                             <a href="/chi-tiet-phim/{{maphim}}">
-                                <button class="hidden-buy-ticket-btn">MUA VÉ</button>
+                                <button class="hidden-buy-ticket-btn">CHI TIẾT</button>
                             </a>
                         </div>
                         <div class="right-movie-name">
@@ -140,8 +120,11 @@
                 </div>
                 {{/each}}
                 <div class="view-more">
-                    <button class="view-more-btn">XEM THÊM
-                        <label id="right-arrow">→</label></button>
+                    <a href="/phim-dang-chieu">
+                        <button class="view-more-btn">
+                            XEM THÊM<label id="right-arrow">→</label>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -9,8 +9,8 @@ router.post('/logout', homeController.handleLogout)
 router.get('/phim-dang-chieu', homeController.movies);
 router.get('/phim-sap-chieu', homeController.smovies);
 
-router.get('/ho-tro', homeController.support);
-router.get('/uu-dai', homeController.deal);
+
+router.get('/uu-dai', homeController.fav);
 router.get('/chinh-sach', homeController.policy);
 router.get('/chi-tiet-phim/:maphim?', homeController.detail);
 
@@ -26,6 +26,7 @@ router.post('/dung-ma-giam-gia', homeController.useSale);
 router.get('/the-loai-phim', homeController.movie);
 
 router.get('/dien-vien', homeController.actor);
+router.get('/top-phim', homeController.top);
 router.get('/chi-tiet-dien-vien/:madienvien?', homeController.actorDetail);
 
 router.get('/dao-dien', homeController.director);
@@ -36,6 +37,9 @@ router.get('/chi-tiet-binh-luan-phim/:matin?', homeController.reviewDetail);
 
 router.get('/blog-dien-anh', homeController.blog);
 router.get('/chi-tiet-blog-dien-anh/:matin?', homeController.blogDetail);
+
+router.get('/ho-tro', homeController.support);
+router.get('/chi-tiet-khuyen-mai/:makhuyenmai', homeController.favDetail);
 
 router.get('/gia-ve', homeController.ticketprice);
 router.get('/login', homeController.handleLogin);
@@ -49,9 +53,9 @@ router.post('/forgot-password', homeController.sendLinkReset);
 router.get('/reset-password/:email', homeController.resetPassword);
 router.post('/change-password', homeController.changePass);
 
-router.post('/send-response/:email',homeController.sendLinkResponse)
+router.post('/send-response/:email', homeController.sendLinkResponse)
 
-router.get('/admin',loggedin, homeController.indexAdmin);
+router.get('/admin', loggedin, homeController.indexAdmin);
 router.get('/', homeController.index);
 // router.post('/check', homeController.checkSession);
 

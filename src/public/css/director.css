@@ -1,7 +1,20 @@
 .cover {
     margin-top: 20px;
 }
-
+.link a {
+    text-decoration: none;
+    color: gray;
+}
+.link a:hover {
+    text-decoration: none;
+    color: orange;
+}
+.link label{
+    color: gray;
+}
+#arrow{
+    margin-right: 10px;
+}
 .filter1 {
     height: 40px;
     width: 115px;
@@ -22,17 +35,12 @@
     border: 1px solid #ced0db;
 }
 
-.director {
+.actor {
     color: #42464a;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
-.director:hover {
-    text-decoration: none;
-    color: #f36a38;
-}
-
-.director h5:after {
+.actor h5:after {
     display: block;
     width: 55px;
     height: 3px;
@@ -42,42 +50,37 @@
     margin-bottom: 25px;
 }
 
-.director-item {
+.actor-item {
     margin-bottom: 30px;
 }
 
-.director-info {
-    margin-left: 70px;
+.actor-info {
+    margin-left: 20px;
 }
 
-.director-image img {
-    width: 275px;
-    height: 180px;
+.actor-image img {
+    width: 100%;
+    height: auto;
 }
 
-.director-image img:hover {
+.actor-image img:hover {
     transition: 0.3s;
     filter: brightness(60%);
 }
 
-.director-name a {
+.actor-name a {
     color: #42464a;
     display: block;
     word-wrap: break-word;
-    width: 590px;
+
 }
 
-.director-name a:hover {
+.actor-name a:hover {
     text-decoration: none;
     color: #f36a38;
 }
 
-.director-button {
-    height: 40px;
-    width: 100px;
-}
-
-.director-views-lbl {
+.actor-views-lbl {
     background-color: #e8ecf1;
     height: 30px;
     width: 150px;
@@ -86,9 +89,9 @@
     padding-top: 2px;
 }
 
-.director-description {
+.actor-description {
     margin-top: 10px;
-    width: 540px;
+
     text-align: justify;
     color: #a9a4aa;
     font-size: 14px;
