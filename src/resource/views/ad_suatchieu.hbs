@@ -12,7 +12,7 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/button_admin.css">
-    <title>Quản lý phản hồi</title>
+    <title>Quản lý suất chiếu</title>
 </head>
 
 <style>
@@ -139,7 +139,7 @@
     #blur {
         display: none;
         position: absolute;
-        height: 100vh;
+        height: 200vh;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.3);
         z-index: 1;
@@ -151,6 +151,49 @@
 
     .mt5 {
         margin: 22px;
+    }
+
+    .filter {
+        margin-top: 12px;
+        margin-right: 8px;
+    }
+
+    .afterHeader {
+        float: right;
+    }
+
+    /* BTN add film code */
+    .btn {
+        margin: 12px 0 12px 0;
+        text-decoration: none;
+        border: 1px solid rgb(255, 255, 255);
+        position: relative;
+        overflow: hidden;
+        float: right;
+        background-color: rgb(31, 0, 204);
+        color: #fff;
+    }
+
+    .btn:hover {
+        box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+    }
+
+    .btn:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg,
+                transparent,
+                rgba(146, 148, 248, 0.4),
+                transparent);
+        transition: all 650ms;
+    }
+
+    .btn:hover:before {
+        left: 100%;
     }
 </style>
 
@@ -185,8 +228,8 @@
         </div>
 
         <div class="wrapper">
-            <a class="cta" href="/admin/quan-ly-khuyen-mai">
-                <span style="margin-top: 16px;">QUẢN LÝ KHUYẾN MÃI</span>
+            <a class="cta" href="/admin/quan-ly-tai-khoan">
+                <span style="margin-top: 16px;">QUẢN LÝ THÀNH VIÊN</span>
                 <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -222,45 +265,104 @@
         <form id="form__update">
             <div class="inside">
                 <img id="img__close" src="/img/close.png" alt="close">
-                <h1>Trả lời phản hồi</h1>
+                <h1>Thêm suất chiếu</h1>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Người nhận</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Mã suất chiếu</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nội dung</label> <br>
-                    <textarea class="w-100" name="content" id="content" cols="20" rows="8"></textarea>
+                    <label for="exampleInputPassword1" class="form-label">Mã phim</label> <br>
+                    <select name="maphim" id="input__maphim" required>
+                        <option selected>Chọn mã phim</option>
+                    </select>
                 </div>
-                <button id="btn-update" class="btn btn-primary float-end">Gửi</button>
+                <div class="mb-3">
+                    <label for="input__room" class="form-label">Mã phòng</label>
+                    <input type="text" class="form-control" id="input__room">
+                </div>
+
+                <div class="mb-3">
+                    <label for="input__date" class="form-label">Ngày chiếu</label>
+                    <input type="date" class="form-control" id="input__date">
+                </div>
+
+                <div class="mb-3">
+                    <label for="input__time" class="form-label">Giờ chiếu</label>
+                    <input type="text" class="form-control" id="input__time">
+                </div>
+
+                <div class="mb-3">
+                    <label for="input__price" class="form-label">Giá vé</label>
+                    <input type="text" class="form-control" id="input__price">
+                </div>
+                <button id="btn-update" class="btn btn-primary float-end">Thêm</button>
             </div>
         </form>
+
+        <div class="afterHeader d-flex ">
+            <div class="filter">
+                <select id="form-select" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn phim</option>
+                </select>
+            </div>
+
+            <btn class="btn" onclick="addFilmCode()">Thêm suất chiếu</btn>
+        </div>
+
 
         <table id="table__account" class="table table-dark mt-4">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Người gửi</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Chủ để</th>
-                    <th scope="col">Nội dung</th>
-                    <th scope="col"></th>
+                    <th scope="col">Mã suất chiếu</th>
+                    <th scope="col">Mã phim</th>
+                    <th scope="col">Mã phòng</th>
+                    <th scope="col">Ngày chiếu</th>
+                    <th scope="col">Giờ chiếu</th>
+                    <th scope="col">Giá vé</th>
+                    <th scope="col">Thao tác</th>
+
                 </tr>
             </thead>
             <tbody>
                 {{#each data}}
                 <tr>
-                    <th scope="row">{{this.mahotro}}</th>
-                    <td>{{this.ten}}</td>
-                    <td>{{this.sodienthoai}}</td>
-                    <td>{{this.chude}}</td>
-                    <td>{{this.noidung}}</td>
-                    <td><span id="btn__update" onclick="res('{{this.sodienthoai}}')">Phản hồi</span> </td>
+                    <th scope="row">{{this.masuatchieu}}</th>
+                    <td>{{this.maphim}}</td>
+                    <td>{{this.maphong}}</td>
+                    <td>{{this.ngaychieu}}</td>
+                    <td>{{this.giochieu}}</td>
+                    <td>{{formatMoney this.giave}}</td>
+                    <td><span class="btn__delete mx-1" onclick="hidenFilmCode('{{this.masuatchieu}}')"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">Ẩn</span></td>
                 </tr>
                 {{/each}}
-
             </tbody>
         </table>
 
+    </div>
+
+    <form id="formTrigger" method="post" action="/admin/suat-chieu" class="d-none">
+        <input type="text" name="tenphim" id="tenphim">
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Bạn có chắc muốn ẩn mã phim này?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Thao tác này sẽ không được hoàn tác
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel" type="button" class="btn btn-primary" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button id="accept" type="button" class="btn btn-danger" style="background-color: red;">Xác
+                        nhận</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
@@ -273,31 +375,100 @@
     const btnCancel = document.getElementById("cancel");
     const exampleInputEmail1 = document.getElementById("exampleInputEmail1");
     const exampleInputPassword1 = document.getElementById("exampleInputPassword1");
-    const btnUpdate = document.getElementById("btn-update");
+    const btn__add = document.getElementById("btn__add");
     const content = document.getElementById('content')
+    const select = document.getElementById('input__maphim');
+    const input__room = document.getElementById('input__room');
+    const input__date = document.getElementById('input__date');
+    const input__time = document.getElementById('input__time');
+    const input__price = document.getElementById('input__price');
+    const btn_accept = document.getElementById('btn-update');
+    const btn_hiden = document.getElementById('accept');
+    const selectFilm = document.getElementById('form-select');
+    const tenphim = document.getElementById('tenphim');
+    const formTrigger = document.getElementById('formTrigger');
 
     const blurBg = document.querySelector('#blur')
+
+    fetch(`http://localhost:3000/admin/api/phim`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            if (data.status.length > 0) {
+                data.status.forEach(status => {
+                    var option = document.createElement('option');
+                    option.value = status.maphim;
+                    option.text = status.tenphim;
+                    selectFilm.appendChild(option);
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        });
+
+    selectFilm.addEventListener("change", function () {
+        var selectedOption = selectFilm.options[selectFilm.selectedIndex];
+        const inputPhim = selectedOption.value
+        tenphim.value = inputPhim
+        formTrigger.submit()
+
+    });
 
     document.getElementById("img__admin").addEventListener('click', () => {
         window.location.href = '/admin'
     })
 
-    function res(email) {
+    function addFilmCode() {
         form__update.style.display = 'block';
         blurBg.style.display = 'block';
-        exampleInputEmail1.value = email
-        btnUpdate.addEventListener('click', (e) => {
+
+        fetch(`http://localhost:3000/admin/api/ma-phim`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                if (data.status.length > 0) {
+                    data.status.forEach(status => {
+                        var option = document.createElement('option');
+                        option.value = status.maphim;
+                        option.text = status.maphim;
+                        select.appendChild(option);
+                    })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+
+        btn_accept.addEventListener('click', (e) => {
             form__update.addEventListener('submit', (e) => {
                 e.preventDefault();
             })
             e.preventDefault()
-            fetch(`http://localhost:3000/send-response/${email}`, {
+            fetch(`http://localhost:3000/admin/api/ma-phim`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    content: content.value,
+                    masuatchieu: exampleInputEmail1.value,
+                    maphim: select.value,
+                    maphong: input__room.value,
+                    ngaychieu: input__date.value,
+                    giochieu: input__time.value,
+                    giave: input__price.value
                 })
             })
                 .then(response => {
@@ -306,10 +477,38 @@
                 .then(data => {
                     if (data.status > 0) {
                         form__update.style.display = 'none'
-                        showAlertSuccess(`Đã gửi phản hồi đến ${data.email} thành công !`)
+                        showAlertSuccess(`Thêm suất chiếu thành công!`)
                     } else {
                         form__update.style.display = 'none'
-                        showAlertFail(`Gửi phản hồi đến ${data.email} thất bại !`)
+                        showAlertFail(`Thêm suất chiếu thất bại`)
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        })
+    }
+
+    function hidenFilmCode(code) {
+        btn_hiden.addEventListener("click", () => {
+            fetch(`http://localhost:3000/admin/api/${code}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status > 0) {
+                        document.getElementById('exampleModal').classList.add('d-none');
+                        document.querySelector('.modal-backdrop').classList.add('d-none');
+                        showAlertSuccess(`Ẩn mã suất chiếu ${code} thành công!`)
+                    } else {
+                        document.getElementById('exampleModal').classList.add('d-none');
+                        document.querySelector('.modal-backdrop').classList.add('d-none');
+                        showAlertFail(`Ẩn mã suất chiếu ${code} thất bại!`)
                     }
                 })
                 .catch(error => {
@@ -337,7 +536,7 @@
         setTimeout(function () {
             flash_success.classList.add('d-none');
             window.location.reload()
-        }, 1300);
+        }, 2000);
     }
 
     function showAlertFail(msg) {
@@ -348,7 +547,7 @@
         setTimeout(function () {
             flash_fail.classList.add('d-none');
             window.location.reload()
-        }, 1300);
+        }, 2000);
     }
 </script>
 

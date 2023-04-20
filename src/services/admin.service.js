@@ -58,6 +58,67 @@ async function getResponsesAPI() {
     }
 }
 
+async function getSuatChieuAPI() {
+    try {
+        const result = await repo.getSuatChieuAPI()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get movie session from db');
+    }
+}
+
+async function getMaPhimAPI() {
+    try {
+        const result = await repo.getMaPhimAPI()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get film from db');
+    }
+}
+
+async function addMaPhim(obj) {
+    try {
+        const result = await repo.addMaPhim(obj)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot add film code to db');
+    }
+}
+
+async function hideMaPhim(code) {
+    try {
+        const result = await repo.hideMaPhim(code)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot change status film code to db');
+    }
+}
+
+async function getPhimAPI() {
+    try {
+        const result = await repo.getPhimAPI()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get film from db');
+    }
+}
+
+async function getSuatChieu(tenphim) {
+    try {
+        const result = await repo.getSuatChieu(tenphim)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get movie session from db');
+    }
+}
+
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,
+    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,getSuatChieuAPI, getMaPhimAPI,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, 
 }

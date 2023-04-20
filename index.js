@@ -8,6 +8,7 @@ const hostname = process.env.HOST;
 const port = process.env.PORT;
 const passport = require('passport');
 const flashMessage = require('./src/middlewares/flash-message/');
+const Handlebars = require('handlebars');
 
 const router = require('./src/routes');
 
@@ -30,6 +31,10 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+Handlebars.registerHelper('formatMoney', function(money) {
+    return money.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+});
 
 passport.serializeUser(function (user, cb) {
     cb(null, user);
