@@ -117,10 +117,6 @@ async function getSuatChieu(tenphim) {
     return record;
 };
 
-module.exports = {
-    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale
-}
 async function addSale(tenkhuyenmai, chitiet, giamgia) {
     var record = null
 
@@ -130,4 +126,18 @@ async function addSale(tenkhuyenmai, chitiet, giamgia) {
 
     return record.affectedRows;
 };
+
+async function getSales() {
+    const record = await dbClient.query(
+        `SELECT * FROM khuyenmai`
+    );
+    return record;
+};
+
+
+module.exports = {
+    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales,
+}
+
 

@@ -141,8 +141,7 @@ async function getSuatChieu(req, res, next) {
 
 async function manageSales(req, res, next) {
     try {
-        const fetch = await
-            import('node-fetch');
+        const fetch = await import('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/sales`);
         const data = await response.json();
         if (data) {

@@ -125,7 +125,7 @@ async function getSales() {
         const list = await repo.getSales()
         return list
     } catch (err) {
-        throw new Error('Service: Cannot get accounts');
+        throw new Error('Service: Cannot get sales');
     }
 }
 
