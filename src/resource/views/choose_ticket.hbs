@@ -240,7 +240,7 @@
                         <div class="col-md-4 p-2">Email:</div>
                         <div class="col-md-5">
 
-                            <input type="text" class="form-control" placeholder="Nhập mail">
+                            <input type="text" class="form-control" placeholder="Nhập mail" value="{{emailUser}}">
 
                         </div>
                     </div>
@@ -571,15 +571,15 @@
                         return response.json();
                     })
                     .then(data => {
-                        if(data.giamgia){
+                        if (data.giamgia) {
                             useS = true;
                             let originalPrice = $('.total-price').html().replace(/,/g, '')
                             let percentSale = data.giamgia
-                            let totalPrice = originalPrice - originalPrice*percentSale/100
+                            let totalPrice = originalPrice - originalPrice * percentSale / 100
                             alert("Sử dụng mã giảm giá thành công")
                             $('.total-price').html(totalPrice.toLocaleString('en-US'))
                         }
-                        else{
+                        else {
                             alert("Sử dụng mã giảm giá thất bại")
                         }
                     })
@@ -597,6 +597,14 @@
             let seatList = $('.seat-list').html();
             let soluong = $('#number').val();
             let price = $('.total-price').html().replace(/,/g, '')
+
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            let formattedDate = `${year}-${month}-${day}`;
+
+
             await fetch('http://localhost:3000/mua-ve/{{film.maphim}}/{{suatchieu.masuatchieu}}', {
                 method: 'POST',
                 headers: {
@@ -610,7 +618,8 @@
                     masuatchieu: masuatchieu,
                     seatList: seatList,
                     soluong: soluong,
-                    price: price
+                    price: price,
+                    ngaythanhtoan: formattedDate
                 })
             })
                 .then(response => {

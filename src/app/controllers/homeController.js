@@ -249,8 +249,9 @@ async function chooseTicket(req, res, next) {
             return parseInt(a.maghe) - parseInt(b.maghe);
         });
     });
+
     // console.log(groupSeat[0]);
-    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser });
+    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser, emailUser: req.session.email });
 }
 
 async function payMent(req, res, next) {
@@ -268,7 +269,7 @@ async function payMent(req, res, next) {
     const ticketId = await buyticketServices.getTicketId(data.maphim);
     delete data.maphim;
     data.ticketId = ticketId;
-    // console.log(data);
+    console.log(data);
     const result = await buyticketServices.createBill(data)
 
     // Change seat status
@@ -484,6 +485,5 @@ module.exports = {
     movie,
     sendLinkResponse,
     payMent,
-    useSale, 
+    useSale,
 };
-

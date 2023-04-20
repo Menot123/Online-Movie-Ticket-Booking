@@ -30,6 +30,7 @@ async function handleLogin(req, res, next) {
             req.session.name = user.hoten;
             req.session.phone = user.sodienthoai;
             req.session.idUser = user.userid;
+            req.session.email = user.email;
             res.redirect(url)
         } else {
             res.render('login')
