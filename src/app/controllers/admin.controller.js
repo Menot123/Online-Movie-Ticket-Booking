@@ -408,9 +408,192 @@ async function hideFilms(req, res, next) {
     }
 }
 
+
+async function manageCombos(req, res, next) {
+    try {
+        const fetch = await import('node-fetch');
+        const response = await fetch.default(`http://localhost:3000/admin/api/combos`);
+        const data = await response.json();
+        if (data) {
+            res.render('ad_combos', { layout: false, data: data.status })
+        } else {
+            res.render('404')
+        }
+
+    } catch (err) {
+        console.error('An error when get combo', err.message);
+        next(err);
+    }
+}
+
+async function getCombos(req, res, next) {
+    try {
+        const status = await adminServices.getCombos();
+        if(status.length > 0) {
+            res.status(200).json({ message: `Get combo successfully`, status: status});
+        } else {
+            res.status(400).json({ message: `Get combo fail`, status: status});
+        }
+
+    } catch (err) {
+        console.error('An error when get combo api', err.message);
+        next(err);
+    }
+}
+
+async function getComboInfo(req, res, next) {
+    try {
+        if (req.params.id) {
+            const result = await adminServices.getComboInfo(req.params.id);
+            res.status(200).json({ message: `Get ComboInfo user ${req.params.id} succesfully`, result: result, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Get ComboInfo user failed' });
+        }
+    } catch (err) {
+        console.error('An error when get combo', err.message);
+        next(err);
+    }
+}
+
+async function updateCombo(req, res, next) {
+    try {
+        if (req.params.id && req.body.ten && req.body.giatien && req.body.chitiet) {
+            const status = await adminServices.updateCombo(req.params.id, req.body.ten, req.body.giatien, req.body.chitiet);
+            res.status(200).json({ message: `Update combo ${req.params.id} succesfully`, status: status, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Update combo failed' });
+        }
+    } catch (err) {
+        console.error('An error when get combo', err.message);
+        next(err);
+    }
+}
+
+async function addCombo(req, res, next) {
+    try {
+        if (req.body.id && req.body.ten && req.body.giatien && req.body.chitiet) {
+            const status = await adminServices.addCombo(req.body.id, req.body.ten, req.body.giatien, req.body.chitiet);
+            res.status(200).json({ message: `Add combo ${req.body.id} succesfully`, status: status, id: req.body.id });
+        } else {
+            res.status(404).json({ message: 'Add combo failed' });
+        }
+    } catch (err) {
+        console.error('An error when get combo', err.message);
+        next(err);
+    }
+}
+
+async function hideCombo(req, res, next) {
+    try {
+        if (req.params.id) {
+            const status = await adminServices.hideCombo(req.params.id);
+            res.status(200).json({ message: `Hide combo ${req.params.id} succesfully`, status: status, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Hide combo failed' });
+        }
+    } catch (err) {
+        console.error('An error when get combo', err.message);
+        next(err);
+    }
+}
+
+
+
+
+async function manageRooms(req, res, next) {
+    try {
+        const fetch = await import('node-fetch');
+        const response = await fetch.default(`http://localhost:3000/admin/api/rooms`);
+        const data = await response.json();
+        if (data) {
+            res.render('ad_rooms', { layout: false, data: data.status })
+        } else {
+            res.render('404')
+        }
+
+    } catch (err) {
+        console.error('An error when get room', err.message);
+        next(err);
+    }
+}
+
+async function getRooms(req, res, next) {
+    try {
+        const status = await adminServices.getRooms();
+        if(status.length > 0) {
+            res.status(200).json({ message: `Get room successfully`, status: status});
+        } else {
+            res.status(400).json({ message: `Get room fail`, status: status});
+        }
+
+    } catch (err) {
+        console.error('An error when get room api', err.message);
+        next(err);
+    }
+}
+
+async function getRoomInfo(req, res, next) {
+    try {
+        if (req.params.id) {
+            const result = await adminServices.getRoomInfo(req.params.id);
+            res.status(200).json({ message: `Get room ${req.params.id} succesfully`, result: result, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Get room failed' });
+        }
+    } catch (err) {
+        console.error('An error when get room', err.message);
+        next(err);
+    }
+}
+
+async function updateRoom(req, res, next) {
+    try {
+        if (req.params.id && req.body.ten && req.body.soluongghe) {
+            const status = await adminServices.updateRoom(req.params.id, req.body.ten, req.body.soluongghe);
+            res.status(200).json({ message: `Update room ${req.params.id} succesfully`, status: status, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Update room failed' });
+        }
+    } catch (err) {
+        console.error('An error when get room', err.message);
+        next(err);
+    }
+}
+
+async function addRoom(req, res, next) {
+    try {
+        if (req.body.id && req.body.ten && req.body.soluongghe) {
+            const status = await adminServices.addRoom(req.body.id, req.body.ten, req.body.soluongghe);
+            res.status(200).json({ message: `Add room ${req.body.id} succesfully`, status: status, id: req.body.id });
+        } else {
+            res.status(404).json({ message: 'Add room failed' });
+        }
+    } catch (err) {
+        console.error('An error when get room', err.message);
+        next(err);
+    }
+}
+
+async function hideRoom(req, res, next) {
+    try {
+        if (req.params.id) {
+            const status = await adminServices.hideRoom(req.params.id);
+            res.status(200).json({ message: `Hide room ${req.params.id} succesfully`, status: status, id: req.params.id });
+        } else {
+            res.status(404).json({ message: 'Hide room failed' });
+        }
+    } catch (err) {
+        console.error('An error when get room', err.message);
+        next(err);
+    }
+}
+
+
 module.exports = {
 
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponses, getResponsesAPI, getSuatChieuAPI,
     getSuatChieu, getMaPhimAPI, addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu2, getSales,
-    manageSales, getSale, updateSale, handleDeleteSale, addSale, getFilms, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
+    manageSales, getSale, updateSale, handleDeleteSale, addSale, getFilms, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
+    getCombos, manageCombos, getComboInfo, updateCombo, addCombo, hideCombo,
+    manageRooms, getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
 }

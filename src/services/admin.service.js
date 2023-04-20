@@ -217,7 +217,112 @@ async function hideFilms(maphim) {
     }
 }
 
+
+async function getCombos() {
+    try {
+        const result = await repo.getCombos()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get combos from db');
+    }
+}
+
+async function getComboInfo(id) {
+    try {
+        const result = await repo.getComboInfo(id)
+        return result
+    } catch (err) {
+        throw new Error('Service: Cannot see combo');
+    }
+}
+
+async function updateCombo(id, ten, giatien, chitiet) {
+    try {
+        const result = await repo.updateCombo(id, ten, giatien, chitiet)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot update combo');
+    }
+}
+
+async function addCombo(id, ten, giatien, chitiet) {
+    try {
+        const result = await repo.addCombo(id, ten, giatien, chitiet)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot add combo');
+    }
+}
+
+async function hideCombo(id) {
+    try {
+        const result = await repo.hideCombo(id)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot hide combo');
+    }
+}
+
+
+
+
+async function getRooms() {
+    try {
+        const result = await repo.getRooms()
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot get rooms from db');
+    }
+}
+
+async function getRoomInfo(id) {
+    try {
+        const result = await repo.getRoomInfo(id)
+        return result
+    } catch (err) {
+        throw new Error('Service: Cannot see room');
+    }
+}
+
+async function updateRoom(id, ten, soluongghe) {
+    try {
+        const result = await repo.updateRoom(id, ten, soluongghe)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot update room');
+    }
+}
+
+async function addRoom(id, ten, soluongghe) {
+    try {
+        const result = await repo.addRoom(id, ten, soluongghe)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot add room');
+    }
+}
+
+async function hideRoom(id) {
+    try {
+        const result = await repo.hideRoom(id)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot hide room');
+    }
+}
+
+
 module.exports = {
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
+    getCombos, getComboInfo, updateCombo, addCombo, hideCombo,
+    getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
 }

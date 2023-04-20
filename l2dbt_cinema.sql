@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 19, 2023 lúc 02:57 PM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Thời gian đã tạo: Th4 20, 2023 lúc 04:29 PM
+-- Phiên bản máy phục vụ: 10.4.25-MariaDB
+-- Phiên bản PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,17 +31,20 @@ CREATE TABLE `combo` (
   `macombo` char(30) NOT NULL,
   `tencombo` varchar(50) NOT NULL,
   `giatien` int(11) DEFAULT NULL,
-  `chitiet` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `chitiet` varchar(50) DEFAULT NULL,
+  `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `combo`
 --
 
-INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`) VALUES
-('cb01', 'Combo 1', 65000, '1 BẮP (NGỌT/MẶN) + 1 NƯỚC (PEPSI/7UP/MIRINDA CAM/M'),
-('cb02', 'Combo 2', 80000, '1 BẮP (NGỌT/MẶN) + 2 NƯỚC (PEPSI/7UP/MIRINDA CAM/M'),
-('cb03', 'Family 2 Voucher', 150000, '2 BẮP (NGỌT/MẶN) + 4 NƯỚC (PEPSI/7UP/MIRINDA CAM/M');
+INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`, `trangthai`) VALUES
+('1', '12', 1, '1', 'an'),
+('cb01', 'Combo 1', 65000, '1 BẮP (NGỌT/MẶN) + 1 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
+('cb02', 'Combo 2', 80000, '1 BẮP (NGỌT/MẶN) + 2 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
+('cb03', 'Family 2 Voucher', 150000, '2 BẮP (NGỌT/MẶN) + 4 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
+('test', '12', 1, '1', 'an');
 
 -- --------------------------------------------------------
 
@@ -60,7 +63,7 @@ CREATE TABLE `daodien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `daodien`
@@ -86,7 +89,7 @@ CREATE TABLE `dienvien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `dienvien`
@@ -106,7 +109,7 @@ CREATE TABLE `ghe` (
   `maphong` char(30) NOT NULL,
   `loaighe` varchar(30) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `ghe`
@@ -570,7 +573,7 @@ CREATE TABLE `hoadon` (
   `maghe` char(30) NOT NULL,
   `soluong` int(11) DEFAULT NULL,
   `thanhtien` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
@@ -592,7 +595,7 @@ CREATE TABLE `hotro` (
   `sodienthoai` char(30) NOT NULL,
   `chude` text NOT NULL,
   `noidung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hotro`
@@ -619,7 +622,7 @@ CREATE TABLE `khuyenmai` (
   `chitiet` text DEFAULT NULL,
   `tenkhuyenmai` varchar(50) DEFAULT NULL,
   `giamgia` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -658,6 +661,7 @@ CREATE TABLE `phim` (
 --
 
 INSERT INTO `phim` (`maphim`, `tenphim`, `theloai`, `dienvien`, `quocgia`, `daodien`, `diemdanhgia`, `thoiluong`, `ngaykhoichieu`, `mota`, `poster`, `hinhngang`, `dotuoi`, `trailer`, `trangthai`) VALUES
+('2', '222', '2', '22', '2', '2', '2', '2', '2222-02-01', '2', '2', '2', 2, '2', 'khongchieu'),
 ('bearman', 'BEARMAN', 'Hành Động, Hài', 'Yeom Hye Ran, Lee Yi Kyung, Park Sung Woong', 'Hàn Quốc', 'Park Sung Kwang', '8.0', '120 phút', '2023-04-12', 'Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày. Chú gấu ăn tỏi trở thành Na Woong-nam, được một cặp vợ chồng nhà khoa học mang về nuôi nấng, tuy chỉ mới 25 tuổi nhưng lại sở hữu “giao diện” của một ông chú 52 với cái “đầu đất” ngây thơ, hiền lành. Trong khi đó, chú gấu ăn ngải cứu trở thành “đầu gấu” Lee Jeong-hak, được một tên trùm tổ chức tội phạm mang về nuôi và bị lợi dụng như một món “vũ khí” phòng vệ. Trong một tình huống bất đắc dĩ, Na Woong-nam đã trực tiếp đối đầu cùng anh em song sinh Lee Jeong-hak để ngăn chặn một vụ khủng bố virus có tầm lây lan mạnh. Sức mạnh của loài gấu bộc phát sẽ đẩy cuộc đụng độ của cặp gấu song sinh hoá người đi đến hồi kết nào?', 'bear.jpg', 'bearngang.jpg', 13, 'https://www.youtube.com/embed/2IZLhCSApCk', 'sapchieu'),
 ('connhotmotchong', 'CON NHÓT MÓT CHỒNG', 'Hài, Gia Đình', 'Tiến Luật, Thái Hòa, Thu Trang', 'Việt Nam', 'Vũ Ngọc Đãng', '8.4', '120 phút', '2023-04-20', 'Lấy cảm hứng từ web drama Chuyện Xóm Tui, phiên bản điện ảnh sẽ mang một màu sắc hoàn toàn khác: hài hước hơn, gần gũi và nhiều cảm xúc hơn. Bộ phim là câu chuyện của Nhót - người phụ nữ “chưa kịp già” đã sắp bị mãn kinh, vội vàng đi tìm chồng. Nhưng sâu thẳm trong cô là khao khát muốn có một đứa con, và luôn muốn hàn gắn với người cha suốt ngày say xỉn của mình.Phim mới Con Nhót Mót Chồng ra mắt tại các rạp chiếu phim từ 28.04.2023.', 'connhot.jpg', 'connhotngang.jpg', 16, 'https://www.youtube.com/embed/zi1V9sEblCM', 'sapchieu'),
 ('daotoiac', 'ĐẢO TỘI ÁC', 'Kinh dị', 'Alif Satar, Amelia Henderson, Ikmal Amry, Evie Fer', 'Malaysia', 'Eu Ho', '7.6', '112 phút', '2023-03-31', 'Nhóm du khách trẻ vô tình phá bỏ phong ấn của con quái vật khát máu khi đến tham quan một hòn đảo cấm không dân địa phương nào dám đặt chân đến. Liệu họ có thể bình an thoát khỏi hay đó sẽ là nơi chôn vùi tất cả?', 'daotoiac.jpg', 'daotoiacngang.jpg', 18, 'https://www.youtube.com/embed/jSZUpx_3yL4', 'dangchieu'),
@@ -679,25 +683,28 @@ INSERT INTO `phim` (`maphim`, `tenphim`, `theloai`, `dienvien`, `quocgia`, `daod
 CREATE TABLE `phong` (
   `maphong` char(30) NOT NULL,
   `tenphong` varchar(30) DEFAULT NULL,
-  `soluongghe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `soluongghe` int(11) DEFAULT NULL,
+  `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
 --
 
-INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`) VALUES
-('P01', 'Phòng 1', 40),
-('P02', 'Phòng 2', 40),
-('P03', 'Phòng 3', 40),
-('P04', 'Phòng 4', 40),
-('P05', 'Phòng 5', 40),
-('P06', 'Phòng 6', 40),
-('P07', 'Phòng 7', 40),
-('P08', 'Phòng 8', 40),
-('P09', 'Phòng 9', 40),
-('P10', 'Phòng 10', 40),
-('P11', 'Phòng 11', 40);
+INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`, `trangthai`) VALUES
+('1', '12', 1, 'an'),
+('1test', '1222', 1, 'an'),
+('P01', 'Phòng 1', 40, 'hien'),
+('P02', 'Phòng 2', 40, 'hien'),
+('P03', 'Phòng 3', 40, 'hien'),
+('P04', 'Phòng 4', 40, 'hien'),
+('P05', 'Phòng 5', 40, 'hien'),
+('P06', 'Phòng 6', 40, 'hien'),
+('P07', 'Phòng 7', 40, 'hien'),
+('P08', 'Phòng 8', 40, 'hien'),
+('P09', 'Phòng 9', 40, 'hien'),
+('P10', 'Phòng 10', 40, 'hien'),
+('P11', 'Phòng 11', 40, 'hien');
 
 -- --------------------------------------------------------
 
@@ -712,7 +719,7 @@ CREATE TABLE `suatchieu` (
   `ngaychieu` date DEFAULT NULL,
   `giochieu` time DEFAULT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `suatchieu`
@@ -770,7 +777,7 @@ CREATE TABLE `tintuc` (
   `cthinhanh2` varchar(100) DEFAULT NULL,
   `cthinhanh3` varchar(100) DEFAULT NULL,
   `hinhanhdoc` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tintuc`
@@ -803,7 +810,7 @@ CREATE TABLE `user` (
   `role` varchar(10) DEFAULT 'khach',
   `diachi` varchar(50) DEFAULT NULL,
   `tinh` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
@@ -826,7 +833,7 @@ CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`

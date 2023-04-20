@@ -32,6 +32,20 @@ router.put('/api/updateFilms/:maphim', adminController.updateFilms);
 router.post('/api/hideFilms/:maphim', adminController.hideFilms);
 router.post('/api/addFilms', adminController.addFilms);
 
+router.get('/api/combos', adminController.getCombos)
+router.get('/api/get-combo-info/:id', adminController.getComboInfo);
+router.put('/api/update-combo/:id', adminController.updateCombo);
+router.post('/api/add-combo', adminController.addCombo);
+router.put('/api/hide-combo/:id', adminController.hideCombo);
+router.get('/quan-ly-combo',adminController.manageCombos)
+
+router.get('/api/rooms', adminController.getRooms)
+router.get('/api/get-room-info/:id', adminController.getRoomInfo);
+router.put('/api/update-room/:id', adminController.updateRoom);
+router.post('/api/add-room', adminController.addRoom);
+router.put('/api/hide-room/:id', adminController.hideRoom);
+router.get('/quan-ly-phong',adminController.manageRooms)
+
 router.get('/api/ma-phim', adminController.getMaPhimAPI)
 router.post('/api/ma-phim', adminController.addMaPhim)
 router.post('/api/:masuatchieu', adminController.hideMaPhim)

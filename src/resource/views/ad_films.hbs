@@ -519,7 +519,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    if (data.status) {
+                    if (data.status == 0) {
                         form__add.style.display = 'none'
                         showAlertSuccess(`Thêm thông tin phim thành công!`)
                     } else {

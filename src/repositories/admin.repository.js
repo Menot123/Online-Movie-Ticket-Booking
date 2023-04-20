@@ -166,9 +166,90 @@ async function hideFilms(maphim) {
     return record.changedRows;
 };
 
+
+async function getCombos() {
+    const record = await dbClient.query(
+        `Select * from combo where trangthai = 'hien'`
+    );
+    return record;
+};
+
+async function getComboInfo(id) {
+    const record = await dbClient.query(
+        `Select * from combo where macombo = ?`,[id]
+    );
+    return record;
+};
+
+async function updateCombo(id, ten, giatien, chitiet) {
+    var record = null
+    record = await dbClient.query(
+        `update combo set tencombo = ?,  giatien = ?,  chitiet = ? where macombo = ?`,[ten, giatien, chitiet, id]
+    );
+    return record.affectedRows;
+};
+
+async function addCombo(id, ten, giatien, chitiet) {
+    var record = await dbClient.query(
+        `INSERT INTO combo(macombo, tencombo, giatien, chitiet) VALUES (?,?,?,?) `, [id, ten, giatien, chitiet]
+    );
+    return record.insertId;
+};
+
+async function hideCombo(id) {
+    var record = null
+    record = await dbClient.query(
+        `update combo set trangthai = 'an' where macombo = ?`,[id]
+    );
+    return record.affectedRows;
+};
+
+
+
+
+async function getRooms() {
+    const record = await dbClient.query(
+        `Select * from phong where trangthai = 'hien'`
+    );
+    return record;
+};
+
+async function getRoomInfo(id) {
+    const record = await dbClient.query(
+        `Select * from phong where maphong = ?`,[id]
+    );
+    return record;
+};
+
+async function updateRoom(id, ten, soluongghe) {
+    var record = null
+    record = await dbClient.query(
+        `update phong set tenphong = ?,  soluongghe = ? where maphong = ?`,[ten, soluongghe, id]
+    );
+    return record.affectedRows;
+};
+
+async function addRoom(id, ten, soluongghe) {
+    var record = await dbClient.query(
+        `INSERT INTO phong(maphong, tenphong, soluongghe) VALUES (?,?,?) `, [id, ten, soluongghe]
+    );
+    return record.insertId;
+};
+
+async function hideRoom(id) {
+    var record = null
+    record = await dbClient.query(
+        `update phong set trangthai = 'an' where maphong = ?`,[id]
+    );
+    return record.affectedRows;
+};
+
+
 module.exports = {
     manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
+    getCombos, getComboInfo, updateCombo, addCombo, hideCombo,
+    getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
 }
 
 
