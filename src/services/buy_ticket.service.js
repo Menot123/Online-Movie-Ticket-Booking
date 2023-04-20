@@ -76,6 +76,32 @@ async function createBill(data) {
     }
 }
 
+async function getRoomId(masuatchieu) {
+    try {
+        let room = await repo.getRoomId(masuatchieu)
+        return room[0].maphong
+    } catch (err) {
+        throw new Error('Service: Cannot Get Room Id');
+    }
+}
+
+async function unableSeat(maghe, maphong) {
+    try {
+        let result = await repo.unableSeat(maghe, maphong)
+        return result
+    } catch (err) {
+        throw new Error('Service: Cannot Unable Seat');
+    }
+}
+
+async function useSale(makhuyenmai) {
+    try {
+        let result = await repo.useSale(makhuyenmai)
+        return result[0]
+    } catch (err) {
+        throw new Error('Service: Cannot Use Sale');
+    }
+}
 
 module.exports = {
     getFilmCalender,
@@ -83,5 +109,8 @@ module.exports = {
     getComboList,
     getRoomSeat,
     getTicketId,
-    createBill
+    createBill,
+    getRoomId,
+    unableSeat,
+    useSale
 }

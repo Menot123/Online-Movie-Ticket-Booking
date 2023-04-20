@@ -21,6 +21,7 @@ router.get('/ve-chung-toi', homeController.aboutUs);
 router.get('/mua-ve/:maphim?', homeController.ticket);
 router.get('/mua-ve/:maphim/:masuatchieu', homeController.chooseTicket);
 router.post('/mua-ve/:maphim/:masuatchieu', homeController.payMent);
+router.post('/dung-ma-giam-gia', homeController.useSale);
 
 router.get('/the-loai-phim', homeController.movie);
 

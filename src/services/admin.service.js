@@ -2,9 +2,9 @@
 const repo = require('../repositories/admin.repository')
 
 
-async function manageAccounts(username,phone,password) {
+async function manageAccounts(username, phone, password) {
     try {
-        if(await repo.manageAccounts(username,phone,password) > 0) {
+        if (await repo.manageAccounts(username, phone, password) > 0) {
             return true
         }
     } catch (err) {
@@ -39,9 +39,9 @@ async function getInfo(id) {
     }
 }
 
-async function updateInfo(id, phone,pass) {
+async function updateInfo(id, phone, pass) {
     try {
-        const result = await repo.updateInfo(id, phone,pass)
+        const result = await repo.updateInfo(id, phone, pass)
         return result
     } catch (err) {
         console.log(err)
@@ -118,7 +118,56 @@ async function getSuatChieu(tenphim) {
     }
 }
 
+
+
+async function getSales() {
+    try {
+        const list = await repo.getSales()
+        return list
+    } catch (err) {
+        throw new Error('Service: Cannot get accounts');
+    }
+}
+
+async function getSale(id) {
+    try {
+        const result = await repo.getSale(id)
+        return result
+    } catch (err) {
+        throw new Error('Service: Cannot get sale');
+    }
+}
+
+async function updateSale(id, tenkhuyenmai, chitiet, giamgia) {
+    try {
+        const result = await repo.updateSale(id, tenkhuyenmai, chitiet, giamgia)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot update sale');
+    }
+}
+
+async function handleDeleteSale(id) {
+    try {
+        const status = await repo.handleDeleteSale(id)
+        return status
+    } catch (err) {
+        throw new Error('Service: Cannot delete sale');
+    }
+}
+
+async function addSale(tenkhuyenmai, chitiet, giamgia) {
+    try {
+        const result = await repo.addSale(tenkhuyenmai, chitiet, giamgia)
+        return result
+    } catch (err) {
+        console.log(err)
+        throw new Error('Service: Cannot add sale');
+    }
+}
+
 module.exports = {
-    manageAccounts, getAccounts,handleDelete,getInfo,updateInfo,getResponsesAPI,getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, 
+    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
+    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale,
 }
