@@ -92,7 +92,6 @@ async function getResponses(req, res, next) {
         import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/phan-hoi`);
         const data = await response.json();
-        console.log(data)
         if (data) {
             res.render('ad_responses', { layout: false, data: data.status })
         } else {

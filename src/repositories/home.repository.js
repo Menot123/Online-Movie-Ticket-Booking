@@ -16,7 +16,7 @@ async function getBlogs() {
 
 async function getShortFilms() {
     const record = await dbClient.query(
-        `SELECT * FROM PHIM `
+        `SELECT * FROM PHIM where trangthai = "dangchieu"`
     );
     return record;
 };
@@ -95,6 +95,27 @@ async function changePass(password, email) {
     return record.changedRows
 }
 
+async function getTop3Film() {
+    const record = await dbClient.query(
+        `SELECT * FROM phim where trangthai = "dangchieu" LIMIT 3;`
+    )
+    return record
+}
+
+async function getHistory(id) {
+    const record = await dbClient.query(
+        `SELECT * FROM hoadon where userid = ?`,[id]
+    )
+    return record
+}
+
+async function getHistoryByDay(time, idUser) {
+    const record = await dbClient.query(
+        `SELECT * FROM hoadon where ngaythanhtoan >= ?  && userid = ?`,[time,idUser]
+    )
+    return record
+}
+
 module.exports = {
     getListNotifications,
     getBlogs,
@@ -105,4 +126,7 @@ module.exports = {
     checkPass,
     findUserByEmail,
     changePass,
+    getTop3Film,
+    getHistory,
+    getHistoryByDay,
 }

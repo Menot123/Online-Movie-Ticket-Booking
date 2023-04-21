@@ -26,6 +26,7 @@ async function handleLogin(req, res, next) {
             let url = '/'
             if (user.role == 'admin') {
                 url = '/admin'
+                req.session.admin = user.hoten;
             }
             req.session.name = user.hoten;
             req.session.phone = user.sodienthoai;

@@ -105,7 +105,7 @@ async function hideMaPhim(code) {
 
 async function getPhimAPI() {
     const record = await dbClient.query(
-        `Select * from phim`
+        `Select * from phim  where trangthai = "dangchieu"`
     );
     return record;
 };
