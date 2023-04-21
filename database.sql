@@ -2,13 +2,13 @@ DROP DATABASE IF EXISTS l2dbt_cinema;
 CREATE DATABASE l2dbt_cinema;
 USE l2dbt_cinema;
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 21, 2023 lúc 04:23 PM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Thời gian đã tạo: Th4 21, 2023 lúc 06:03 PM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `combo` (
   `giatien` int(11) DEFAULT NULL,
   `chitiet` varchar(50) DEFAULT NULL,
   `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `combo`
@@ -64,7 +64,7 @@ CREATE TABLE `daodien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `daodien`
@@ -94,7 +94,7 @@ CREATE TABLE `dienvien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `dienvien`
@@ -118,7 +118,7 @@ CREATE TABLE `ghe` (
   `maphong` char(30) NOT NULL,
   `loaighe` varchar(30) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ghe`
@@ -583,7 +583,7 @@ CREATE TABLE `hoadon` (
   `soluong` int(11) DEFAULT NULL,
   `thanhtien` int(11) DEFAULT NULL,
   `ngaythanhtoan` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
@@ -606,7 +606,7 @@ CREATE TABLE `hotro` (
   `sodienthoai` char(30) NOT NULL,
   `chude` text NOT NULL,
   `noidung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hotro`
@@ -636,7 +636,7 @@ CREATE TABLE `khuyenmai` (
   `hinhkhuyenmaingang` varchar(50) NOT NULL,
   `giamgia` int(10) NOT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -668,7 +668,7 @@ CREATE TABLE `phim` (
   `dotuoi` int(11) DEFAULT NULL,
   `trailer` text NOT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phim`
@@ -701,7 +701,7 @@ CREATE TABLE `phong` (
   `tenphong` varchar(30) DEFAULT NULL,
   `soluongghe` int(11) DEFAULT NULL,
   `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
@@ -734,7 +734,7 @@ CREATE TABLE `suatchieu` (
   `giochieu` time DEFAULT NULL,
   `giave` int(11) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `suatchieu`
@@ -791,7 +791,7 @@ CREATE TABLE `tintuc` (
   `cthinhanh1` varchar(100) DEFAULT NULL,
   `cthinhanh2` varchar(100) DEFAULT NULL,
   `cthinhanh3` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tintuc`
@@ -823,19 +823,21 @@ CREATE TABLE `user` (
   `matkhau` char(50) NOT NULL,
   `role` varchar(10) DEFAULT 'khach',
   `diachi` varchar(50) DEFAULT NULL,
-  `tinh` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tinh` varchar(50) DEFAULT NULL,
+  `trangthai` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`userid`, `hoten`, `ngaysinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`, `diachi`, `tinh`) VALUES
-(1, 'admin', NULL, NULL, NULL, '0123456789', '123456', 'admin', NULL, NULL),
-(2, 'Huỳnh Khánh Duy', '28/2/2002', 'Nam', 'khanhtran@gmail.com', '0369999999', '906297824027179', 'khach', '19 Nguyễn Hữu Thọ', 'Bình Phước'),
-(3, 'Yến Trang', '28/2/2003', 'Nữ', 'yentrang2k3@gmail.com', '0361231115', '123123', 'khach', '19 Nguyễn Thị Thập', 'TP. Hồ Chí Minh'),
-(4, 'Nhocs Vlogss', '28/2/2005', 'Nam', 'khanhduy16012k2@gmail.com', '0369999999', 'google', 'khach', '06 Lê Thị Riêng', 'TP. Hồ Chí Minh'),
-(5, 'Neuw Ton', NULL, NULL, NULL, '0123789456', '123456789', 'khach', NULL, NULL);
+INSERT INTO `user` (`userid`, `hoten`, `ngaysinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`, `diachi`, `tinh`, `trangthai`) VALUES
+(1, 'admin', NULL, NULL, NULL, 'admin', '123456', 'admin', NULL, NULL, NULL),
+(2, 'Huỳnh Khánh Duy', '28/2/2002', 'Nam', 'khanhtran@gmail.com', '0369999999', '123456789', 'khach', '19 Nguyễn Hữu Thọ', 'Bình Phước', NULL),
+(3, 'Nguyễn Tấn Lực', '28/07/2002', 'Nam', 'deeekento@gmail.com', '0364646464', '123456789', 'khach', '19 Nguyễn Thị Thập', 'TP. Hồ Chí Minh', NULL),
+(4, 'Nguyễn Khương Việt Tiến', '28/2/2002', 'Nam', 'khuongviettien@gmail.com', '0362582569', '987654321', 'khach', '06 Lê Thị Riêng', 'TP. Hồ Chí Minh', NULL),
+(5, 'Vũ Lương Ngọc Ban', '13/11/2002', 'Nam', 'banluong@gmail.com', '0123789456', '123456789', 'khach', 'Cây Khế Hai Bà Trưng', 'Thừa Thiên Huế', NULL),
+(6, 'Nguyễn Tiến Đạt', '11/02/2002', 'Nữ', 'menot123@gmail.com', '0334353634', '123456789', 'khach', 'Nguyễn Thị Thập', 'Long An', NULL);
 
 -- --------------------------------------------------------
 
@@ -847,7 +849,7 @@ CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`
@@ -997,7 +999,7 @@ ALTER TABLE `tintuc`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -9,14 +9,14 @@ async function manageAccounts(username, phone, password) {
 
 async function getAccounts() {
     const record = await dbClient.query(
-        `SELECT * FROM USER where role != 'admin'`
+        `SELECT * FROM USER where role != 'admin' AND trangthai is NULL`
     );
     return record;
 };
 
 async function handleDelete(id) {
     const record = await dbClient.query(
-        `DELETE FROM USER WHERE userid = ?`, [id]
+        `UPDATE user SET trangthai = 'deleted' WHERE userid = ?`, [id]
     );
     return record.affectedRows;
 };
