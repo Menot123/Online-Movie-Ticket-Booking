@@ -3,7 +3,7 @@ const adminServices = require('../../services/admin.service')
 async function manageAccounts(req, res, next) {
     try {
         const fetch = await
-            import('node-fetch');
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/accounts`);
         const data = await response.json();
         if (data) {
@@ -89,7 +89,7 @@ async function getResponsesAPI(req, res, next) {
 async function getResponses(req, res, next) {
     try {
         const fetch = await
-            import('node-fetch');
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/phan-hoi`);
         const data = await response.json();
         console.log(data)
@@ -123,7 +123,8 @@ async function getSuatChieuAPI(req, res, next) {
 async function getSuatChieu(req, res, next) {
     try {
 
-        const fetch = await import('node-fetch');
+        const fetch = await
+        import ('node-fetch');
 
         const response = await fetch.default(`http://localhost:3000/admin/api/suat-chieu`);
         const data = await response.json();
@@ -141,7 +142,8 @@ async function getSuatChieu(req, res, next) {
 
 async function manageSales(req, res, next) {
     try {
-        const fetch = await import('node-fetch');
+        const fetch = await
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/sales`);
         const data = await response.json();
         if (data) {
@@ -323,7 +325,8 @@ async function addSale(req, res, next) {
 }
 async function getFilms(req, res, next) {
     try {
-        const fetch = await import('node-fetch');
+        const fetch = await
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/films`);
         const data = await response.json();
         if (data) {
@@ -411,7 +414,8 @@ async function hideFilms(req, res, next) {
 
 async function manageCombos(req, res, next) {
     try {
-        const fetch = await import('node-fetch');
+        const fetch = await
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/combos`);
         const data = await response.json();
         if (data) {
@@ -429,10 +433,10 @@ async function manageCombos(req, res, next) {
 async function getCombos(req, res, next) {
     try {
         const status = await adminServices.getCombos();
-        if(status.length > 0) {
-            res.status(200).json({ message: `Get combo successfully`, status: status});
+        if (status.length > 0) {
+            res.status(200).json({ message: `Get combo successfully`, status: status });
         } else {
-            res.status(400).json({ message: `Get combo fail`, status: status});
+            res.status(400).json({ message: `Get combo fail`, status: status });
         }
 
     } catch (err) {
@@ -502,7 +506,8 @@ async function hideCombo(req, res, next) {
 
 async function manageRooms(req, res, next) {
     try {
-        const fetch = await import('node-fetch');
+        const fetch = await
+        import ('node-fetch');
         const response = await fetch.default(`http://localhost:3000/admin/api/rooms`);
         const data = await response.json();
         if (data) {
@@ -520,10 +525,10 @@ async function manageRooms(req, res, next) {
 async function getRooms(req, res, next) {
     try {
         const status = await adminServices.getRooms();
-        if(status.length > 0) {
-            res.status(200).json({ message: `Get room successfully`, status: status});
+        if (status.length > 0) {
+            res.status(200).json({ message: `Get room successfully`, status: status });
         } else {
-            res.status(400).json({ message: `Get room fail`, status: status});
+            res.status(400).json({ message: `Get room fail`, status: status });
         }
 
     } catch (err) {
@@ -588,12 +593,74 @@ async function hideRoom(req, res, next) {
     }
 }
 
+async function getBills(req, res, next) {
+    try {
+        const list = await adminServices.getBills();
+        res.status(200).json(list);
+    } catch (err) {
+        console.error('An error when get bills', err.message);
+        next(err);
+    }
+}
+
+async function manageBills(req, res, next) {
+    try {
+        const fetch = await
+        import ('node-fetch');
+        const response = await fetch.default(`http://localhost:3000/admin/api/bills`);
+        const data = await response.json();
+        console.log(data[0].ngaythanhtoan)
+        if (data) {
+            res.render('ad_bills', { layout: false, data: data })
+        } else {
+            res.render('404')
+        }
+    } catch (err) {
+        console.error('An error when get list bills', err.message);
+        next(err);
+    }
+}
 
 module.exports = {
 
-    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponses, getResponsesAPI, getSuatChieuAPI,
-    getSuatChieu, getMaPhimAPI, addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu2, getSales,
-    manageSales, getSale, updateSale, handleDeleteSale, addSale, getFilms, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
-    getCombos, manageCombos, getComboInfo, updateCombo, addCombo, hideCombo,
-    manageRooms, getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
+    manageAccounts,
+    getAccounts,
+    handleDelete,
+    getInfo,
+    updateInfo,
+    getResponses,
+    getResponsesAPI,
+    getSuatChieuAPI,
+    getSuatChieu,
+    getMaPhimAPI,
+    addMaPhim,
+    hideMaPhim,
+    getPhimAPI,
+    getSuatChieu2,
+    getSales,
+    manageSales,
+    getSale,
+    updateSale,
+    handleDeleteSale,
+    addSale,
+    getFilms,
+    getFilmsAPI,
+    updateFilms,
+    getFilmsInfo,
+    addFilms,
+    hideFilms,
+    getCombos,
+    manageCombos,
+    getComboInfo,
+    updateCombo,
+    addCombo,
+    hideCombo,
+    manageRooms,
+    getRooms,
+    getRoomInfo,
+    updateRoom,
+    addRoom,
+    hideRoom,
+    getBills,
+    manageBills
 }

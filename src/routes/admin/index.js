@@ -21,6 +21,9 @@ router.put('/api/update-sale/:id', adminController.updateSale);
 router.post('/api/delete-sale/:id', adminController.handleDeleteSale);
 router.post('/api/add-sale', adminController.addSale);
 
+router.get('/api/bills', adminController.getBills);
+router.get('/quan-ly-hoa-don', adminController.manageBills);
+
 router.get('/api/suat-chieu', adminController.getSuatChieuAPI)
 router.get('/suat-chieu', adminController.getSuatChieu)
 router.post('/suat-chieu', adminController.getSuatChieu2)
@@ -37,14 +40,14 @@ router.get('/api/get-combo-info/:id', adminController.getComboInfo);
 router.put('/api/update-combo/:id', adminController.updateCombo);
 router.post('/api/add-combo', adminController.addCombo);
 router.put('/api/hide-combo/:id', adminController.hideCombo);
-router.get('/quan-ly-combo',adminController.manageCombos)
+router.get('/quan-ly-combo', adminController.manageCombos)
 
 router.get('/api/rooms', adminController.getRooms)
 router.get('/api/get-room-info/:id', adminController.getRoomInfo);
 router.put('/api/update-room/:id', adminController.updateRoom);
 router.post('/api/add-room', adminController.addRoom);
 router.put('/api/hide-room/:id', adminController.hideRoom);
-router.get('/quan-ly-phong',adminController.manageRooms)
+router.get('/quan-ly-phong', adminController.manageRooms)
 
 router.get('/api/ma-phim', adminController.getMaPhimAPI)
 router.post('/api/ma-phim', adminController.addMaPhim)

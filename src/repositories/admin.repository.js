@@ -56,7 +56,7 @@ async function getResponsesAPI() {
 
 async function getSuatChieuAPI() {
     const record = await dbClient.query(
-        `Select * from suatchieu where trangthai is NULL`
+        `Select * from suatchieu`
     );
     return record;
 };
@@ -76,8 +76,7 @@ async function getSale(id) {
 
 async function addMaPhim(obj) {
     const record = await dbClient.query(
-        `Insert into suatchieu (masuatchieu, maphim, maphong, ngaychieu, giochieu, giave) values (?,?,?,?,?,?)`,
-        [obj.masuatchieu, obj.maphim, obj.maphong, obj.ngaychieu, obj.giochieu, obj.giave]
+        `Insert into suatchieu (masuatchieu, maphim, maphong, ngaychieu, giochieu, giave) values (?,?,?,?,?,?)`, [obj.masuatchieu, obj.maphim, obj.maphong, obj.ngaychieu, obj.giochieu, obj.giave]
     )
     return record.affectedRows
 }
@@ -97,7 +96,7 @@ async function handleDeleteSale(id) {
 };
 
 
-async function hideMaPhim(code) { 
+async function hideMaPhim(code) {
     const record = await dbClient.query(
         `update suatchieu set trangthai = ? where masuatchieu = ?`, ['an', code]
     );
@@ -159,7 +158,7 @@ async function getFilmsAPI() {
     );
     return record;
 };
-async function hideFilms(maphim) { 
+async function hideFilms(maphim) {
     const record = await dbClient.query(
         `update phim set trangthai = 'khongchieu' where maphim = ?`, [maphim]
     );
@@ -176,7 +175,7 @@ async function getCombos() {
 
 async function getComboInfo(id) {
     const record = await dbClient.query(
-        `Select * from combo where macombo = ?`,[id]
+        `Select * from combo where macombo = ?`, [id]
     );
     return record;
 };
@@ -184,7 +183,7 @@ async function getComboInfo(id) {
 async function updateCombo(id, ten, giatien, chitiet) {
     var record = null
     record = await dbClient.query(
-        `update combo set tencombo = ?,  giatien = ?,  chitiet = ? where macombo = ?`,[ten, giatien, chitiet, id]
+        `update combo set tencombo = ?,  giatien = ?,  chitiet = ? where macombo = ?`, [ten, giatien, chitiet, id]
     );
     return record.affectedRows;
 };
@@ -199,7 +198,7 @@ async function addCombo(id, ten, giatien, chitiet) {
 async function hideCombo(id) {
     var record = null
     record = await dbClient.query(
-        `update combo set trangthai = 'an' where macombo = ?`,[id]
+        `update combo set trangthai = 'an' where macombo = ?`, [id]
     );
     return record.affectedRows;
 };
@@ -216,7 +215,7 @@ async function getRooms() {
 
 async function getRoomInfo(id) {
     const record = await dbClient.query(
-        `Select * from phong where maphong = ?`,[id]
+        `Select * from phong where maphong = ?`, [id]
     );
     return record;
 };
@@ -224,7 +223,7 @@ async function getRoomInfo(id) {
 async function updateRoom(id, ten, soluongghe) {
     var record = null
     record = await dbClient.query(
-        `update phong set tenphong = ?,  soluongghe = ? where maphong = ?`,[ten, soluongghe, id]
+        `update phong set tenphong = ?,  soluongghe = ? where maphong = ?`, [ten, soluongghe, id]
     );
     return record.affectedRows;
 };
@@ -239,17 +238,50 @@ async function addRoom(id, ten, soluongghe) {
 async function hideRoom(id) {
     var record = null
     record = await dbClient.query(
-        `update phong set trangthai = 'an' where maphong = ?`,[id]
+        `update phong set trangthai = 'an' where maphong = ?`, [id]
     );
     return record.affectedRows;
 };
 
+async function getBills() {
+    const record = await dbClient.query(
+        `SELECT * FROM hoadon`
+    );
+    return record;
+};
 
 module.exports = {
-    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSale, updateSale, handleDeleteSale, addSale, getSales, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
-    getCombos, getComboInfo, updateCombo, addCombo, hideCombo,
-    getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
+    manageAccounts,
+    getAccounts,
+    handleDelete,
+    getInfo,
+    updateInfo,
+    getResponsesAPI,
+    getSuatChieuAPI,
+    getMaPhimAPI,
+    addMaPhim,
+    hideMaPhim,
+    getPhimAPI,
+    getSuatChieu,
+    getSale,
+    updateSale,
+    handleDeleteSale,
+    addSale,
+    getSales,
+    getFilmsAPI,
+    updateFilms,
+    getFilmsInfo,
+    addFilms,
+    hideFilms,
+    getCombos,
+    getComboInfo,
+    updateCombo,
+    addCombo,
+    hideCombo,
+    getRooms,
+    getRoomInfo,
+    updateRoom,
+    addRoom,
+    hideRoom,
+    getBills
 }
-
-

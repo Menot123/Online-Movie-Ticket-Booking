@@ -319,10 +319,47 @@ async function hideRoom(id) {
     }
 }
 
+async function getBills() {
+    try {
+        const list = await repo.getBills()
+        return list
+    } catch (err) {
+        throw new Error('Service: Cannot get bills');
+    }
+}
 
 module.exports = {
-    manageAccounts, getAccounts, handleDelete, getInfo, updateInfo, getResponsesAPI, getSuatChieuAPI, getMaPhimAPI,
-    addMaPhim, hideMaPhim, getPhimAPI, getSuatChieu, getSales, getSale, updateSale, handleDeleteSale, addSale, getFilmsAPI, updateFilms, getFilmsInfo, addFilms, hideFilms,
-    getCombos, getComboInfo, updateCombo, addCombo, hideCombo,
-    getRooms, getRoomInfo, updateRoom, addRoom, hideRoom
+    manageAccounts,
+    getAccounts,
+    handleDelete,
+    getInfo,
+    updateInfo,
+    getResponsesAPI,
+    getSuatChieuAPI,
+    getMaPhimAPI,
+    addMaPhim,
+    hideMaPhim,
+    getPhimAPI,
+    getSuatChieu,
+    getSales,
+    getSale,
+    updateSale,
+    handleDeleteSale,
+    addSale,
+    getFilmsAPI,
+    updateFilms,
+    getFilmsInfo,
+    addFilms,
+    hideFilms,
+    getCombos,
+    getComboInfo,
+    updateCombo,
+    addCombo,
+    hideCombo,
+    getRooms,
+    getRoomInfo,
+    updateRoom,
+    addRoom,
+    hideRoom,
+    getBills
 }

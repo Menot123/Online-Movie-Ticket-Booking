@@ -95,6 +95,12 @@ app.engine(
                 } else {
                     return 'disabled'
                 }
+            },
+            formatDate: function(date) {
+                const dateObj = new Date(date);
+                dateObj.setDate(dateObj.getDate() + 1);
+                const formattedDate = dateObj.toISOString().slice(0, 10);
+                return formattedDate;
             }
         }
     }),
