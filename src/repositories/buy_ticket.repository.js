@@ -66,7 +66,7 @@ async function unableSeat(maghe, maphong) {
 
 async function useSale(makhuyenmai) {
     const record = await dbClient.query(
-        `SELECT giamgia FROM khuyenmai WHERE makhuyenmai = '${makhuyenmai}' `
+        `SELECT giamgia FROM khuyenmai WHERE makhuyenmai = '${makhuyenmai}' AND trangthai is NULL `
     );
     return record;
 };

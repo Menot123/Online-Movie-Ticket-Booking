@@ -90,7 +90,7 @@ async function updateSale(id, tenkhuyenmai, chitiet, giamgia) {
 
 async function handleDeleteSale(id) {
     const record = await dbClient.query(
-        `DELETE FROM khuyenmai WHERE makhuyenmai = ?`, [id]
+        `UPDATE khuyenmai SET trangthai = 'an' WHERE makhuyenmai = ?`, [id]
     );
     return record.affectedRows;
 };
@@ -129,7 +129,7 @@ async function addSale(tenkhuyenmai, chitiet, giamgia) {
 
 async function getSales() {
     const record = await dbClient.query(
-        `SELECT * FROM khuyenmai`
+        `SELECT * FROM khuyenmai WHERE trangthai is NULL`
     );
     return record;
 };

@@ -175,41 +175,45 @@
             </a>
         </div>
     </div>
+    <div class="container">
 
-    <table id="table_sale" class="table table-dark mt-4">
-        <thead>
-            <tr>
-                <th scope="col">Mã hóa đơn</th>
-                <th scope="col">Mã người mua</th>
-                <th scope="col">Mã vé</th>
-                <th scope="col">Mã combo</th>
-                <th scope="col">Mã khuyến mãi</th>
-                <th scope="col">Mã suất chiếu</th>
-                <th scope="col">Mã ghế</th>
-                <th scope="col">Số lượng vé</th>
-                <th scope="col">Thành tiền</th>
-                <th scope="col">Ngày thanh toán</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each data}}
-            <tr class="bills">
-                <th scope="row">{{mahd}}</th>
-                <td>{{userid}}</td>
-                <td>{{mave}}</td>
-                <td>{{macombo}}</td>
-                <td>{{makhuyenmai}}</td>
-                <td>{{masuatchieu}}</td>
-                <td>{{maghe}}</td>
-                <td>{{soluong}}</td>
-                <td>{{thanhtien}}</td>
-                <td>{{formatDate ngaythanhtoan}}</td>
-            </tr>
-            {{/each}}
+        <label class="text-warning mt-3" for="date">Lọc theo ngày thanh toán (Từ ngày được chọn -> nay)</label>
+        <input onchange="sortDate(this)" type="date" class="form-control" id="date" style="width: 180px;" />
 
-        </tbody>
-    </table>
-    <input type="date" class="form-control" id="date" style="width: 180px;"/>
+        <table id="table_sale" class="table table-dark mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Mã hóa đơn</th>
+                    <th scope="col">Mã người mua</th>
+                    <th scope="col">Mã vé</th>
+                    <th scope="col">Mã combo</th>
+                    <th scope="col">Mã khuyến mãi</th>
+                    <th scope="col">Mã suất chiếu</th>
+                    <th scope="col">Mã ghế</th>
+                    <th scope="col">Số lượng vé</th>
+                    <th scope="col">Thành tiền</th>
+                    <th scope="col">Ngày thanh toán</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr class="bills">
+                    <th scope="row">{{mahd}}</th>
+                    <td>{{userid}}</td>
+                    <td>{{mave}}</td>
+                    <td>{{macombo}}</td>
+                    <td>{{makhuyenmai}}</td>
+                    <td>{{masuatchieu}}</td>
+                    <td>{{maghe}}</td>
+                    <td>{{soluong}}</td>
+                    <td>{{thanhtien}}</td>
+                    <td id="ngaythanhtoan">{{formatDate ngaythanhtoan}}</td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
 
 </body>
 
@@ -217,6 +221,20 @@
     document.getElementById("img__admin").addEventListener('click', () => {
         window.location.href = '/admin'
     })
+    let ngayThanhToan = document.querySelectorAll('#ngaythanhtoan');
+    function sortDate(inputDate) {
+        console.log(inputDate.value)
+        let sortDate = new Date(inputDate.value)
+        for (var i = 0; i < ngayThanhToan.length; i++) {
+            let checkDate = new Date(ngayThanhToan[i].innerHTML)
+            if (sortDate > checkDate) {
+                ngayThanhToan[i].parentNode.hidden = true;
+            }
+            else {
+                ngayThanhToan[i].parentNode.hidden = false;
+            }
+        }
+    }
 </script>
 
 </html>
