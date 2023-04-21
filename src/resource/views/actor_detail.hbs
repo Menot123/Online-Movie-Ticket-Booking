@@ -72,20 +72,23 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
                 <div class="review-cover mb-3">
                     <div class="actor-content-lbl">
                         <h4>BÀI VIẾT LIÊN QUAN</h4>
                     </div>
+                    
                     <div class="row">
+                        {{#each all4actor}}
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="img-review-container">
-                                <a href="#">
+                                <a href="/chi-tiet-dien-vien/{{madienvien}}">
                                     <img class="img-review" src="/img/{{hinhanhdoc}}">
                                 </a>
 
                                 <div class="caption">
                                     <h6 class="main-cap">{{ten}}</h6>
-                                    <a href="#">
+                                    <a href="/chi-tiet-dien-vien/{{madienvien}}">
                                         <div class="detail">
                                             <button class="detail-btn">CHI TIẾT</button>
                                         </div>
@@ -93,10 +96,12 @@
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
                     </div>
+                    
 
                 </div>
-                {{/each}}
+                
             </div>
 
             <div class="col-3 right">

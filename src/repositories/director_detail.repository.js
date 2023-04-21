@@ -7,6 +7,14 @@ async function getDirector(madaodien) {
     return record;  
 };
 
+async function get4Director() {
+    const record = await dbClient.query(
+        `SELECT * FROM DAODIEN ORDER BY RAND() LIMIT 3;`
+    );
+    return record;  
+};
+
+
 module.exports = {
-    getDirector,
+    getDirector, get4Director
 }

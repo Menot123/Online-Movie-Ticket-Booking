@@ -71,7 +71,6 @@
     text-align: center;
     border-radius: 5px;
     padding-top: 2px;
-    margin-left: 20px;
 }
 
 .movie-description {
@@ -205,34 +204,6 @@
 .view-more {
     text-align: right;
     margin-bottom: 30px;
-}
-
-.pagi {
-    text-align: center;
-}
-
-.pagination {
-    display: inline-block;
-}
-
-.pagination a {
-    color: #a7a5a9;
-    float: left;
-    padding: 4px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination a.active {
-    background-color: #f46c3c;
-    color: #fff7d7;
-    border: 1px solid #f46c3c;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #efefee;
-    color: #f37b59;
 }
 
 .summary {

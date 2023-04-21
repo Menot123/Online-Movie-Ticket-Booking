@@ -104,7 +104,8 @@ async function actorDetail(req, res, next) {
             actors = await actorDetailServices.getActor(req.params.madienvien);
         }
         const all4films = await nowShowingServices.get4NowShowingFilm();
-        res.render('actor_detail', { actors: actors, all4films: all4films, nameUser: req.session.name });
+        const all4actor = await actorDetailServices.get4Actor(); 
+        res.render('actor_detail', { actors: actors, all4films: all4films, all4actor: all4actor, nameUser: req.session.name });
     } catch (err) {
         console.error('An error', err.message);
         next(err);
@@ -141,7 +142,8 @@ async function directorDetail(req, res, next) {
             directors = await directorDetailServices.getDirector(req.params.madaodien);
         }
         const all4films = await nowShowingServices.get4NowShowingFilm();
-        res.render('director_detail', { directors: directors, all4films: all4films, nameUser: req.session.name });
+        const all4director = await directorDetailServices.get4Director(); 
+        res.render('director_detail', { directors: directors, all4films: all4films, all4director: all4director,nameUser: req.session.name });
     } catch (err) {
         console.error('An error', err.message);
         next(err);

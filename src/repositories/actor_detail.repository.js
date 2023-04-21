@@ -7,6 +7,13 @@ async function getActor(madienvien) {
     return record;  
 };
 
+async function get4Actor() {
+    const record = await dbClient.query(
+        `SELECT * FROM DIENVIEN ORDER BY RAND() LIMIT 3;`
+    );
+    return record;  
+};
+
 module.exports = {
-    getActor,
+    getActor, get4Actor
 }

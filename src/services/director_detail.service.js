@@ -11,6 +11,17 @@ async function getDirector(madaodien) {
         throw new Error('Service: Cannot get actor');
     }
 }
+
+async function get4Director() {
+    try {
+        const list = await repo.get4Director()
+        if (list.length > 0) {
+            return list
+        }
+    } catch (err) {
+        throw new Error('Service: Cannot get 3 now showing actor');
+    }
+}
 module.exports = {
-    getDirector
+    getDirector, get4Director
 }

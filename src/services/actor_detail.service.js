@@ -11,6 +11,17 @@ async function getActor(madienvien) {
         throw new Error('Service: Cannot get actor');
     }
 }
+
+async function get4Actor() {
+    try {
+        const list = await repo.get4Actor()
+        if (list.length > 0) {
+            return list
+        }
+    } catch (err) {
+        throw new Error('Service: Cannot get 4 now showing films');
+    }
+}
 module.exports = {
-    getActor
+    getActor, get4Actor
 }
