@@ -35,15 +35,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="./img/sieulaygapsieulua.jpg" class="d-block w-100" alt="...">
-                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                    {{!-- <img id="img__play" src="./img/play-button.png" alt="Play Trailer"> --}}
                 </div>
                 <div class="carousel-item">
                     <img src="./img/AdamDriver.jpg" class="d-block w-100" alt="...">
-                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                    {{!-- <img id="img__play" src="./img/play-button.png" alt="Play Trailer"> --}}
                 </div>
                 <div class="carousel-item">
                     <img src="./img/tomandjerry.jpg" class="d-block w-100" alt="...">
-                    <img id="img__play" src="./img/play-button.png" alt="Play Trailer">
+                    {{!-- <img id="img__play" src="./img/play-button.png" alt="Play Trailer"> --}}
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -57,87 +57,102 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
-
     </div>
 
-    <div class="container">
-        <div class="header_content">PHIM ĐANG CHIẾU</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="movie-content-lbl">
+                    <h4>PHIM ĐANG CHIẾU</h4>
+                </div>
 
-
-        <div class="row d-flex justify-content-between">
-            {{#each films}}
-            <div class="col-lg-4 col-md-4 col-sm-6 movie-item">
-                <div class="image-container">
-                    <img src="./img/{{poster}}" class="movie-image" />
-                    <div class="hidden-content">
-                        <p><label class="movie-c">C{{dotuoi}}</label></p>
-                        <a href="/chi-tiet-phim/{{maphim}}">
-                            <button class="hidden-button" id="hidden-button">CHI TIẾT</button>
+                <div class="row d-flex justify-content-between">
+                    {{#each films}}
+                    <div class="col-lg-3 col-md-4 col-sm-6 movie-item">
+                        <div class="image-container">
+                            <img src="./img/{{poster}}" class="movie-image" />
+                            <div class="hidden-content">
+                                <p><label class="movie-c">C{{dotuoi}}</label></p>
+                                <a href="/chi-tiet-phim/{{maphim}}">
+                                    <button class="hidden-button" id="hidden-button">CHI TIẾT</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="movie-name">
+                            <h6>{{tenphim}}</h6>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="btn__view__more">
+                        <a href="/phim-dang-chieu">
+                            <button id="btn__viewMore" class="btn btn-primary">Xem thêm</button>
                         </a>
                     </div>
                 </div>
-                <div class="movie-name">
-                    <h6>{{tenphim}}</h6>
-                </div>
-            </div>
-            {{/each}}
-            <div class="btn__view__more">
-                <a href="/phim-dang-chieu">
-                    <button id="btn__viewMore" class="btn btn-primary">Xem thêm</button>
-                </a>
-            </div>
-        </div>
 
-        <div class="row mt-5">
-            <div class="col-lg-6">
-                <h5>BÌNH LUẬN PHIM</h5>
-                {{#each data}}
-                <div class="comment__items my-4">
-                    <div class="comment__item d-flex justify-content-start">
-                        <img class="img__reviews" src="{{this.hinhanh}}" alt="review">
-                        <div class="about__movie d-flex flex-column">
-                            <h6>[Review] {{this.tieude}}</h6>
-                            <div class="rate d-flex">
-                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
-                                        id="numView"> {{this.luotxem}}</span></div>
-                                <div class="star mx-2">
-                                    <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b
-                                            style="color: #000;">{{this.luotdanhgia}}</b>/10</span>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="movie-content-lbl">
+                            <h4>BÌNH LUẬN PHIM</h4>
+                        </div>
+                        {{#each data}}
+                        <div class="comment__items my-4">
+                            <div class="comment__item d-flex justify-content-start">
+                                <a class ="imghome" href="/chi-tiet-binh-luan-phim/{{matin}}">
+                                    <img class="img__reviews" src="{{this.hinhanh}}" alt="review">
+                                </a>
+                                <div class="about__movie d-flex flex-column">
+                                    <a class ="linkhome" href="/chi-tiet-binh-luan-phim/{{matin}}">
+                                        <h6>[Review] {{this.tieude}}</h6>
+                                    </a>
+                                    <div class="rate d-flex">
+                                        <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                                id="numView"> {{this.luotxem}}</span></div>
+                                        <div class="star mx-2">
+                                            <img id="icon__star" src="./img/star.png" alt="star"> <span id="numRate"><b
+                                                    style="color: #000;">{{this.luotdanhgia}}</b>/10</span>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        {{this.noidung}}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="description">
-                                {{this.noidung}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="movie-content-lbl">
+                            <h4>BLOG ĐIỆN ẢNH</h4>
+                        </div>
+
+                        {{#each blogs}}
+                        <div class="blog__items my-4">
+                            <div class="comment__item d-flex justify-content-between">
+                                <a  href="/chi-tiet-blog-dien-anh/{{matin}}">
+                                    <img class="img__reviews" src="{{this.hinhanh}}" alt="review">
+                                </a>
+                                <div class="about__movie d-flex flex-column">
+                                    <a class ="linkhome" href="/chi-tiet-blog-dien-anh/{{matin}}">
+                                        <h6>{{this.tieude}}</h6>
+                                    </a>
+                                    <div class="rate d-flex">
+                                        <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
+                                                id="numView"> {{this.luotxem}}</span></div>
+                                    </div>
+                                    <div class="description">
+                                        {{this.noidung}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        {{/each}}
+
                     </div>
                 </div>
-                {{/each}}
-            </div>
-            <div class="col-lg-6">
-                <h5>BLOG ĐIỆN ẢNH</h5>
-
-                {{#each blogs}}
-                <div class="blog__items my-4">
-                    <div class="comment__item d-flex justify-content-between">
-                        <img class="img__reviews" src="{{this.hinhanh}}" alt="review">
-                        <div class="about__movie d-flex flex-column">
-                            <h6>{{this.tieude}}</h6>
-                            <div class="rate d-flex">
-                                <div class="view"><img id="icon__view" src="./img/view.png" alt="iconView"><span
-                                        id="numView"> {{this.luotxem}}</span></div>
-                            </div>
-                            <div class="description">
-                                {{this.noidung}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{/each}}
-
             </div>
         </div>
-
     </div>
 
 </body>
