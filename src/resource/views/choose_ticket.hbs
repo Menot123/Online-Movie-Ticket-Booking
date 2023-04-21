@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
     .ticket-table {}
 
@@ -573,16 +577,16 @@
                         return response.json();
                     })
                     .then(data => {
-                        if(data.giamgia){
+                        if (data.giamgia) {
                             useS = true;
                             let originalPrice = $('.total-price').html().replace(/,/g, '')
                             let percentSale = data.giamgia
-                            let totalPrice = originalPrice - originalPrice*percentSale/100
+                            let totalPrice = originalPrice - originalPrice * percentSale / 100
                             makhuyenmai = saleId
                             alert("Sử dụng mã giảm giá thành công")
                             $('.total-price').html(totalPrice.toLocaleString('en-US'))
                         }
-                        else{
+                        else {
                             alert("Sử dụng mã giảm giá thất bại")
                         }
                     })
