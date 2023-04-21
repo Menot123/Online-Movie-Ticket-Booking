@@ -6,7 +6,7 @@ USE l2dbt_cinema;
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 21, 2023 lúc 08:32 AM
+-- Thời gian đã tạo: Th4 21, 2023 lúc 08:52 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -626,16 +626,17 @@ CREATE TABLE `khuyenmai` (
   `tenkhuyenmai` varchar(50) DEFAULT NULL,
   `hinhkhuyenmai` varchar(50) NOT NULL,
   `hinhkhuyenmaingang` varchar(50) NOT NULL,
-  `giamgia` int(10) NOT NULL
+  `giamgia` int(10) NOT NULL,
+  `trangthai` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
 --
 
-INSERT INTO `khuyenmai` (`makhuyenmai`, `chitiet`, `tenkhuyenmai`, `hinhkhuyenmai`, `hinhkhuyenmaingang`, `giamgia`) VALUES
-(1, 'Giảm giá 30%', 'Khuyến mãi 30', 'km30.jpg', 'km30ngang.jpg', 30),
-(2, 'Giảm giá 50%', 'Khuyến mãi 50', 'km50.jpg', 'km50ngang.jpg', 50);
+INSERT INTO `khuyenmai` (`makhuyenmai`, `chitiet`, `tenkhuyenmai`, `hinhkhuyenmai`, `hinhkhuyenmaingang`, `giamgia`, `trangthai`) VALUES
+(1, 'Giảm giá 30%', 'Khuyến mãi 30', 'km30.jpg', 'km30ngang.jpg', 30, NULL),
+(2, 'Giảm giá 50%', 'Khuyến mãi 50', 'km50.jpg', 'km50ngang.jpg', 50, NULL);
 
 -- --------------------------------------------------------
 
