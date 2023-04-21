@@ -17,6 +17,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/now_showing.css">
     <title>L2DBT | Rạp phim hay nhất mọi thời đại</title>
 </head>
 
@@ -57,7 +58,7 @@
             </button>
         </div>
 
-        
+
     </div>
 
     <div class="container">
@@ -66,9 +67,19 @@
 
         <div class="row d-flex justify-content-between">
             {{#each films}}
-            <div class="col-lg-4 pr-15 pl-15">
-                <img class="img__moview" src="./img/{{this.poster}}" alt="{{this.tenphim}}">
-                <h5 class="title__film">{{this.tenphim}}</h5>
+            <div class="col-lg-4 col-md-4 col-sm-6 movie-item">
+                <div class="image-container">
+                    <img src="./img/{{poster}}" class="movie-image" />
+                    <div class="hidden-content">
+                        <p><label class="movie-c">C{{dotuoi}}</label></p>
+                        <a href="/chi-tiet-phim/{{maphim}}">
+                            <button class="hidden-button" id="hidden-button">CHI TIẾT</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="movie-name">
+                    <h6>{{tenphim}}</h6>
+                </div>
             </div>
             {{/each}}
             <div class="btn__view__more">
