@@ -833,7 +833,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userid`, `hoten`, `ngaysinh`, `gioitinh`, `email`, `sodienthoai`, `matkhau`, `role`, `diachi`, `tinh`, `trangthai`) VALUES
 (1, 'admin', NULL, NULL, NULL, 'admin', '123456', 'admin', NULL, NULL, NULL),
-(2, 'Huỳnh Khánh Duy', '28/2/2002', 'Nam', 'khanhtran@gmail.com', '0369999999', '123456789', 'khach', '19 Nguyễn Hữu Thọ', 'Bình Phước', NULL),
+(2, 'Huỳnh Khánh Duy', '28/2/2002', 'Nam', 'khanhtran@gmail.com', '0123456789', '123456', 'khach', '19 Nguyễn Hữu Thọ', 'Bình Phước', NULL),
 (3, 'Nguyễn Tấn Lực', '28/07/2002', 'Nam', 'deeekento@gmail.com', '0364646464', '123456789', 'khach', '19 Nguyễn Thị Thập', 'TP. Hồ Chí Minh', NULL),
 (4, 'Nguyễn Khương Việt Tiến', '28/2/2002', 'Nam', 'khuongviettien@gmail.com', '0362582569', '987654321', 'khach', '06 Lê Thị Riêng', 'TP. Hồ Chí Minh', NULL),
 (5, 'Vũ Lương Ngọc Ban', '13/11/2002', 'Nam', 'banluong@gmail.com', '0123789456', '123456789', 'khach', 'Cây Khế Hai Bà Trưng', 'Thừa Thiên Huế', NULL),
