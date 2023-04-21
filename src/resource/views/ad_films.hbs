@@ -154,6 +154,12 @@
     .mt5 {
         margin: 22px;
     }
+
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
 
 <body>
@@ -161,7 +167,7 @@
     <div class="admin d-flex justify-content-center mt-3">
 
         <div class="wrapper">
-            <a class="cta" href="/admin">
+            <a class="cta" href="/admin/quan-ly-tai-khoan">
                 <span class="d-none"></span>
                 <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +183,7 @@
                         </g>
                     </svg>
                 </span>
-                <span style="margin: 16px 0 0 16px;">VỀ TRANG CHỦ</span>
+                <span style="margin: 16px 0 0 16px;">QUẢN LÝ THÀNH VIÊN</span>
             </a>
         </div>
 
@@ -187,8 +193,8 @@
         </div>
 
         <div class="wrapper">
-            <a class="cta" href="/admin/quan-ly-khuyen-mai">
-                <span style="margin-top: 16px;">QUẢN LÝ KHUYẾN MÃI</span>
+            <a class="cta" href="/admin/quan-ly-phong">
+                <span style="margin-top: 16px;">QUẢN LÝ PHÒNG</span>
                 <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -327,7 +333,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputMoTa" class="form-label">Mô tả</label>
-                    <input type="text" class="form-control" id="inputMoTa">
+                    <textarea class="form-control" name="inputMoTa" id="inputMoTa" cols="30" rows="10"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="inputPoster" class="form-label">Poster</label>
@@ -396,7 +402,7 @@
             </thead>
             <tbody>
                 {{#each data}}
-                <tr>
+                <tr style="overflow: hidden;">
                     <th scope="row">{{maphim}}</th>
                     <td>{{this.tenphim}}</td>
                     <td>{{this.theloai}}</td>
@@ -406,7 +412,7 @@
                     <td>{{this.diemdanhgia}}</td>
                     <td>{{this.thoiluong}}</td>
                     <td>{{this.ngaykhoichieu}}</td>
-                    <td>{{this.mota}}</td>
+                    <td style="max-width: 400px;" class="ellipsis">{{this.mota}}</td>
                     <td>{{this.poster}}</td>
                     <td>{{this.hinhngang}}</td>
                     <td>{{this.dotuoi}}</td>

@@ -255,7 +255,7 @@ async function ticket(req, res, next) {
 }
 
 async function chooseTicket(req, res, next) {
-    if (!req.session.nameUser) {
+    if (!req.session.name) {
         res.redirect("/login");
     } else {
 

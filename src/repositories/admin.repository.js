@@ -56,7 +56,7 @@ async function getResponsesAPI() {
 
 async function getSuatChieuAPI() {
     const record = await dbClient.query(
-        `Select * from suatchieu`
+        `Select * from suatchieu where trangthai is NULL`
     );
     return record;
 };

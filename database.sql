@@ -1,9 +1,12 @@
+DROP DATABASE IF EXISTS l2dbt_cinema;
+CREATE DATABASE l2dbt_cinema;
+USE l2dbt_cinema;
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 20, 2023 lúc 07:20 PM
+-- Thời gian đã tạo: Th4 21, 2023 lúc 08:32 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -42,8 +45,7 @@ CREATE TABLE `combo` (
 INSERT INTO `combo` (`macombo`, `tencombo`, `giatien`, `chitiet`, `trangthai`) VALUES
 ('cb01', 'Combo 1', 65000, '1 BẮP (NGỌT/MẶN) + 1 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
 ('cb02', 'Combo 2', 80000, '1 BẮP (NGỌT/MẶN) + 2 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
-('cb03', 'Family 2 Voucher', 150000, '2 BẮP (NGỌT/MẶN) + 4 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien'),
-('test', '12', 1, '1', 'an');
+('cb03', 'Family 2 Voucher', 150000, '2 BẮP (NGỌT/MẶN) + 4 NƯỚC (PEPSI/7UP/MIRINDA CAM/M', 'hien');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,7 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 ('A3', 'P02', 'don', 'còn trống'),
 ('A3', 'P03', 'don', 'còn trống'),
 ('A3', 'P04', 'don', 'còn trống'),
-('A3', 'P05', 'don', 'đã đặt'),
+('A3', 'P05', 'don', 'còn trống'),
 ('A3', 'P06', 'don', 'còn trống'),
 ('A3', 'P07', 'don', 'còn trống'),
 ('A3', 'P08', 'don', 'còn trống'),
@@ -170,18 +172,18 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 ('A4', 'P09', 'don', 'còn trống'),
 ('A4', 'P10', 'don', 'còn trống'),
 ('A4', 'P11', 'don', 'còn trống'),
-('A5', 'P01', 'don', 'đã đặt'),
+('A5', 'P01', 'don', 'còn trống'),
 ('A5', 'P02', 'don', 'còn trống'),
 ('A5', 'P03', 'don', 'còn trống'),
 ('A5', 'P04', 'don', 'còn trống'),
-('A5', 'P05', 'don', 'đã đặt'),
+('A5', 'P05', 'don', 'còn trống'),
 ('A5', 'P06', 'don', 'còn trống'),
 ('A5', 'P07', 'don', 'còn trống'),
 ('A5', 'P08', 'don', 'còn trống'),
 ('A5', 'P09', 'don', 'còn trống'),
 ('A5', 'P10', 'don', 'còn trống'),
 ('A5', 'P11', 'don', 'còn trống'),
-('A6', 'P01', 'don', 'đã đặt'),
+('A6', 'P01', 'don', 'còn trống'),
 ('A6', 'P02', 'don', 'còn trống'),
 ('A6', 'P03', 'don', 'còn trống'),
 ('A6', 'P04', 'don', 'còn trống'),
@@ -238,7 +240,7 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 ('B1', 'P11', 'don', 'còn trống'),
 ('B10', 'P01', 'don', 'còn trống'),
 ('B10', 'P02', 'don', 'còn trống'),
-('B10', 'P03', 'don', 'đã đặt'),
+('B10', 'P03', 'don', 'còn trống'),
 ('B10', 'P04', 'don', 'còn trống'),
 ('B10', 'P05', 'don', 'còn trống'),
 ('B10', 'P06', 'don', 'còn trống'),
@@ -348,7 +350,7 @@ INSERT INTO `ghe` (`maghe`, `maphong`, `loaighe`, `trangthai`) VALUES
 ('C1', 'P11', 'don', 'còn trống'),
 ('C10', 'P01', 'don', 'còn trống'),
 ('C10', 'P02', 'don', 'còn trống'),
-('C10', 'P03', 'don', 'đã đặt'),
+('C10', 'P03', 'don', 'còn trống'),
 ('C10', 'P04', 'don', 'còn trống'),
 ('C10', 'P05', 'don', 'còn trống'),
 ('C10', 'P06', 'don', 'còn trống'),
@@ -625,7 +627,7 @@ CREATE TABLE `khuyenmai` (
   `hinhkhuyenmai` varchar(50) NOT NULL,
   `hinhkhuyenmaingang` varchar(50) NOT NULL,
   `giamgia` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -694,8 +696,6 @@ CREATE TABLE `phong` (
 --
 
 INSERT INTO `phong` (`maphong`, `tenphong`, `soluongghe`, `trangthai`) VALUES
-('1', '12', 1, 'an'),
-('1test', '1222', 1, 'an'),
 ('P01', 'Phòng 1', 40, 'hien'),
 ('P02', 'Phòng 2', 40, 'hien'),
 ('P03', 'Phòng 3', 40, 'hien'),
@@ -720,42 +720,43 @@ CREATE TABLE `suatchieu` (
   `maphong` char(30) NOT NULL,
   `ngaychieu` date DEFAULT NULL,
   `giochieu` time DEFAULT NULL,
-  `giave` int(11) DEFAULT NULL
+  `giave` int(11) DEFAULT NULL,
+  `trangthai` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `suatchieu`
 --
 
-INSERT INTO `suatchieu` (`masuatchieu`, `maphim`, `maphong`, `ngaychieu`, `giochieu`, `giave`) VALUES
-('Sdaotoiac01', 'daotoiac', 'P01', '2023-03-31', '18:00:00', 70000),
-('Sdaotoiac02', 'daotoiac', 'P03', '2023-04-01', '18:00:00', 70000),
-('Sdaotoiac03', 'daotoiac', 'P05', '2023-04-01', '20:00:00', 70000),
-('Sdemoslayer01', 'demoslayer', 'P05', '2023-03-22', '08:00:00', 65000),
-('Sdemoslayer02', 'demoslayer', 'P06', '2023-03-22', '11:00:00', 65000),
-('Sdemoslayer03', 'demoslayer', 'P01', '2023-03-25', '11:00:00', 65000),
-('Sdemoslayer04', 'demoslayer', 'P02', '2023-03-25', '14:00:00', 65000),
-('Sdemoslayer05', 'demoslayer', 'P03', '2023-03-25', '18:00:00', 65000),
-('Ssieulay01', 'sieulay', 'P01', '2023-03-01', '08:00:00', 65000),
-('Ssieulay02', 'sieulay', 'P02', '2023-03-01', '15:30:00', 65000),
-('Ssieulay03', 'sieulay', 'P03', '2023-03-01', '15:30:00', 65000),
-('Ssieulay04', 'sieulay', 'P04', '2023-03-02', '08:00:00', 65000),
-('Ssieulay05', 'sieulay', 'P05', '2023-03-02', '11:00:00', 65000),
-('Ssieulay06', 'sieulay', 'P06', '2023-03-02', '15:00:00', 65000),
-('Ssieulay07', 'sieulay', 'P07', '2023-03-02', '18:00:00', 65000),
-('Ssongsot01', 'songsot', 'P07', '2023-03-29', '08:00:00', 70000),
-('Ssongsot02', 'songsot', 'P08', '2023-03-29', '13:00:00', 70000),
-('Ssongsot03', 'songsot', 'P02', '2023-03-30', '15:00:00', 70000),
-('Ssongsot04', 'songsot', 'P03', '2023-03-30', '18:00:00', 70000),
-('Stomandjerry01', 'tomandjerry', 'P01', '2023-03-10', '08:00:00', 80000),
-('Stomandjerry02', 'tomandjerry', 'P02', '2023-03-10', '11:00:00', 80000),
-('Stomandjerry03', 'tomandjerry', 'P03', '2023-03-11', '13:00:00', 80000),
-('Stomandjerry04', 'tomandjerry', 'P04', '2023-03-11', '18:00:00', 80000),
-('Stomandjerry05', 'tomandjerry', 'P08', '2023-03-12', '14:00:00', 80000),
-('Stomandjerry06', 'tomandjerry', 'P09', '2023-03-12', '18:00:00', 80000),
-('Strinhcongson01', 'trinhcongson', 'P01', '2023-03-31', '13:00:00', 60000),
-('Strinhcongson02', 'trinhcongson', 'P06', '2023-04-01', '15:00:00', 60000),
-('Strinhcongson03', 'trinhcongson', 'P04', '2023-04-01', '20:00:00', 60000);
+INSERT INTO `suatchieu` (`masuatchieu`, `maphim`, `maphong`, `ngaychieu`, `giochieu`, `giave`, `trangthai`) VALUES
+('Sdaotoiac01', 'daotoiac', 'P01', '2023-03-31', '18:00:00', 70000, NULL),
+('Sdaotoiac02', 'daotoiac', 'P03', '2023-04-01', '18:00:00', 70000, NULL),
+('Sdaotoiac03', 'daotoiac', 'P05', '2023-04-01', '20:00:00', 70000, NULL),
+('Sdemoslayer01', 'demoslayer', 'P05', '2023-03-22', '08:00:00', 65000, NULL),
+('Sdemoslayer02', 'demoslayer', 'P06', '2023-03-22', '11:00:00', 65000, NULL),
+('Sdemoslayer03', 'demoslayer', 'P01', '2023-03-25', '11:00:00', 65000, NULL),
+('Sdemoslayer04', 'demoslayer', 'P02', '2023-03-25', '14:00:00', 65000, NULL),
+('Sdemoslayer05', 'demoslayer', 'P03', '2023-03-25', '18:00:00', 65000, NULL),
+('Ssieulay01', 'sieulay', 'P01', '2023-03-01', '08:00:00', 65000, NULL),
+('Ssieulay02', 'sieulay', 'P02', '2023-03-01', '15:30:00', 65000, NULL),
+('Ssieulay03', 'sieulay', 'P03', '2023-03-01', '15:30:00', 65000, NULL),
+('Ssieulay04', 'sieulay', 'P04', '2023-03-02', '08:00:00', 65000, NULL),
+('Ssieulay05', 'sieulay', 'P05', '2023-03-02', '11:00:00', 65000, NULL),
+('Ssieulay06', 'sieulay', 'P06', '2023-03-02', '15:00:00', 65000, NULL),
+('Ssieulay07', 'sieulay', 'P07', '2023-03-02', '18:00:00', 65000, NULL),
+('Ssongsot01', 'songsot', 'P07', '2023-03-29', '08:00:00', 70000, NULL),
+('Ssongsot02', 'songsot', 'P08', '2023-03-29', '13:00:00', 70000, NULL),
+('Ssongsot03', 'songsot', 'P02', '2023-03-30', '15:00:00', 70000, NULL),
+('Ssongsot04', 'songsot', 'P03', '2023-03-30', '18:00:00', 70000, NULL),
+('Stomandjerry01', 'tomandjerry', 'P01', '2023-03-10', '08:00:00', 80000, NULL),
+('Stomandjerry02', 'tomandjerry', 'P02', '2023-03-10', '11:00:00', 80000, NULL),
+('Stomandjerry03', 'tomandjerry', 'P03', '2023-03-11', '13:00:00', 80000, NULL),
+('Stomandjerry04', 'tomandjerry', 'P04', '2023-03-11', '18:00:00', 80000, NULL),
+('Stomandjerry05', 'tomandjerry', 'P08', '2023-03-12', '14:00:00', 80000, NULL),
+('Stomandjerry06', 'tomandjerry', 'P09', '2023-03-12', '18:00:00', 80000, NULL),
+('Strinhcongson01', 'trinhcongson', 'P01', '2023-03-31', '13:00:00', 60000, NULL),
+('Strinhcongson02', 'trinhcongson', 'P06', '2023-04-01', '15:00:00', 60000, NULL),
+('Strinhcongson03', 'trinhcongson', 'P04', '2023-04-01', '20:00:00', 60000, NULL);
 
 -- --------------------------------------------------------
 

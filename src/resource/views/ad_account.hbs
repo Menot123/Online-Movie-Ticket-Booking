@@ -159,7 +159,7 @@
     <div class="admin d-flex justify-content-center mt-3">
 
         <div class="wrapper">
-            <a class="cta" href="/admin">
+            <a class="cta" href="/admin/suat-chieu">
                 <span class="d-none"></span>
                 <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +175,7 @@
                         </g>
                     </svg>
                 </span>
-                <span style="margin: 16px 0 0 16px;">VỀ TRANG CHỦ</span>
+                <span style="margin: 16px 0 0 16px;">QUẢN LÝ SUẤT CHIẾU</span>
             </a>
         </div>
 
@@ -274,8 +274,8 @@
                     <td>{{this.matkhau}}</td>
                     <td>{{this.role}}</td>
                     <td>{{this.email}}</td>
-                    <td><span id="btn__update" onclick="update({{this.userid}})">Chỉnh sửa</span> l <span
-                            class="btn__delete" onclick="deleteAccount({{this.userid}})" data-bs-toggle="modal"
+                    <td><span id="btn__update" style="color: aqua;" onclick="update({{this.userid}})">Chỉnh sửa</span> l <span
+                            class="btn__delete" style="color: aqua;" onclick="deleteAccount({{this.userid}})" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Xóa</span></td>
                 </tr>
                 {{/each}}
