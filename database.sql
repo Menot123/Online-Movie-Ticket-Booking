@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS l2dbt_cinema;
+CREATE DATABASE l2dbt_cinema;
+USE l2dbt_cinema;
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
