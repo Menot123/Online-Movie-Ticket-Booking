@@ -26,6 +26,7 @@ async function handleDelete(id) {
         const status = await repo.handleDelete(id)
         return status
     } catch (err) {
+        console.log(err)
         throw new Error('Service: Cannot delete account');
     }
 }

@@ -46,6 +46,7 @@ async function errorPage(req, res, next) {
 async function handleLogout(req, res, next) {
     delete req.session.name
     delete req.session.social
+    delete req.session.admin
     res.status(200).json({ message: 'Clear session successfully' })
 }
 
