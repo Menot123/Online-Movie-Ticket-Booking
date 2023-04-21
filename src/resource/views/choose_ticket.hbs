@@ -552,6 +552,8 @@
 
         ////////////////////////////////Do Payment
         let useS = false;
+        let saleId = $('.sale-id').val();
+        let makhuyenmai = null;
         async function useSale(btnSale) {
             if (!useS) {
                 saleId = btnSale.parentNode.children[0].value
@@ -576,6 +578,7 @@
                             let originalPrice = $('.total-price').html().replace(/,/g, '')
                             let percentSale = data.giamgia
                             let totalPrice = originalPrice - originalPrice*percentSale/100
+                            makhuyenmai = saleId
                             alert("Sử dụng mã giảm giá thành công")
                             $('.total-price').html(totalPrice.toLocaleString('en-US'))
                         }
@@ -592,7 +595,6 @@
             let userid = "{{idUser}}";
             let maphim = "{{film.maphim}}";
             let comboList = $('.combo-list').html();
-            let makhuyenmai = $('.sale-id').val();
             let masuatchieu = "{{suatchieu.masuatchieu}}";
             let seatList = $('.seat-list').html();
             let soluong = $('#number').val();

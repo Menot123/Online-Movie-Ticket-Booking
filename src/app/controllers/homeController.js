@@ -308,7 +308,7 @@ async function payMent(req, res, next) {
     const ticketId = await buyticketServices.getTicketId(data.maphim);
     delete data.maphim;
     data.ticketId = ticketId;
-    console.log(data);
+    console.log(data)
     const result = await buyticketServices.createBill(data)
 
     // Change seat status
