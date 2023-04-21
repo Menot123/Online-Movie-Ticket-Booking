@@ -159,12 +159,6 @@
                                         value="{{info.hoten }}">
                                 </div>
 
-                                {{!-- <div class="name col-md-6 col-sm-7 col-xs-7" style="display: none;">
-                                    <label for="input__name">Họ Tên</label>
-                                    <input class="w-100 blur" type="text" name="input__name" id="input__name"
-                                        value="{{info.hoten }}">
-                                </div> --}}
-
                                 <div class="stars col-md-3 col-sm-5 col-xs-5">
                                     <label for="numStar">Sao hiện tại</label>
                                     <input class="w-100 blur" type="text" name="numStar" id="numStar" disabled
@@ -320,9 +314,9 @@
                             </div>
 
                             {{#if social}}
-                            
+
                             {{else}}
-                            
+
                             <div class="changePass mt-4">
                                 <input type="checkbox" name="pass-change" id="pass-change">
                                 <label for="pass-change">Đổi mật khẩu</label>
@@ -365,55 +359,46 @@
                 </div>
                 <div class="tab-pane">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-6 pl0">
-                            <label class="from__day" for="input__from">Từ ngày</label> <br>
-                            <input class="p8 w-100" type="date" id="input__from" name="input__from">
-                        </div>
-
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                            <label class="to__day" for="input__to">Đến ngày</label> <br>
-                            <input class="p8 w-100" type="date" id="input__to" name="input__to">
+                        <div class="col-md-4 col-sm-6 col-xs-6 pl0 d-flex">
+                            <div class="fromDay">
+                                <label class="from__day" for="input__from">Từ ngày</label> <br>
+                                <input class="p8 mx-3" type="date" id="input__from" name="input__from">
+                            </div>
+                            <button id="btn__search" class="btn btn-primary"
+                                style="max-height: 44px; margin-top:38px;">Tìm kiếm</button>
                         </div>
                     </div>
                     <div class="row mt-5">
-                        <table class="table table-striped">
+                        <table id="table__history" class="table table-striped">
                             <thead>
                                 <tr style="background-color: #47251c; color: #fff;">
                                     <th scope="col">Ngày</th>
                                     <th scope="col">Số giao dịch</th>
                                     <th scope="col">Mã vé</th>
-                                    <th scope="col">Rạp</th>
-                                    <th scope="col">Phim</th>
                                     <th scope="col">Chú thích</th>
                                     <th scope="col">Giá trị</th>
                                     <th scope="col">Sao tích lũy</th>
                                     <th scope="col">Điểm đã dùng</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>19/03/2023</td>
-                                    <td>158</td>
-                                    <td>ds158</td>
-                                    <td>03</td>
-                                    <td>Demo Slayer</td>
-                                    <td> </td>
-                                    <td>129.000 VNĐ</td>
-                                    <td>12</td>
-                                    <td>0</td>
-                                </tr>
 
+                            <tbody id="table__body">
+                                {{#unless history}}
                                 <tr>
-                                    <td>19/03/2023</td>
-                                    <td>158</td>
-                                    <td>ds158</td>
-                                    <td>03</td>
-                                    <td>Demo Slayer</td>
+                                    <td colspan="9" class="text-center"><b>Hiện chưa có giao dịch nào</b></td>
+                                </tr>
+                                {{/unless}}
+                                {{#each history }}
+                                <tr>
+                                    <td>{{formatDate this.ngaythanhtoan}}</td>
+                                    <td>{{this.mahd}}</td>
+                                    <td>{{this.mave}}</td>
                                     <td> </td>
-                                    <td>129.000 VNĐ</td>
-                                    <td>12</td>
+                                    <td>{{formatMoney this.thanhtien}}</td>
+                                    <td>10</td>
                                     <td>0</td>
                                 </tr>
+                                {{/each }}
                             </tbody>
                         </table>
                     </div>
@@ -449,6 +434,12 @@
     const recheck__pass = $("#recheck__pass")
     const msg__checkLength = $("#msg__checkLength")
     const msg__checkNewPass = $("#msg__checkNewPass")
+    const btn__search = $("#btn__search")
+    const input__from = $("#input__from")
+    const table__history = $("#table__history")
+    const table__body = $("#table__body")
+
+
 
 
     requestIdleCallback(function () {
@@ -534,8 +525,90 @@
         msg__checkNewPass.style.display = 'none'
     })
 
+    btn__search.addEventListener('click', () => {
+        fetch('/history', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                time: input__from.value,
+            })
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                if (data.history) {
+                    let rows = table__history.getElementsByTagName("tr");
 
+                    while (rows.length > 1) {
+                        table__history.deleteRow(1);
+                    }
+                    if (data.history.length > 0) {
+                        data.history.forEach(item => {
+                            let row = document.createElement("tr");
 
+                            let dateCell = document.createElement("td");
+                            dateCell.textContent = formatDate(item.ngaythanhtoan);
+                            row.appendChild(dateCell);
+
+                            let transactionCell = document.createElement("td");
+                            transactionCell.textContent = item.mahd;
+                            row.appendChild(transactionCell);
+
+                            let ticketCodeCell = document.createElement("td");
+                            ticketCodeCell.textContent = item.mave;
+                            row.appendChild(ticketCodeCell);
+
+                            let noteCell = document.createElement("td");
+                            noteCell.textContent = "";
+                            row.appendChild(noteCell);
+
+                            let valueCell = document.createElement("td");
+                            valueCell.textContent = formatMoney(item.thanhtien);
+                            row.appendChild(valueCell);
+
+                            let starCell = document.createElement("td");
+                            starCell.textContent = "10";
+                            row.appendChild(starCell);
+
+                            let usedPointCell = document.createElement("td");
+                            usedPointCell.textContent = "0";
+                            row.appendChild(usedPointCell);
+
+                            table__body.appendChild(row);
+                        })
+                    } else {
+                        let row = document.createElement("tr");
+                        let valueCell = document.createElement("td");
+                        valueCell.innerHTML = '<b>Hiện chưa có giao dịch nào</b>'
+                         colspan="9"
+                        valueCell.classList.add("text-center")
+                        valueCell.setAttribute('colspan', '9'); 
+                        row.appendChild(valueCell);
+                        table__body.appendChild(row);
+                    }
+
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    })
+
+    function formatDate(dateString) {
+        let date = new Date(dateString);
+        let year = date.getFullYear();
+        let month = (date.getMonth() + 1).toString().padStart(2, "0");
+        let day = date.getDate().toString().padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    function formatMoney(amount) {
+        let formattedAmount = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount).replace(/\D00(?=\D*$)/, '');
+        return formattedAmount;
+    }
 
 </script>
 

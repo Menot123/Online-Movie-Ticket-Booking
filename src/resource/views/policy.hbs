@@ -21,6 +21,8 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/css/policy.css">
+    <link rel="stylesheet" href="/css/policy_nowShowing.css" />
+
 </head>
 
 <style>
@@ -312,31 +314,26 @@
 
                 <h4 class="mua-ve-nhanh">PHIM ĐANG CHIẾU</h4>
 
+                {{#each data }}
                 <div class="row">
-                    <div class="col-md-13 col-sm-12 col-xs-12 movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="img-phim"
-                                src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                        </a>
-                        <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
+                    <div class="movie-item">
+                        <div class="image-container">
+                            <img src="./img/{{poster}}" class="movie-image" style="width: 300px;"/>
+                            <div class="hidden-content">
+                                <p><label class="movie-c">C{{dotuoi}}</label></p>
+                                <a href="/chi-tiet-phim/{{maphim}}">
+                                    <button class="hidden-button" id="hidden-button">CHI TIẾT</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="movie-name">
+                            <h6>{{tenphim}}</h6>
+                        </div>
                     </div>
 
-                    <div class="col-md-13 col-sm-12 col-xs-12 movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="img-phim"
-                                src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                        </a>
-                        <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
-                    </div>
-
-                    <div class="col-md-13 col-sm-12 col-xs-12 movie-item">
-                        <a href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                            <img class="img-phim"
-                                src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="">
-                        </a>
-                        <h5>SIÊU LỪA GẶP SIÊU LẦY</h5>
-                    </div>
                 </div>
+
+                {{/each }}
 
                 <div class="xem-them-btn">
                     <a href="/phim-dang-chieu" class="btn btn-primary xem-them">XEM THÊM</a>

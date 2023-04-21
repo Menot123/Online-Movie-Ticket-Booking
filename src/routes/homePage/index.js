@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { loggedin } = require('../../middlewares/auth/auth.middware')
+const { admin } = require('../../middlewares/auth/auth.middware')
 
 const homeController = require('../../app/controllers/homeController');
 
@@ -55,7 +56,10 @@ router.post('/change-password', homeController.changePass);
 
 router.post('/send-response/:email', homeController.sendLinkResponse)
 
-router.get('/admin', loggedin, homeController.indexAdmin);
+router.post('/history', homeController.getHistoryByDay);
+
+
+router.get('/admin', admin, homeController.indexAdmin);
 router.get('/', homeController.index);
 // router.post('/check', homeController.checkSession);
 

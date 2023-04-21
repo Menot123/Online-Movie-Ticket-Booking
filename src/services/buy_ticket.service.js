@@ -72,6 +72,7 @@ async function createBill(data) {
         let bill = await repo.createBill(data)
         return { status: "success" }
     } catch (err) {
+        console.log(err)
         throw new Error('Service: Cannot Create Bill');
     }
 }

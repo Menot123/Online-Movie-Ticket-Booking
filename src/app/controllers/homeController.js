@@ -228,8 +228,9 @@ function deal(req, res, next) {
     res.render('favorable', { nameUser: req.session.name });
 }
 
-function policy(req, res, next) {
-    res.render('policy', { nameUser: req.session.name });
+async function policy(req, res, next) {
+    const data = await homeServices.getTop3Film()
+    res.render('policy', { nameUser: req.session.name, data:data });
 }
 
 async function ticket(req, res, next) {
@@ -393,7 +394,9 @@ async function member(req, res, next) {
     if (req.session.name) {
         info = await homeServices.getInfomationUser(req.session.name)
     }
-    res.render('member', { info: info[0], nameUser: req.session.name, social: req.session.social })
+    const history = await homeServices.getHistory(req.session.idUser)
+    res.render('member', { info: info[0], nameUser: req.session.name, social: req.session.social,
+    history: history })
 
 }
 
@@ -486,6 +489,16 @@ async function sendLinkResponse(req, res, next) {
     }
 }
 
+async function getHistoryByDay(req, res, next) {
+    if(req.body.time != '') {
+        const data = await homeServices.getHistoryByDay(req.body.time,req.session.idUser)
+        res.status(200).json({message:"Get history by day successfully", history: data})
+    } else {
+        const data= await homeServices.getHistory(req.session.idUser)
+        res.status(200).json({message:"Get all history successfully", history: data})
+    }
+}
+
 module.exports = {
     index,
     movies,
@@ -527,5 +540,6 @@ module.exports = {
     useSale,
     fav,
     favDetail,
-    top
+    top,
+    getHistoryByDay,
 };

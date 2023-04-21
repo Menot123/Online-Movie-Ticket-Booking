@@ -85,6 +85,34 @@ async function changePass(password,email) {
     }
 }
 
+async function getTop3Film() {
+    try {
+        const status = await repo.getTop3Film()
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getHistory(id) {
+    try {
+        const status = await repo.getHistory(id)
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getHistoryByDay(time, idUsers) {
+    try {
+        const status = await repo.getHistoryByDay(time, idUsers)
+        return status;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     getListNotifications, getBlogs,getShortFilms,getInfomationUser,handleUpdateInfo,checkPass,findUserByEmail,changePass,
+    getTop3Film, getHistory, getHistoryByDay, 
 }
