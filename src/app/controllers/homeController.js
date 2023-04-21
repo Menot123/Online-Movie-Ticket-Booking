@@ -22,7 +22,7 @@ async function index(req, res, next) {
     try {
         const list = await homeServices.getListNotifications()
         const blogs = await homeServices.getBlogs()
-        const films = await homeServices.getShortFilms()
+        const films = await nowShowingServices.get6NowShowingFilm()
         res.render('home', {
             data: list,
             blogs: blogs,
@@ -309,7 +309,7 @@ async function payMent(req, res, next) {
     const ticketId = await buyticketServices.getTicketId(data.maphim);
     delete data.maphim;
     data.ticketId = ticketId;
-    console.log(data);
+    console.log(data)
     const result = await buyticketServices.createBill(data)
 
     // Change seat status

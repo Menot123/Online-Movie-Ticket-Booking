@@ -20,7 +20,19 @@ async function get4NowShowingFilm() {
         throw new Error('Service: Cannot get 4 now showing films');
     }
 }
+
+async function get6NowShowingFilm() {
+    try {
+        const list = await repo.get6NowShowingFilm()
+        if (list.length > 0) {
+            return list
+        }
+    } catch (err) {
+        throw new Error('Service: Cannot get 6 now showing films');
+    }
+}
 module.exports = {
     getNowShowingFilm,
-    get4NowShowingFilm
+    get4NowShowingFilm,
+    get6NowShowingFilm
 }

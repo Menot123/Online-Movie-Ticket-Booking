@@ -1,14 +1,11 @@
-DROP DATABASE IF EXISTS l2dbt_cinema;
-CREATE DATABASE l2dbt_cinema;
-USE l2dbt_cinema;
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 21, 2023 lúc 08:52 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Thời gian đã tạo: Th4 21, 2023 lúc 09:38 AM
+-- Phiên bản máy phục vụ: 10.4.25-MariaDB
+-- Phiên bản PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +33,7 @@ CREATE TABLE `combo` (
   `giatien` int(11) DEFAULT NULL,
   `chitiet` varchar(50) DEFAULT NULL,
   `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `combo`
@@ -64,7 +61,7 @@ CREATE TABLE `daodien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `daodien`
@@ -90,7 +87,7 @@ CREATE TABLE `dienvien` (
   `chieucao` varchar(50) NOT NULL,
   `quoctich` varchar(50) NOT NULL,
   `tieusu` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `dienvien`
@@ -110,7 +107,7 @@ CREATE TABLE `ghe` (
   `maphong` char(30) NOT NULL,
   `loaighe` varchar(30) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `ghe`
@@ -575,7 +572,7 @@ CREATE TABLE `hoadon` (
   `soluong` int(11) DEFAULT NULL,
   `thanhtien` int(11) DEFAULT NULL,
   `ngaythanhtoan` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
@@ -598,7 +595,7 @@ CREATE TABLE `hotro` (
   `sodienthoai` char(30) NOT NULL,
   `chude` text NOT NULL,
   `noidung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hotro`
@@ -628,7 +625,7 @@ CREATE TABLE `khuyenmai` (
   `hinhkhuyenmaingang` varchar(50) NOT NULL,
   `giamgia` int(10) NOT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -660,17 +657,20 @@ CREATE TABLE `phim` (
   `dotuoi` int(11) DEFAULT NULL,
   `trailer` text NOT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `phim`
 --
 
 INSERT INTO `phim` (`maphim`, `tenphim`, `theloai`, `dienvien`, `quocgia`, `daodien`, `diemdanhgia`, `thoiluong`, `ngaykhoichieu`, `mota`, `poster`, `hinhngang`, `dotuoi`, `trailer`, `trangthai`) VALUES
+('air', 'AIR', 'Tâm Lý', 'Ben Affleck, Matt Damon, Jason Bateman', 'Mỹ', 'Ben Affleck', '7.1', '112 phút', '2023-04-27', 'Từ đạo diễn đã từng đoạt giải thưởng Ben Affleck, AIR hé lộ mối quan hệ đột phá giữa huyền thoại Michael Jordan khi mới bắt đầu sự nghiệp và bộ phận bóng rổ còn non trẻ của Nike, đã làm thay đổi thế giới thể thao và văn hóa đương đại với thương hiệu Air Jordan. Câu chuyện cảm động này kể về sự đánh cược khi đặt lên bàn cân tình hình kinh doanh của cả công ty, tầm nhìn vĩ đại của một người mẹ biết giá trị và tài năng của con trai mình, và một siêu sao bóng rổ đã trở thành huyền thoại.', 'air.jpg', 'airngang.jpg', 16, 'https://www.youtube.com/embed/Euy4Yu6B3nU', 'dangchieu'),
 ('bearman', 'BEARMAN', 'Hành Động, Hài', 'Yeom Hye Ran, Lee Yi Kyung, Park Sung Woong', 'Hàn Quốc', 'Park Sung Kwang', '8.0', '120 phút', '2023-04-12', 'Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày. Chú gấu ăn tỏi trở thành Na Woong-nam, được một cặp vợ chồng nhà khoa học mang về nuôi nấng, tuy chỉ mới 25 tuổi nhưng lại sở hữu “giao diện” của một ông chú 52 với cái “đầu đất” ngây thơ, hiền lành. Trong khi đó, chú gấu ăn ngải cứu trở thành “đầu gấu” Lee Jeong-hak, được một tên trùm tổ chức tội phạm mang về nuôi và bị lợi dụng như một món “vũ khí” phòng vệ. Trong một tình huống bất đắc dĩ, Na Woong-nam đã trực tiếp đối đầu cùng anh em song sinh Lee Jeong-hak để ngăn chặn một vụ khủng bố virus có tầm lây lan mạnh. Sức mạnh của loài gấu bộc phát sẽ đẩy cuộc đụng độ của cặp gấu song sinh hoá người đi đến hồi kết nào?', 'bear.jpg', 'bearngang.jpg', 13, 'https://www.youtube.com/embed/2IZLhCSApCk', 'sapchieu'),
 ('connhotmotchong', 'CON NHÓT MÓT CHỒNG', 'Hài, Gia Đình', 'Tiến Luật, Thái Hòa, Thu Trang', 'Việt Nam', 'Vũ Ngọc Đãng', '8.4', '120 phút', '2023-04-20', 'Lấy cảm hứng từ web drama Chuyện Xóm Tui, phiên bản điện ảnh sẽ mang một màu sắc hoàn toàn khác: hài hước hơn, gần gũi và nhiều cảm xúc hơn. Bộ phim là câu chuyện của Nhót - người phụ nữ “chưa kịp già” đã sắp bị mãn kinh, vội vàng đi tìm chồng. Nhưng sâu thẳm trong cô là khao khát muốn có một đứa con, và luôn muốn hàn gắn với người cha suốt ngày say xỉn của mình.Phim mới Con Nhót Mót Chồng ra mắt tại các rạp chiếu phim từ 28.04.2023.', 'connhot.jpg', 'connhotngang.jpg', 16, 'https://www.youtube.com/embed/zi1V9sEblCM', 'sapchieu'),
 ('daotoiac', 'ĐẢO TỘI ÁC', 'Kinh dị', 'Alif Satar, Amelia Henderson, Ikmal Amry, Evie Fer', 'Malaysia', 'Eu Ho', '7.6', '112 phút', '2023-03-31', 'Nhóm du khách trẻ vô tình phá bỏ phong ấn của con quái vật khát máu khi đến tham quan một hòn đảo cấm không dân địa phương nào dám đặt chân đến. Liệu họ có thể bình an thoát khỏi hay đó sẽ là nơi chôn vùi tất cả?', 'daotoiac.jpg', 'daotoiacngang.jpg', 18, 'https://www.youtube.com/embed/jSZUpx_3yL4', 'dangchieu'),
 ('demoslayer', 'THANH GƯƠM DIỆT QUỶ', 'Hoạt Hình, Giả Tưởng, Phiêu Lưu', 'Natsuki Hanae, Akari Kito, Hiro Shimono', 'Nhật Bản', 'Haruo Sotozaki', '6.6', '110 phút', '2023-03-22', 'Sau trận chiến khốc liệt với anh em quỷ Thượng Huyền Lục Gyuutarou và Daki tại Phố Đèn Đỏ, Tanjiro cùng các kiếm sĩ diệt quỷ đều bị thương nặng và được đưa trở về trụ sở của Đội Diệt Quỷ để dưỡng thương và phục hồi. Sau trận chiến, thanh gươm của Tanjiro cũng bị hư hỏng nặng và lúc này, cậu cần một thanh gươm mới để tiếp tục lên đường làm nhiệm vụ. Cậu được đưa đến Làng Rèn Gươm, nơi phụ trách rèn vũ khí cho các kiếm sĩ của Đội Diệt Quỷ và chuẩn bị cho trận chiến mới với các thành viên mạnh nhất trong hàng Thượng Huyền của Thập Nhị Quỷ Nguyệt.\r\n', 'demonslayer.jpg', 'demonslayerngang.jpg', 13, 'https://www.youtube.com/embed/IbyYUvLZ6fM', 'dangchieu'),
+('guardian', 'GUARDIANS OF THE GALAXY VOL.3', 'Hành Động, Phiêu Lưu, Hài', 'Vin Diesel, Chris Pratt, Karen Gillan, Zoe Saldana', ' Mỹ', 'James Gunn', '9.6', '112 phút', '2023-04-29', 'Trong phần phim thứ 3 về Vệ Binh Dải Ngân Hà, biệt đội mà chúng ta từng biết sẽ có một vài sự thay đổi. Peter Quill vẫn đang chìm đắm trong nỗi đau mất đi Gamora nhưng vẫn phải làm tròn trách nhiệm tập hợp cả đội để bảo vệ toàn vũ trụ. Họ phải đối mặt với một nhiệm vụ cam go và nếu như  thất bại, đội Vệ Binh có thể phải kết thúc sứ mệnh của họ.', 'guardian.jpg', 'guardianngang.jpg', 16, 'https://www.youtube.com/embed/JqcncLPi9zw', 'sapchieu'),
+('latmat', 'LẬT MẶT 6: TẤM VÉ ĐỊNH MỆNH', 'Hài, Tình Cảm, Tâm Lý, Hành Động', 'Trần Kim Hải, Thanh Thức, Huy Khánh, Quốc Cường, T', 'Việt Nam', 'Lý Hải', '8.5', '132 phút', '2023-05-05', 'Một nhóm bạn thân lâu năm bất ngờ nhận được cơ hội đổi đời  khi biết tấm vé của cả nhóm trúng giải độc đắc 136.8 tỷ. Đột nhiên An, người nắm giữ tấm vé bất ngờ gặp tai nạn không qua khỏi. Đứng trước món tiền trúng số đáng mơ ước lẽ ra sẽ dễ dàng có được trong tầm tay, nhóm bạn bước chân vào hành trình đi tìm tờ vé số. Nhưng đó chỉ là khởi đầu của vô số những sự kiện không ngờ đến. Liệu hành trình tìm kiếm và chia chác món tiền trong mơ béo bở này sẽ thực sự dẫn đưa cả nhóm đến đâu?', 'latmat.jpg', 'latmatngang.jpg', 16, 'https://www.youtube.com/embed/2EnP2tVC00Q', 'sapchieu'),
 ('sieulay', 'SIÊU LỪA GẶP SIÊU LẦY', 'Hài', ' Mạc Văn Khoa, Anh Tú', ' Việt Nam', 'Võ Thanh Hòa', '8.1', '112 phút', '2023-03-01', 'Thuộc phong cách hành động – hài hước với các “cú lừa” thông minh và lầy lội đến từ bộ đôi Tú (Anh Tú) và Khoa (Mạc Văn Khoa), Siêu Lừa Gặp Siêu Lầy của đạo diễn Võ Thanh Hòa theo chân của Khoa – tên lừa đảo tầm cỡ “quốc nội” đến đảo ngọc Phú Quốc với mong muốn đổi đời.\r\n\r\nTại đây, Khoa gặp Tú – tay lừa đảo “hàng real” và cùng Tú thực hiện các phi vụ từ nhỏ đến lớn. Cứ ngỡ sự ranh mãnh của Tú và sự may mắn trời cho của Khoa sẽ giúp họ trở thành bộ đôi bất khả chiến bại, nào ngờ lại đối mặt với nhiều tình huống dở khóc – dở cười. Nhất là khi băng nhóm của bộ đôi nhanh chóng mở rộng vì sự góp mặt của ông Năm (Nhất Trung) và bé Mã Lai (Ngọc Phước).\r\n', 'sieulua.jpg', 'sieuluangang.jpeg', 16, 'https://www.youtube.com/embed/NIVa1CCdFv4', 'dangchieu'),
 ('songsot', 'SỐNG SÓT', 'Tâm Lý, Giật Gân', 'Dmitriy Suvorov', 'Hàn Quốc', 'Dmitriy Suvorov', '7.8', '96 phút', '2023-03-28', 'Vào ngày 24 tháng 8 năm 1981, đôi vợ chồng mới cưới Larisa và Vladimir Savitsky lên chuyến bay Komsomolsk-on-Amur - Blagoveshchensk. 30 phút sau khi hạ cánh, máy bay dân sự AN-24 va chạm với một máy bay khác và bị vỡ thành mảnh vụn ở độ cao hơn 5 km so với mặt đất. Không ai được dự đoán sống sót... nhưng một phép màu đã xảy ra. Larisa Savitskaya tỉnh dậy giữa đống đổ nát của chiếc máy bay tại một khu rừng rậm rạp. Bây giờ, cô phải tạo ra một phép màu thật sự, điều mà chỉ một người có ý chí mạnh mẽ mới có thể làm được… sống sót!', 'songsot.jpg', 'songsotngang.jpg', 16, 'https://www.youtube.com/embed/8kRpnuv2rIk', 'dangchieu'),
 ('thecovenant', 'THE COVENANT', 'Tâm lý, Hành động', 'Antony Starr, Alexander Ludwig, Jake Gyllenhaal', 'Mỹ', 'Guy Ritchie', '7.2', '120 phút', '2023-04-21', 'Bối cảnh phim Khế Ước diễn ra tại chiến trường Afghanistan. Trong nhiệm vụ cuối cùng, Trung sĩ John Kinley (Jake Gyllenhaal thủ vai) cùng đội với phiên dịch viên bản địa Ahmed (Dal Salim thủ vai). Khi đơn vị của họ bị phục kích, John và Ahmed là 2 người sống sót duy nhất. Bị kẻ địch truy đuổi, Ahmed liều mạng đưa John đang bị thương băng qua nhiều dặm đường địa hình khắc nghiệt đến nơi an toàn. Trở về Mỹ, John biết rằng Ahmed và gia đình không được cấp giấy thông hành tới Mỹ như đã hứa. Quyết tâm bảo vệ bạn mình và đền ơn cứu mạng, John trở lại chiến trường để giúp Ahmed và gia đình trước khi lực lượng phiến quân phát hiện ra họ.', 'thecovenant.jpg', 'thecovenantngang.jpg', 18, 'https://www.youtube.com/embed/02PPMPArNEQ', 'sapchieu'),
@@ -690,7 +690,7 @@ CREATE TABLE `phong` (
   `tenphong` varchar(30) DEFAULT NULL,
   `soluongghe` int(11) DEFAULT NULL,
   `trangthai` varchar(50) NOT NULL DEFAULT 'hien'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
@@ -723,7 +723,7 @@ CREATE TABLE `suatchieu` (
   `giochieu` time DEFAULT NULL,
   `giave` int(11) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `suatchieu`
@@ -781,7 +781,7 @@ CREATE TABLE `tintuc` (
   `cthinhanh2` varchar(100) DEFAULT NULL,
   `cthinhanh3` varchar(100) DEFAULT NULL,
   `hinhanhdoc` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tintuc`
@@ -814,7 +814,7 @@ CREATE TABLE `user` (
   `role` varchar(10) DEFAULT 'khach',
   `diachi` varchar(50) DEFAULT NULL,
   `tinh` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
@@ -837,7 +837,7 @@ CREATE TABLE `ve` (
   `mave` char(30) NOT NULL,
   `maphim` char(30) NOT NULL,
   `giave` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`

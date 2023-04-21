@@ -12,8 +12,15 @@ async function get4NowShowingFilm() {
     );
     return record;
 };
+async function get6NowShowingFilm() {
+    const record = await dbClient.query(
+        `SELECT * FROM PHIM WHERE trangthai = "dangchieu" ORDER BY RAND() LIMIT 6;`
+    );
+    return record;
+};
 
 module.exports = {
     getNowShowingFilm,
-    get4NowShowingFilm
+    get4NowShowingFilm,
+    get6NowShowingFilm
 }
