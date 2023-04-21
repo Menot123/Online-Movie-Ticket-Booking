@@ -117,7 +117,7 @@ async function favDetail(req, res, next) {
             fav = await favDetailService.getFav(req.params.makhuyenmai);
         }
         const all4films = await nowShowingServices.get4NowShowingFilm();
-        res.render('fav_detail', { fav: fav,all4films: all4films, nameUser: req.session.name });
+        res.render('fav_detail', { fav: fav, all4films: all4films, nameUser: req.session.name });
     } catch (err) {
         console.error('An error', err.message);
         next(err);
@@ -255,37 +255,42 @@ async function ticket(req, res, next) {
 }
 
 async function chooseTicket(req, res, next) {
-    const suatchieu = await buyticketServices.getSuatChieu(req.params.masuatchieu);
-    // console.log(req.params.masuatchieu)
-    const film = await movieDetailServices.getPhim(req.params.maphim);
-    const combo = await buyticketServices.getComboList();
+    if (!req.session.nameUser) {
+        res.redirect("/login");
+    } else {
 
-    const seat = await buyticketServices.getRoomSeat(suatchieu.maphong);
-    const groupSeat = [];
-    seat.forEach((row) => {
-        row.forEach((seat) => {
-            const row = seat.maghe.charAt(0);
-            seat.maghe = seat.maghe.substring(1)
-            let rowSeat = groupSeat.find((item) => item.row === row);
-            if (!rowSeat) {
-                rowSeat = {
-                    row,
-                    data: []
-                };
-                groupSeat.push(rowSeat);
-            }
-            rowSeat.data.push(seat);
-        });
-    });
+        const suatchieu = await buyticketServices.getSuatChieu(req.params.masuatchieu);
+        // console.log(req.params.masuatchieu)
+        const film = await movieDetailServices.getPhim(req.params.maphim);
+        const combo = await buyticketServices.getComboList();
 
-    // Sort number seat
-    groupSeat.forEach((row) => {
-        row.data.sort(function (a, b) {
-            return parseInt(a.maghe) - parseInt(b.maghe);
+        const seat = await buyticketServices.getRoomSeat(suatchieu.maphong);
+        const groupSeat = [];
+        seat.forEach((row) => {
+            row.forEach((seat) => {
+                const row = seat.maghe.charAt(0);
+                seat.maghe = seat.maghe.substring(1)
+                let rowSeat = groupSeat.find((item) => item.row === row);
+                if (!rowSeat) {
+                    rowSeat = {
+                        row,
+                        data: []
+                    };
+                    groupSeat.push(rowSeat);
+                }
+                rowSeat.data.push(seat);
+            });
         });
-    });
-    // console.log(groupSeat[0]);
-    res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser, emailUser: req.session.email });
+
+        // Sort number seat
+        groupSeat.forEach((row) => {
+            row.data.sort(function(a, b) {
+                return parseInt(a.maghe) - parseInt(b.maghe);
+            });
+        });
+        // console.log(groupSeat[0]);
+        res.render('choose_ticket', { suatchieu: suatchieu, film: film[0], combo: combo, seat: groupSeat, nameUser: req.session.name, phoneUser: req.session.phone, idUser: req.session.idUser, emailUser: req.session.email });
+    }
 }
 
 async function payMent(req, res, next) {
@@ -309,7 +314,7 @@ async function payMent(req, res, next) {
     // Change seat status
     const roomId = await buyticketServices.getRoomId(data.masuatchieu)
     let seatString = data.seatList.split(",")
-    seatString.forEach(async (row) => {
+    seatString.forEach(async(row) => {
         let unableSeat = await buyticketServices.unableSeat(row, roomId);
     });
 
@@ -323,7 +328,7 @@ async function useSale(req, res, next) {
     if (result) {
         // console.log(result.giamgia);
         res.json({ giamgia: result.giamgia })
-        // res.json(result);
+            // res.json(result);
     } else {
         res.json({ failed: 1 });
     }
@@ -524,4 +529,3 @@ module.exports = {
     favDetail,
     top
 };
-
